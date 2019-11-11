@@ -1,0 +1,7 @@
+parameters:
+    level: 7
+    paths:
+        - src/
+        - tests/
+    autoload_files:
+        - '%currentWorkingDirectory%/bin/.phpunit/phpunit-8.4.3-0/vendor/autoload.php'

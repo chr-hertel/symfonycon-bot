@@ -108,6 +108,9 @@
     "monolog/monolog": {
         "version": "2.x-dev"
     },
+    "nikic/php-parser": {
+        "version": "4.3-dev"
+    },
     "ocramius/package-versions": {
         "version": "1.6.x-dev"
     },
@@ -123,6 +126,9 @@
     "phpdocumentor/type-resolver": {
         "version": "1.x-dev"
     },
+    "phpstan/phpstan": {
+        "version": "0.12-dev"
+    },
     "psr/cache": {
         "version": "1.0.x-dev"
     },
@@ -134,6 +140,21 @@
     },
     "psr/log": {
         "version": "1.1.x-dev"
+    },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "config/packages/security_checker.yaml"
+        ]
+    },
+    "symfony/browser-kit": {
+        "version": "5.0-dev"
     },
     "symfony/cache": {
         "version": "5.0-dev"
@@ -157,6 +178,9 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/css-selector": {
+        "version": "5.0-dev"
+    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -176,6 +200,9 @@
         "version": "5.0-dev"
     },
     "symfony/doctrine-bridge": {
+        "version": "5.0-dev"
+    },
+    "symfony/dom-crawler": {
         "version": "5.0-dev"
     },
     "symfony/dotenv": {
@@ -282,6 +309,22 @@
     "symfony/orm-pack": {
         "version": "dev-master"
     },
+    "symfony/phpunit-bridge": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "b0582341f1df39aaf3a9a866cdbe49937da35984"
+        },
+        "files": [
+            ".env.test",
+            "bin/phpunit",
+            "config/bootstrap.php",
+            "phpunit.xml.dist",
+            "tests/.gitignore"
+        ]
+    },
     "symfony/polyfill-intl-idn": {
         "version": "1.12-dev"
     },
@@ -328,6 +371,9 @@
     },
     "symfony/telegram-notifier": {
         "version": "5.0-dev"
+    },
+    "symfony/test-pack": {
+        "version": "dev-master"
     },
     "symfony/translation-contracts": {
         "version": "2.0-dev"

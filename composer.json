@@ -7,16 +7,20 @@
         "php": "^7.2.9",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^1.6.10 || ^2.0",
-        "doctrine/doctrine-fixtures-bundle": "^3.3@dev",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "doctrine/doctrine-migrations-bundle": "^1.3 || ^2.0",
         "doctrine/orm": "^2.5.11",
+        "phpdocumentor/reflection-docblock": "^3.0|^4.0",
         "symfony/console": "5.0.*",
         "symfony/dotenv": "5.0.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "5.0.*",
-        "symfony/monolog-bundle": "^3.0@dev",
-        "symfony/serializer-pack": "dev-master",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/property-access": "5.0.*",
+        "symfony/property-info": "5.0.*",
+        "symfony/serializer": "5.0.*",
         "symfony/telegram-notifier": "5.0.*",
         "symfony/yaml": "5.0.*"
     },
@@ -34,7 +38,12 @@
     },
     "require-dev": {
         "easycorp/easy-log-handler": "^1.0.7",
+        "phpstan/phpstan": "^0.12.0",
+        "sensiolabs/security-checker": "^6.0",
+        "symfony/browser-kit": "5.0.*",
+        "symfony/css-selector": "5.0.*",
         "symfony/debug-bundle": "5.0.*",
+        "symfony/phpunit-bridge": "5.0.*",
         "symfony/stopwatch": "5.0.*",
         "symfony/twig-bundle": "5.0.*",
         "symfony/var-dumper": "5.0.*",
@@ -72,7 +81,8 @@
         ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         }
     }
 }
