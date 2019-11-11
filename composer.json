@@ -1,0 +1,78 @@
+{
+    "name": "stoffel/symfonycon-bot",
+    "type": "project",
+    "description": "Simple Telegram bot for SymfonyCon",
+    "license": "MIT",
+    "require": {
+        "php": "^7.2.9",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "doctrine/doctrine-bundle": "^1.6.10 || ^2.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.3@dev",
+        "doctrine/doctrine-migrations-bundle": "^1.3 || ^2.0",
+        "doctrine/orm": "^2.5.11",
+        "symfony/console": "5.0.*",
+        "symfony/dotenv": "5.0.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "5.0.*",
+        "symfony/monolog-bundle": "^3.0@dev",
+        "symfony/serializer-pack": "dev-master",
+        "symfony/telegram-notifier": "5.0.*",
+        "symfony/yaml": "5.0.*"
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php56": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php72": "*"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "require-dev": {
+        "easycorp/easy-log-handler": "^1.0.7",
+        "symfony/debug-bundle": "5.0.*",
+        "symfony/stopwatch": "5.0.*",
+        "symfony/twig-bundle": "5.0.*",
+        "symfony/var-dumper": "5.0.*",
+        "symfony/web-profiler-bundle": "5.0.*"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.0.*"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    }
+}
