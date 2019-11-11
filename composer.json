@@ -4,7 +4,7 @@
     "description": "Simple Telegram bot for SymfonyCon",
     "license": "MIT",
     "require": {
-        "php": "^7.2.9",
+        "php": "^7.3.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
