@@ -22,7 +22,7 @@ jobs:
             - name: Install PHP Dependencies
               run: composer install --no-scripts
             - name: Lint Yaml Files
-              run: bin/console lint:yaml config
+              run: bin/console lint:yaml config --parse-tags
             - name: Lint Twig Files
               run: bin/console lint:twig templates --env=prod
             - name: Code Style PHP
