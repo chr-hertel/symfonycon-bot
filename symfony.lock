@@ -211,9 +211,6 @@
     "symfony/error-handler": {
         "version": "5.0-dev"
     },
-    "symfony/error-renderer": {
-        "version": "5.0-dev"
-    },
     "symfony/event-dispatcher": {
         "version": "5.0-dev"
     },

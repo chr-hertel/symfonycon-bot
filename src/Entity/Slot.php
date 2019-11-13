@@ -7,7 +7,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\SlotRepository")
  */
 class Slot
 {
@@ -61,5 +61,25 @@ class Slot
         $this->end = $end;
         $this->speaker = $speaker;
         $this->track = $track;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getStart(): \DateTimeImmutable
+    {
+        return $this->start;
+    }
+
+    public function getEnd(): \DateTimeImmutable
+    {
+        return $this->end;
+    }
+
+    public function getSpeaker(): ?string
+    {
+        return $this->speaker;
     }
 }
