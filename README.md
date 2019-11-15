@@ -15,7 +15,10 @@ Requirements
 Setting up ngrok
 ----------------
 
-We need ngrok to provide an https tunnel for the Telegram bot to connect with our local development environment.
+The Telegram bot will communicate with our application to process messages and reply to them. This requires a websocket
+connection that is reachable from external systems, i.e. accessible via the internet. This can be achieved by deploying
+your application, e.g. using [Symfony Cloud](https://symfony.com/cloud/), or exposing our local environment through an
+HTTPS tunnel service like [serveo](https://serveo.net/) or [ngrok](https://ngrok.com).
 
 1. Download and install the ngrok client
 1. Sign up for a private ngrok account on https://ngrok.com
