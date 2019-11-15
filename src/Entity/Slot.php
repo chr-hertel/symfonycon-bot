@@ -82,4 +82,19 @@ class Slot
     {
         return $this->speaker;
     }
+
+    public function __toString(): string
+    {
+        $text = sprintf('*%s*', $this->title);
+
+        if (null !== $this->speaker) {
+            $text .= PHP_EOL.sprintf('_%s_', $this->speaker);
+        }
+
+        if (null !== $this->track) {
+            $text = sprintf('%s Track', $this->track).PHP_EOL.$text;
+        }
+
+        return $text;
+    }
 }
