@@ -91,8 +91,11 @@ class Slot
             $text .= PHP_EOL.sprintf('_%s_', $this->speaker);
         }
 
+        $time = sprintf('%s-%s', $this->start->format('H:i'), $this->end->format('H:i'));
         if (null !== $this->track) {
-            $text = sprintf('%s Track', $this->track).PHP_EOL.$text;
+            $text = sprintf('%s Track (%s)', $this->track, $time).PHP_EOL.$text;
+        } else {
+            $text = $time.PHP_EOL.$text;
         }
 
         return $text;
