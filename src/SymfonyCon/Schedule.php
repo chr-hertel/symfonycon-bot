@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\SymfonyCon;
 
-use App\Entity\Slot;
 use App\Repository\SlotRepository;
 
 class Schedule
@@ -18,55 +17,40 @@ class Schedule
         $this->slotRepository = $repository;
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function now(): array
+    public function now(): SlotCollection
     {
         if (!$this->timer->isRunning()) {
-            return [];
+            return SlotCollection::empty();
         }
 
-        return $this->slotRepository->findByTime($this->timer->getNow());
+        return SlotCollection::array($this->slotRepository->findByTime($this->timer->getNow()));
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function next(): array
+    public function next(): SlotCollection
     {
         if (!$this->timer->isRunning()) {
-            return [];
+            return SlotCollection::empty();
         }
 
-        return $this->slotRepository->findNext($this->timer->getNow());
+        return SlotCollection::array($this->slotRepository->findNext($this->timer->getNow()));
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function today(): array
+    public function today(): SlotCollection
     {
         if (!$this->timer->isRunning()) {
-            return [];
+            return SlotCollection::empty();
         }
 
-        return $this->slotRepository->findByDay($this->timer->getNow());
+        return SlotCollection::array($this->slotRepository->findByDay($this->timer->getNow()));
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function day1(): array
+    public function day1(): SlotCollection
     {
-        return $this->slotRepository->findByDay($this->timer->getStart());
+        return SlotCollection::array($this->slotRepository->findByDay($this->timer->getStart()));
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function day2(): array
+    public function day2(): SlotCollection
     {
-        return $this->slotRepository->findByDay($this->timer->getEnd());
+        return SlotCollection::array($this->slotRepository->findByDay($this->timer->getEnd()));
     }
 }
