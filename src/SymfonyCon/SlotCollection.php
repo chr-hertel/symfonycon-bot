@@ -25,6 +25,10 @@ class SlotCollection extends \ArrayIterator
 
     public function __toString(): string
     {
+        if (0 === $this->count()) {
+            return 'nothing found';
+        }
+
         $text = sprintf('*%s-%s*', $this->getStart()->format('m/d - H:i'), $this->getEnd()->format('H:i'));
 
         foreach ($this->getArrayCopy() as $slot) {
