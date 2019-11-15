@@ -16,6 +16,9 @@ class StartReplier implements ReplierInterface
 
     public function reply(Envelope $envelope): Reply
     {
-        return new Reply(sprintf('Welcome %s! :) Use /help to see all commands.', $envelope->message->from->firstName));
+        return new Reply(sprintf(
+            "Welcome to SymfonyConBot, %s! :)\nUse /help to see all commands.",
+            $envelope->message->from->firstName
+        ));
     }
 }

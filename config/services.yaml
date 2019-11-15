@@ -40,4 +40,3 @@ services:
     App\SymfonyCon\Timer:
         $start: '11/21/19 08:00'
         $end: '11/22/19 17:00'
-        $now: '11/21/19 09:23'

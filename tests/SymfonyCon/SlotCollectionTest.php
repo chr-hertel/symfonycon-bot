@@ -20,8 +20,10 @@ class SlotCollectionTest extends TestCase
         $expectedText = <<<TEXT
         *11/21 - 09:00-10:25*
         
+        09:00-09:40
         *Talk 1*
         
+        09:45-10:25
         *Talk 2*
         TEXT;
 
