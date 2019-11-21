@@ -3,7 +3,6 @@
 composer validate --strict
 
 bin/console lint:yaml config --parse-tags
-bin/console lint:twig templates --env=prod
 
 bin/php-cs-fixer.phar fix --dry-run
 
