@@ -49,7 +49,9 @@ class Timer
 
     public function getCountdown(): \DateInterval
     {
-        return $this->start->diff($this->now);
+        $delta = $this->hasStarted() ? $this->start : $this->now;
+
+        return $this->start->diff($delta);
     }
 
     public function startsToday()

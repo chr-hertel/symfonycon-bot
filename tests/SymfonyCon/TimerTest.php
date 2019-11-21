@@ -113,6 +113,26 @@ class TimerTest extends TestCase
         static::assertSame(0, $countdown->i);
     }
 
+    public function testCountdownWhile(): void
+    {
+        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 09:00');
+        $countdown = $timer->getCountdown();
+
+        static::assertSame(0, $countdown->days);
+        static::assertSame(0, $countdown->h);
+        static::assertSame(0, $countdown->i);
+    }
+
+    public function testCountdownAfter(): void
+    {
+        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 18:00');
+        $countdown = $timer->getCountdown();
+
+        static::assertSame(0, $countdown->days);
+        static::assertSame(0, $countdown->h);
+        static::assertSame(0, $countdown->i);
+    }
+
     /**
      * @dataProvider provideStartsTodayData
      */
