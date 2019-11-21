@@ -64,7 +64,7 @@ class SlotRepositoryTest extends TestCase
         return [
             'day1_keynote' => ['11/21/19 09:36', ['Keynote']],
             'day1_lunch' => ['11/21/19 13:15', ['Lunch']],
-            'day1_slot2' => ['11/21/19 11:32', ['How Doctrine caching can skyrocket your application', 'Evolving with Symfony in a long-term project', 'Crazy Fun Experiments with PHP (Not for Production)']],
+            'day1_slot2' => ['11/21/19 11:32', ['How Doctrine caching can skyrocket your application', 'Using the Workflow component for e-commerce', 'Crazy Fun Experiments with PHP (Not for Production)']],
             'day2_slot1' => ['11/22/19 10:08', ['Using API Platform to build ticketing system', 'Make the Most out of Twig', 'Mental Health in the Workplace']],
             'day2_closing' => ['11/22/19 16:57', ['Closing session']],
         ];

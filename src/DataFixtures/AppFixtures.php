@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
             new Slot('Break ☕ 🥐', new \DateTimeImmutable('11/21/19 10:45'), new \DateTimeImmutable('11/21/19 11:15')),
 
             new Slot('How Doctrine caching can skyrocket your application', new \DateTimeImmutable('11/21/19 11:15'), new \DateTimeImmutable('11/21/19 11:55'), 'Jachim Coudenys', 'Advanced'),
-            new Slot('Evolving with Symfony in a long-term project', new \DateTimeImmutable('11/21/19 11:15'), new \DateTimeImmutable('11/21/19 11:55'), 'Tobias Schultze', 'Beginner'),
+            new Slot('Using the Workflow component for e-commerce', new \DateTimeImmutable('11/21/19 11:15'), new \DateTimeImmutable('11/21/19 11:55'), 'Michelle Sanver', 'Beginner'),
             new Slot('Crazy Fun Experiments with PHP (Not for Production)', new \DateTimeImmutable('11/21/19 11:15'), new \DateTimeImmutable('11/21/19 11:55'), 'Zan Baldwin', 'PHP'),
 
             new Slot('Lunch', new \DateTimeImmutable('11/21/19 12:00'), new \DateTimeImmutable('11/21/19 13:30')),
