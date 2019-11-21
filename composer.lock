@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5243d15bc4b56ec14259e583055fd7e",
+    "content-hash": "667a89b3fcd11afd606080d346e000cb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5369,8 +5369,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "doctrine/doctrine-bundle": 10,
-        "doctrine/orm": 20,
         "phpstan/phpdoc-parser": 20,
         "phpstan/phpstan": 20,
         "phpstan/phpstan-phpunit": 20
