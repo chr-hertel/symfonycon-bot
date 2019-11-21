@@ -76,7 +76,6 @@
             "App\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "RC",
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
