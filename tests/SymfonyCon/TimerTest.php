@@ -112,4 +112,24 @@ class TimerTest extends TestCase
         static::assertSame(0, $countdown->h);
         static::assertSame(0, $countdown->i);
     }
+
+    /**
+     * @dataProvider provideStartsTodayData
+     */
+    public function testStartsToday(string $now, bool $expectedBoolean): void
+    {
+        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', $now);
+
+        static::assertSame($expectedBoolean, $timer->startsToday());
+    }
+
+    public function provideStartsTodayData(): array
+    {
+        return [
+            ['11/21/19 07:20', true],
+            ['11/22/19 07:20', false],
+            ['11/20/19 07:20', false],
+            ['11/21/19 17:20', true],
+        ];
+    }
 }

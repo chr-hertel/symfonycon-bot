@@ -51,4 +51,9 @@ class Timer
     {
         return $this->start->diff($this->now);
     }
+
+    public function startsToday()
+    {
+        return $this->start->format('m/d/y') === $this->now->format('m/d/y');
+    }
 }

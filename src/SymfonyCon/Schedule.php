@@ -28,7 +28,7 @@ class Schedule
 
     public function next(): SlotCollection
     {
-        if (!$this->timer->isRunning()) {
+        if (!$this->timer->isRunning() && !$this->timer->startsToday()) {
             return SlotCollection::empty();
         }
 
@@ -37,7 +37,7 @@ class Schedule
 
     public function today(): SlotCollection
     {
-        if (!$this->timer->isRunning()) {
+        if (!$this->timer->isRunning() && !$this->timer->startsToday()) {
             return SlotCollection::empty();
         }
 
