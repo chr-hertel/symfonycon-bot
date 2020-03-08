@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
 composer validate --strict
+composer check-platform-reqs
 
 bin/console lint:yaml config --parse-tags
+bin/console lint:container
 
 bin/php-cs-fixer.phar fix --dry-run
 
 vendor/bin/security-checker security:check
 
-bin/phpunit
-
 vendor/bin/phpstan analyse
+
+bin/phpunit

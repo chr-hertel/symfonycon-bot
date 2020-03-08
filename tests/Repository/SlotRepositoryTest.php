@@ -7,6 +7,7 @@ namespace App\Tests\Repository;
 use App\DataFixtures\AppFixtures;
 use App\Entity\Slot;
 use App\Repository\SlotRepository;
+use App\Tests\ConferenceFixtures;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Persistence\Mapping\Driver\AnnotationDriver;
@@ -17,8 +18,7 @@ use Symfony\Component\DependencyInjection\Container;
 
 class SlotRepositoryTest extends TestCase
 {
-    private $resultCache;
-    private $repository;
+    use ConferenceFixtures;
 
     /**
      * @dataProvider provideDays
@@ -92,28 +92,5 @@ class SlotRepositoryTest extends TestCase
             'day2_slot1' => ['11/22/19 10:08', ['Break ☕ 🥐']],
             'day2_closing' => ['11/22/19 16:57', []],
         ];
-    }
-
-    protected function setUp(): void
-    {
-        $config = DoctrineTestHelper::createTestConfiguration();
-        $this->resultCache = new ArrayCache();
-        $config->setResultCacheImpl($this->resultCache);
-        /** @var AnnotationDriver $driver */
-        $driver = $config->getMetadataDriverImpl();
-        $driver->addPaths([__DIR__.'/../../src/Entity']);
-
-        $entityManager = DoctrineTestHelper::createTestEntityManager($config);
-        $schemaTool = new SchemaTool($entityManager);
-        $schemaTool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
-
-        $fixtures = new AppFixtures();
-        $fixtures->load($entityManager);
-
-        $container = new Container();
-        $container->set('connection', $entityManager->getConnection());
-        $container->set('entity_manager', $entityManager);
-        $registry = new Registry($container, ['connection'], ['entity_manager'], 'connection', 'entity_manager');
-        $this->repository = new SlotRepository($registry);
     }
 }
