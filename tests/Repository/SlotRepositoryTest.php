@@ -4,17 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Repository;
 
-use App\DataFixtures\AppFixtures;
 use App\Entity\Slot;
-use App\Repository\SlotRepository;
 use App\Tests\ConferenceFixtures;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Persistence\Mapping\Driver\AnnotationDriver;
-use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
-use Symfony\Component\DependencyInjection\Container;
 
 class SlotRepositoryTest extends TestCase
 {

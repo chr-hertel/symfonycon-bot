@@ -14,7 +14,7 @@ class WebhookRegisterCommand extends Command
 {
     protected static $defaultName = 'app:webhook:register';
 
-    private $telegramClient;
+    private Client $telegramClient;
 
     public function __construct(Client $telegramClient)
     {

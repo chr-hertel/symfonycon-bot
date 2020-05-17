@@ -13,9 +13,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 class WebhookRegisterCommandTest extends WebTestCase
 {
     /** @var Client|MockObject */
-    private $telegramClient;
+    private MockObject $telegramClient;
     /** @var CommandTester */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     public function testWebhookNotRegisteredWithoutConfirmation(): void
     {

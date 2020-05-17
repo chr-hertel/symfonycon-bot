@@ -24,7 +24,7 @@ jobs:
             - name: Lint Yaml Files
               run: bin/console lint:yaml config --parse-tags
             - name: Code Style PHP
-              run: bin/php-cs-fixer.phar fix --dry-run
+              run: vendor/bin/php-cs-fixer fix --dry-run
             - name: Security Check
               run: vendor/bin/security-checker security:check
             - name: Cache PHPUnit

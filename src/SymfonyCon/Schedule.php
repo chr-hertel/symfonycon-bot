@@ -8,8 +8,8 @@ use App\Repository\SlotRepository;
 
 class Schedule
 {
-    private $timer;
-    private $slotRepository;
+    private Timer $timer;
+    private SlotRepository $slotRepository;
 
     public function __construct(Timer $timer, SlotRepository $repository)
     {

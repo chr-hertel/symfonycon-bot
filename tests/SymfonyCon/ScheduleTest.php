@@ -15,10 +15,10 @@ class ScheduleTest extends TestCase
         setUp as fixtureSetUp;
     }
 
-    private $scheduleBefore;
-    private $scheduleStartingMorning;
-    private $scheduleWhileRunning;
-    private $scheduleAfter;
+    private Schedule $scheduleBefore;
+    private Schedule $scheduleStartingMorning;
+    private Schedule $scheduleWhileRunning;
+    private Schedule $scheduleAfter;
 
     public function testNowBefore(): void
     {

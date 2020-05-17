@@ -10,8 +10,8 @@ use Symfony\Component\Notifier\Message\ChatMessage;
 
 class ChatBot
 {
-    private $replier;
-    private $chatter;
+    private ReplyMachine $replier;
+    private ChatterInterface $chatter;
 
     public function __construct(ReplyMachine $replier, ChatterInterface $chatter)
     {

@@ -6,9 +6,9 @@ namespace App\SymfonyCon;
 
 class Timer
 {
-    private $start;
-    private $end;
-    private $now;
+    private \DateTimeImmutable $start;
+    private \DateTimeImmutable $end;
+    private \DateTimeImmutable $now;
 
     public function __construct(string $start, string $end, string $now = null)
     {
@@ -54,7 +54,7 @@ class Timer
         return $this->start->diff($delta);
     }
 
-    public function startsToday()
+    public function startsToday(): bool
     {
         return $this->start->format('m/d/y') === $this->now->format('m/d/y');
     }

@@ -6,12 +6,8 @@ namespace App\ChatBot\Telegram\Data;
 
 class Chat
 {
-    /** @var int */
-    public $id;
-    /** @var string */
-    public $firstName;
-    /** @var string */
-    public $lastName;
-    /** @var string */
-    public $type;
+    public int $id;
+    public string $firstName;
+    public string $lastName;
+    public string $type;
 }

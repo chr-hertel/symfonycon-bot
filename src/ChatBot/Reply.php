@@ -6,8 +6,8 @@ namespace App\ChatBot;
 
 class Reply
 {
-    private $text;
-    private $markup;
+    private string $text;
+    private array $markup;
 
     public function __construct(string $text, array $markup = [])
     {

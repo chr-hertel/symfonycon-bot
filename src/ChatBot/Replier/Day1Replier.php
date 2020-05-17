@@ -10,7 +10,7 @@ use App\SymfonyCon\Schedule;
 
 class Day1Replier implements ReplierInterface
 {
-    private $schedule;
+    private Schedule $schedule;
 
     public function __construct(Schedule $schedule)
     {

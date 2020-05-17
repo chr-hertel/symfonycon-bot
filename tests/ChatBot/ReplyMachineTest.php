@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class ReplyMachineTest extends TestCase
 {
-    private $replyMachine;
+    private ReplyMachine $replyMachine;
 
     /**
      * @dataProvider provideValidMessage
@@ -65,5 +65,4 @@ class ReplyMachineTest extends TestCase
 
         $this->replyMachine = new ReplyMachine($replier);
     }
-
 }

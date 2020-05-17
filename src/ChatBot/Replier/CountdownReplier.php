@@ -10,7 +10,7 @@ use App\SymfonyCon\Timer;
 
 class CountdownReplier implements ReplierInterface
 {
-    private $timer;
+    private Timer $timer;
 
     public function __construct(Timer $timer)
     {
