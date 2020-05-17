@@ -13,8 +13,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class WebhookController
 {
-    private $serializer;
-    private $chatBot;
+    private SerializerInterface $serializer;
+    private ChatBot $chatBot;
 
     public function __construct(SerializerInterface $serializer, ChatBot $chatBot)
     {

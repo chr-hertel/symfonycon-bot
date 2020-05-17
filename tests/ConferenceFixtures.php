@@ -16,10 +16,8 @@ use Symfony\Component\DependencyInjection\Container;
 
 trait ConferenceFixtures
 {
-    /** @var Cache */
-    private $resultCache;
-    /** @var SlotRepository */
-    private $repository;
+    private Cache $resultCache;
+    private SlotRepository $repository;
 
     protected function setUp(): void
     {

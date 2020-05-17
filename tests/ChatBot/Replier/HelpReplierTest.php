@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class HelpReplierTest extends TestCase
 {
-    private $replier;
+    private HelpReplier $replier;
 
     public function testSupportingCountdownMessage(): void
     {

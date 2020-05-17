@@ -6,11 +6,9 @@ namespace App\ChatBot\Telegram\Data;
 
 class CallbackQuery
 {
-    public $id;
-    /** @var User */
-    public $from;
-    /** @var Message */
-    public $message;
-    public $chatInstance;
-    public $data;
+    public int $id;
+    public User $from;
+    public Message $message;
+    public int $chatInstance;
+    public string $data;
 }

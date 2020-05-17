@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class StartReplierTest extends TestCase
 {
-    private $replier;
+    private StartReplier $replier;
 
     public function testSupportingCountdownMessage(): void
     {

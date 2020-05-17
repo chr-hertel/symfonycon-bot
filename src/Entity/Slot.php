@@ -12,42 +12,36 @@ use Doctrine\ORM\Mapping as ORM;
 class Slot
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $start;
+    private \DateTimeImmutable $start;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $end;
+    private \DateTimeImmutable $end;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(nullable=true)
      */
-    private $speaker;
+    private ?string $speaker;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(nullable=true)
      */
-    private $track;
+    private ?string $track;
 
     public function __construct(
         string $title,

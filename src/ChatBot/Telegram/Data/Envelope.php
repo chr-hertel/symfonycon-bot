@@ -6,14 +6,10 @@ namespace App\ChatBot\Telegram\Data;
 
 class Envelope
 {
-    /** @var int */
-    public $updateId;
-    /** @var Message|null */
-    public $message;
-    /** @var Message|null */
-    public $editedMessage;
-    /** @var CallbackQuery|null */
-    public $callbackQuery;
+    public int $updateId;
+    public ?Message $message = null;
+    public ?Message $editedMessage = null;
+    public ?CallbackQuery $callbackQuery = null;
 
     public function getMessage(): Message
     {

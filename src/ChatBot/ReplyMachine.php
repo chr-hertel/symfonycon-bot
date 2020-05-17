@@ -10,9 +10,9 @@ use App\ChatBot\Telegram\Data\Envelope;
 class ReplyMachine
 {
     /**
-     * @var iterable|ReplierInterface[]
+     * @var ReplierInterface[]
      */
-    private $repliers;
+    private iterable $repliers;
 
     /**
      * @param ReplierInterface[] $repliers

@@ -3,10 +3,11 @@ includes:
     - vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
-    level: 5
-    inferPrivatePropertyTypeFromConstructor: true
+    level: 6
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
     paths:
         - src/
         - tests/
     autoload_files:
-        - '%currentWorkingDirectory%/bin/.phpunit/phpunit-8.4.3-0/vendor/autoload.php'
+        - '%currentWorkingDirectory%/bin/.phpunit/phpunit-9.1.4-0/vendor/autoload.php'

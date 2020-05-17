@@ -17,7 +17,7 @@ class ChatTestCommand extends Command
 {
     protected static $defaultName = 'app:chat:reply';
 
-    private $replyMachine;
+    private ReplyMachine $replyMachine;
 
     public function __construct(ReplyMachine $replyMachine)
     {

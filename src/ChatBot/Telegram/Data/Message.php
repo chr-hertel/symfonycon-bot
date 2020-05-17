@@ -6,14 +6,9 @@ namespace App\ChatBot\Telegram\Data;
 
 class Message
 {
-    /** @var int */
-    public $messageId;
-    /** @var User */
-    public $from;
-    /** @var Chat */
-    public $chat;
-    /** @var \DateTimeImmutable */
-    public $date;
-    /** @var string */
-    public $text;
+    public int $messageId;
+    public User $from;
+    public Chat $chat;
+    public \DateTimeImmutable $date;
+    public string $text;
 }

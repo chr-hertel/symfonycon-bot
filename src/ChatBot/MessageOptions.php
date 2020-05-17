@@ -9,8 +9,8 @@ use Symfony\Component\Notifier\Message\MessageOptionsInterface;
 
 class MessageOptions implements MessageOptionsInterface
 {
-    private $chatId;
-    private $options = [];
+    private string $chatId;
+    private array $options = [];
 
     public static function fromEnvelope(Envelope $envelope, array $options = []): self
     {
