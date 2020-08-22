@@ -3,11 +3,11 @@ includes:
     - vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
-    level: 6
+    level: max
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
     paths:
         - src/
         - tests/
-    autoload_files:
+    bootstrapFiles:
         - '%currentWorkingDirectory%/bin/.phpunit/phpunit-9.1.4-0/vendor/autoload.php'

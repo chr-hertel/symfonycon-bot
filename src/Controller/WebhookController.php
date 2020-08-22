@@ -34,6 +34,6 @@ class WebhookController
 
         $this->chatBot->consume($envelope);
 
-        return Response::create();
+        return new Response();
     }
 }

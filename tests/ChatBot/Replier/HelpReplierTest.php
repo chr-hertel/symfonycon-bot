@@ -13,7 +13,7 @@ class HelpReplierTest extends TestCase
 {
     private HelpReplier $replier;
 
-    public function testSupportingCountdownMessage(): void
+    public function testSupportingHelpMessage(): void
     {
         $message = new Message();
         $message->text = '/help';
@@ -33,7 +33,7 @@ class HelpReplierTest extends TestCase
         static::assertFalse($this->replier->supports($envelope));
     }
 
-    public function testCountdownText(): void
+    public function testHelpText(): void
     {
         $reply = $this->replier->reply(new Envelope());
 

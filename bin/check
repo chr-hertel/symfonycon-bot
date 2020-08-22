@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-composer validate --strict
-composer check-platform-reqs
+symfony composer validate --strict
+symfony composer check-platform-reqs
 
-bin/console lint:yaml config --parse-tags
-bin/console lint:container
+symfony console lint:yaml config --parse-tags
+symfony console lint:container
 
-vendor/bin/php-cs-fixer fix --dry-run
+symfony php vendor/bin/php-cs-fixer fix --dry-run
 
-vendor/bin/security-checker security:check
+symfony php vendor/bin/security-checker security:check
 
-vendor/bin/phpstan analyse
+symfony php vendor/bin/phpstan analyse
 
-bin/phpunit
+symfony php bin/phpunit

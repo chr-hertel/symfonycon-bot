@@ -14,12 +14,13 @@ class SlotCollectionTest extends TestCase
     {
         $slot1 = new Slot('Talk 1', new \DateTimeImmutable('11/21/19 09:00'), new \DateTimeImmutable('11/21/19 09:40'));
         $slot2 = new Slot('Talk 2', new \DateTimeImmutable('11/21/19 09:45'), new \DateTimeImmutable('11/21/19 10:25'));
-        $slot3 = new Slot('Talk 3', new \DateTimeImmutable('11/21/19 10:30'), new \DateTimeImmutable('11/21/19 11:15'));
+        $slot3a = new Slot('Talk 3a', new \DateTimeImmutable('11/21/19 10:30'), new \DateTimeImmutable('11/21/19 12:30'));
+        $slot3b = new Slot('Talk 3b', new \DateTimeImmutable('11/21/19 10:30'), new \DateTimeImmutable('11/21/19 11:15'));
 
-        $collection = SlotCollection::array([$slot1, $slot2, $slot3]);
+        $collection = SlotCollection::array([$slot1, $slot2, $slot3a, $slot3b]);
 
         $expectedText = <<<TEXT
-        *11/21 - 09:00-11:15*
+        *11/21 - 09:00-12:30*
         
         09:00-09:40
         *Talk 1*
@@ -27,8 +28,11 @@ class SlotCollectionTest extends TestCase
         09:45-10:25
         *Talk 2*
         
+        10:30-12:30
+        *Talk 3a*
+        
         10:30-11:15
-        *Talk 3*
+        *Talk 3b*
         TEXT;
 
         static::assertSame($expectedText, (string) $collection);

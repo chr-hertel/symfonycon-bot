@@ -1,0 +1,28 @@
+{
+  "update_id":4561337187,
+  "message":{
+    "message_id":123,
+    "from":{
+      "id":12345,
+      "is_bot":false,
+      "first_name":"Jane",
+      "last_name":"Doe",
+      "language_code":"de"
+    },
+    "chat":{
+      "id":12345,
+      "first_name":"Jane",
+      "last_name":"Doe",
+      "type":"private"
+    },
+    "date":1598096057,
+    "text":"/start",
+    "entities":[
+      {
+        "offset":0,
+        "length":6,
+        "type":"bot_command"
+      }
+    ]
+  }
+}
