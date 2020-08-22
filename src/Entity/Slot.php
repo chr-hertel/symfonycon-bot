@@ -72,11 +72,6 @@ class Slot
         return $this->end;
     }
 
-    public function getSpeaker(): ?string
-    {
-        return $this->speaker;
-    }
-
     public function __toString(): string
     {
         $text = sprintf('*%s*', $this->title);

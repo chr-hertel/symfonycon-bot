@@ -14,7 +14,7 @@ class StartReplierTest extends TestCase
 {
     private StartReplier $replier;
 
-    public function testSupportingCountdownMessage(): void
+    public function testSupportingStartMessage(): void
     {
         $message = new Message();
         $message->text = '/start';
@@ -34,7 +34,7 @@ class StartReplierTest extends TestCase
         static::assertFalse($this->replier->supports($envelope));
     }
 
-    public function testCountdownText(): void
+    public function testStartText(): void
     {
         $user = new User();
         $user->firstName = 'Chris';
