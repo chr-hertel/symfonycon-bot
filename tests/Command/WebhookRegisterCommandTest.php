@@ -25,6 +25,13 @@ class WebhookRegisterCommandTest extends WebTestCase
 
         $this->commandTester->setInputs(['no']);
         $this->commandTester->execute([]);
+
+        $output = $this->commandTester->getDisplay();
+        static::assertStringContainsString('Registering Telegram Webhook', $output);
+        static::assertStringContainsString('Really want to replace the webhook?', $output);
+        static::assertStringNotContainsString('Done', $output);
+
+        static::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     public function testWebhookNotRegisteredOnNoInteraction(): void
@@ -34,6 +41,13 @@ class WebhookRegisterCommandTest extends WebTestCase
             ->method('registerWebhook');
 
         $this->commandTester->execute([], ['interactive' => false]);
+
+        $output = $this->commandTester->getDisplay();
+        static::assertStringContainsString('Registering Telegram Webhook', $output);
+        static::assertStringNotContainsString('Really want to replace the webhook?', $output);
+        static::assertStringNotContainsString('Done', $output);
+
+        static::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     public function testWebhookRegisteredOnConfirmation(): void
@@ -44,6 +58,13 @@ class WebhookRegisterCommandTest extends WebTestCase
 
         $this->commandTester->setInputs(['yes']);
         $this->commandTester->execute([]);
+
+        $output = $this->commandTester->getDisplay();
+        static::assertStringContainsString('Registering Telegram Webhook', $output);
+        static::assertStringContainsString('Really want to replace the webhook?', $output);
+        static::assertStringContainsString('Done', $output);
+
+        static::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     protected function setUp(): void

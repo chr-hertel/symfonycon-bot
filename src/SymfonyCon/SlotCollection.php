@@ -43,7 +43,7 @@ class SlotCollection extends \ArrayIterator
         return array_reduce($this->getArrayCopy(), static function (?\DateTimeImmutable $carry, Slot $slot) {
             $start = $slot->getStart();
 
-            if (null === $carry || $start < $carry) {
+            if (null === $carry || $start <= $carry) {
                 return $start;
             }
 
@@ -56,7 +56,7 @@ class SlotCollection extends \ArrayIterator
         return array_reduce($this->getArrayCopy(), static function (?\DateTimeImmutable $carry, Slot $slot) {
             $end = $slot->getEnd();
 
-            if (null === $carry || $end > $carry) {
+            if (null === $carry || $end >= $carry) {
                 return $end;
             }
 

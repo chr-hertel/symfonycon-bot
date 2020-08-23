@@ -13,3 +13,5 @@ symfony php vendor/bin/security-checker security:check
 symfony php vendor/bin/phpstan analyse
 
 symfony php bin/phpunit
+
+symfony php vendor/bin/infection

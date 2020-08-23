@@ -28,7 +28,7 @@ class WebhookRegisterCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('Registering Telegram Webhook');
 
-        if (!$io->confirm('Really wan\'t to replace the webhook?', false)) {
+        if (!$io->confirm('Really want to replace the webhook?', false)) {
             return 0;
         }
 
