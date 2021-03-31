@@ -10,4 +10,4 @@ parameters:
         - src/
         - tests/
     bootstrapFiles:
-        - '%currentWorkingDirectory%/bin/.phpunit/phpunit-9.1.4-0/vendor/autoload.php'
+        - '%currentWorkingDirectory%/bin/.phpunit/phpunit-9.5.4-0/vendor/autoload.php'

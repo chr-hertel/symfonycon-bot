@@ -14,7 +14,6 @@ class WebhookRegisterCommandTest extends WebTestCase
 {
     /** @var Client|MockObject */
     private MockObject $telegramClient;
-    /** @var CommandTester */
     private CommandTester $commandTester;
 
     public function testWebhookNotRegisteredWithoutConfirmation(): void
