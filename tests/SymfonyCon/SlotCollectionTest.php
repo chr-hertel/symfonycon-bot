@@ -10,15 +10,22 @@ use PHPUnit\Framework\TestCase;
 
 class SlotCollectionTest extends TestCase
 {
-    public function testSlotsWithMultipleTimes(): void
+    private SlotCollection $filledCollection;
+    private SlotCollection $emptyCollection;
+
+    protected function setUp(): void
     {
         $slot1 = new Slot('Talk 1', new \DateTimeImmutable('11/21/19 09:00'), new \DateTimeImmutable('11/21/19 09:40'));
         $slot2 = new Slot('Talk 2', new \DateTimeImmutable('11/21/19 09:45'), new \DateTimeImmutable('11/21/19 10:25'));
         $slot3a = new Slot('Talk 3a', new \DateTimeImmutable('11/21/19 10:30'), new \DateTimeImmutable('11/21/19 12:30'));
         $slot3b = new Slot('Talk 3b', new \DateTimeImmutable('11/21/19 10:30'), new \DateTimeImmutable('11/21/19 11:15'));
 
-        $collection = SlotCollection::array([$slot1, $slot2, $slot3a, $slot3b]);
+        $this->filledCollection = SlotCollection::array([$slot1, $slot2, $slot3a, $slot3b]);
+        $this->emptyCollection = SlotCollection::empty();
+    }
 
+    public function testTextOnFilledCollection(): void
+    {
         $expectedText = <<<TEXT
         *11/21 - 09:00-12:30*
         
@@ -35,14 +42,11 @@ class SlotCollectionTest extends TestCase
         *Talk 3b*
         TEXT;
 
-        static::assertSame($expectedText, (string) $collection);
+        static::assertSame($expectedText, (string) $this->filledCollection);
     }
 
-    public function testEmptyCollection(): void
+    public function testTextOnEmptyCollection(): void
     {
-        $collection = SlotCollection::empty();
-
-        static::assertCount(0, $collection);
-        static::assertSame('nothing found', (string) $collection);
+        static::assertSame('nothing found', (string) $this->emptyCollection);
     }
 }

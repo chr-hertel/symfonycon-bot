@@ -10,11 +10,9 @@ use App\SymfonyCon\Timer;
 
 class CountdownReplier implements ReplierInterface
 {
-    private Timer $timer;
-
-    public function __construct(Timer $timer)
-    {
-        $this->timer = $timer;
+    public function __construct(
+        private Timer $timer,
+    ) {
     }
 
     public function supports(Envelope $envelope): bool

@@ -35,6 +35,9 @@ class ReplyMachineTest extends TestCase
         static::assertStringStartsWith($expectedReply, $reply->getText());
     }
 
+    /**
+     * @return array<array{0: string, 1: string}>
+     */
     public function provideValidMessage(): array
     {
         return [

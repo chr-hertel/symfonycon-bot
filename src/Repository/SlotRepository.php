@@ -8,6 +8,9 @@ use App\Entity\Slot;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+/**
+ * @extends ServiceEntityRepository<Slot>
+ */
 class SlotRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -27,7 +30,7 @@ class SlotRepository extends ServiceEntityRepository
             ->where($queryBuilder->expr()->like('s.start', ':start'))
             ->setParameter('start', sprintf('%s%%', $day))
             ->getQuery()
-            ->useResultCache(true, 3600, sprintf('schedule-%s', $day));
+            ->enableResultCache(3600, sprintf('schedule-%s', $day));
 
         return $query->getResult();
     }

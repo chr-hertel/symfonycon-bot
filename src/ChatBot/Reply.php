@@ -7,21 +7,14 @@ namespace App\ChatBot;
 class Reply
 {
     private string $text;
-    private array $markup;
 
-    public function __construct(string $text, array $markup = [])
+    public function __construct(string $text)
     {
         $this->text = $text;
-        $this->markup = $markup;
     }
 
     public function getText(): string
     {
         return $this->text;
-    }
-
-    public function getMarkup(): array
-    {
-        return $this->markup;
     }
 }

@@ -10,16 +10,11 @@ use App\ChatBot\Telegram\Data\Envelope;
 class ReplyMachine
 {
     /**
-     * @var ReplierInterface[]
+     * @param iterable<ReplierInterface> $repliers
      */
-    private iterable $repliers;
-
-    /**
-     * @param ReplierInterface[] $repliers
-     */
-    public function __construct(iterable $repliers)
-    {
-        $this->repliers = $repliers;
+    public function __construct(
+        private iterable $repliers,
+    ) {
     }
 
     public function findReply(Envelope $envelope): Reply

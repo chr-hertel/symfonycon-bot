@@ -9,21 +9,12 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Client
 {
-    private HttpClientInterface $httpClient;
-    private UrlGeneratorInterface $urlGenerator;
-    private string $baseUrl;
-    private string $token;
-
     public function __construct(
-        HttpClientInterface $httpClient,
-        UrlGeneratorInterface $urlGenerator,
-        string $baseUrl,
-        string $token
+        private HttpClientInterface $httpClient,
+        private UrlGeneratorInterface $urlGenerator,
+        private string $baseUrl,
+        private string $token,
     ) {
-        $this->httpClient = $httpClient;
-        $this->urlGenerator = $urlGenerator;
-        $this->baseUrl = $baseUrl;
-        $this->token = $token;
     }
 
     public function registerWebhook(): void

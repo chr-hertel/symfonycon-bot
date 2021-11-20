@@ -15,18 +15,4 @@ class ReplyTest extends TestCase
 
         static::assertSame('Hello World', $reply->getText());
     }
-
-    public function testReplyMarkup(): void
-    {
-        $reply = new Reply('Hello World', ['context' => 'Markdown']);
-
-        static::assertSame(['context' => 'Markdown'], $reply->getMarkup());
-    }
-
-    public function testEmptyMarkup(): void
-    {
-        $reply = new Reply('Hello World');
-
-        static::assertSame([], $reply->getMarkup());
-    }
 }

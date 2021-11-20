@@ -10,11 +10,9 @@ use App\SymfonyCon\Schedule;
 
 class Day2Replier implements ReplierInterface
 {
-    private Schedule $schedule;
-
-    public function __construct(Schedule $schedule)
-    {
-        $this->schedule = $schedule;
+    public function __construct(
+        private Schedule $schedule,
+    ) {
     }
 
     public function supports(Envelope $envelope): bool

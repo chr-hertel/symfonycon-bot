@@ -23,6 +23,9 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @return array<Slot>
+     */
     private function loadDayOne(): array
     {
         return [
@@ -62,6 +65,9 @@ class AppFixtures extends Fixture
         ];
     }
 
+    /**
+     * @return array<Slot>
+     */
     private function loadDayTwo(): array
     {
         return [
