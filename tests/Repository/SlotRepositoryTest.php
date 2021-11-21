@@ -30,6 +30,9 @@ class SlotRepositoryTest extends TestCase
         static::assertTrue($this->resultCache->contains($cacheKey));
     }
 
+    /**
+     * @return array<string, array{0: string, 1: int, 2: string}>
+     */
     public function provideDays(): array
     {
         return [
@@ -40,6 +43,8 @@ class SlotRepositoryTest extends TestCase
 
     /**
      * @dataProvider provideTimes
+     *
+     * @param array<string> $titles
      */
     public function testFindByTime(string $time, array $titles): void
     {
@@ -51,6 +56,9 @@ class SlotRepositoryTest extends TestCase
         }
     }
 
+    /**
+     * @return array<string, array{0: string, 1: array<string>}>
+     */
     public function provideTimes(): array
     {
         return [
@@ -64,6 +72,8 @@ class SlotRepositoryTest extends TestCase
 
     /**
      * @dataProvider provideNext
+     *
+     * @param array<string> $titles
      */
     public function testFindNext(string $time, array $titles): void
     {
@@ -75,6 +85,9 @@ class SlotRepositoryTest extends TestCase
         }
     }
 
+    /**
+     * @return array<string, array{0: string, 1: array<string>}>
+     */
     public function provideNext(): array
     {
         return [

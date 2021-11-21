@@ -143,6 +143,9 @@ class TimerTest extends TestCase
         static::assertSame($expectedBoolean, $timer->startsToday());
     }
 
+    /**
+     * @return array<array{0: string, 1: boolean}>
+     */
     public function provideStartsTodayData(): array
     {
         return [

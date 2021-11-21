@@ -7,9 +7,9 @@ namespace App\ChatBot\Telegram\Data;
 class Envelope
 {
     public int $updateId;
-    public ?Message $message = null;
-    public ?Message $editedMessage = null;
-    public ?CallbackQuery $callbackQuery = null;
+    public Message|null $message = null;
+    public Message|null $editedMessage = null;
+    public CallbackQuery|null $callbackQuery = null;
 
     public function getMessage(): Message
     {

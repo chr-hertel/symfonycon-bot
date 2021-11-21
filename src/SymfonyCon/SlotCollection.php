@@ -6,13 +6,19 @@ namespace App\SymfonyCon;
 
 use App\Entity\Slot;
 
+/**
+ * @extends \ArrayIterator<int, Slot>
+ */
 class SlotCollection extends \ArrayIterator
 {
     private function __construct(Slot ...$slots)
     {
-        parent::__construct($slots);
+        parent::__construct(array_values($slots));
     }
 
+    /**
+     * @param array<Slot> $slots
+     */
     public static function array(array $slots): self
     {
         return new self(...$slots);
@@ -29,7 +35,7 @@ class SlotCollection extends \ArrayIterator
             return 'nothing found';
         }
 
-        $text = sprintf('*%s-%s*', $this->getStart()->format('m/d - H:i'), $this->getEnd()->format('H:i'));
+        $text = sprintf('*%s-%s*', $this->getStart()?->format('m/d - H:i'), $this->getEnd()?->format('H:i'));
 
         foreach ($this->getArrayCopy() as $slot) {
             $text .= PHP_EOL.PHP_EOL.$slot;
@@ -38,7 +44,7 @@ class SlotCollection extends \ArrayIterator
         return $text;
     }
 
-    private function getStart(): \DateTimeImmutable
+    private function getStart(): ?\DateTimeImmutable
     {
         return array_reduce($this->getArrayCopy(), static function (?\DateTimeImmutable $carry, Slot $slot) {
             $start = $slot->getStart();
@@ -51,7 +57,7 @@ class SlotCollection extends \ArrayIterator
         });
     }
 
-    private function getEnd(): \DateTimeImmutable
+    private function getEnd(): ?\DateTimeImmutable
     {
         return array_reduce($this->getArrayCopy(), static function (?\DateTimeImmutable $carry, Slot $slot) {
             $end = $slot->getEnd();

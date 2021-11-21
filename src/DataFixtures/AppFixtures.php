@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Slot;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
@@ -23,6 +23,9 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @return array<Slot>
+     */
     private function loadDayOne(): array
     {
         return [
@@ -62,6 +65,9 @@ class AppFixtures extends Fixture
         ];
     }
 
+    /**
+     * @return array<Slot>
+     */
     private function loadDayTwo(): array
     {
         return [

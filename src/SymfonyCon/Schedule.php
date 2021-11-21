@@ -8,13 +8,10 @@ use App\Repository\SlotRepository;
 
 class Schedule
 {
-    private Timer $timer;
-    private SlotRepository $slotRepository;
-
-    public function __construct(Timer $timer, SlotRepository $repository)
-    {
-        $this->timer = $timer;
-        $this->slotRepository = $repository;
+    public function __construct(
+        private Timer $timer,
+        private SlotRepository $slotRepository
+    ) {
     }
 
     public function now(): SlotCollection

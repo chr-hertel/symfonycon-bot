@@ -8,23 +8,20 @@ use App\ChatBot\ChatBot;
 use App\ChatBot\Telegram\Data\Envelope;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[AsController]
 class WebhookController
 {
-    private SerializerInterface $serializer;
-    private ChatBot $chatBot;
-
-    public function __construct(SerializerInterface $serializer, ChatBot $chatBot)
-    {
-        $this->serializer = $serializer;
-        $this->chatBot = $chatBot;
+    public function __construct(
+        private SerializerInterface $serializer,
+        private ChatBot $chatBot,
+    ) {
     }
 
-    /**
-     * @Route("/chatbot", name="webhook", methods={"POST"})
-     */
+    #[Route('/chatbot', name: 'webhook', methods: ['POST'])]
     public function connect(Request $request): Response
     {
         /** @var Envelope $envelope */
