@@ -7,23 +7,22 @@ namespace App\Tests;
 use App\DataFixtures\AppFixtures;
 use App\Repository\SlotRepository;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Doctrine\ORM\Tools\SchemaTool;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\DependencyInjection\Container;
 
 trait ConferenceFixtures
 {
-    private Cache $resultCache;
+    private CacheItemPoolInterface $resultCache;
     private SlotRepository $repository;
 
     protected function setUp(): void
     {
-        $this->resultCache = DoctrineProvider::wrap(new ArrayAdapter());
+        $this->resultCache = new ArrayAdapter();
 
         $config = $this->createConfiguration();
 
@@ -54,7 +53,7 @@ trait ConferenceFixtures
         $config->setProxyDir(sys_get_temp_dir());
         $config->setProxyNamespace('SymfonyTests\Doctrine');
         $config->setMetadataDriverImpl(new AttributeDriver([__DIR__.'/../src/Entity']));
-        $config->setResultCacheImpl($this->resultCache);
+        $config->setResultCache($this->resultCache);
 
         return $config;
     }

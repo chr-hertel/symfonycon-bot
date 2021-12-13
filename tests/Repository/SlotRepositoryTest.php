@@ -27,7 +27,7 @@ class SlotRepositoryTest extends TestCase
 
             return $dayStart < $start && $start < $dayEnd;
         }));
-        static::assertTrue($this->resultCache->contains($cacheKey));
+        static::assertTrue($this->resultCache->hasItem($cacheKey));
     }
 
     /**
