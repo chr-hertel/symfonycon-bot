@@ -12,17 +12,17 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "symfony/console": "6.0.*",
-        "symfony/dotenv": "6.0.*",
+        "symfony/console": "6.1.*",
+        "symfony/dotenv": "6.1.*",
         "symfony/flex": "^1.17",
-        "symfony/framework-bundle": "6.0.*",
+        "symfony/framework-bundle": "6.1.*",
         "symfony/monolog-bundle": "^3.7",
-        "symfony/property-access": "6.0.*",
-        "symfony/property-info": "6.0.*",
-        "symfony/runtime": "6.0.*",
-        "symfony/serializer": "6.0.*",
-        "symfony/telegram-notifier": "6.0.*",
-        "symfony/yaml": "6.0.*"
+        "symfony/property-access": "6.1.*",
+        "symfony/property-info": "6.1.*",
+        "symfony/runtime": "6.1.*",
+        "symfony/serializer": "6.1.*",
+        "symfony/telegram-notifier": "6.1.*",
+        "symfony/yaml": "6.1.*"
     },
     "replace": {
         "paragonie/random_compat": "2.*",
@@ -37,19 +37,20 @@
         "symfony/symfony": "*"
     },
     "require-dev": {
+        "deployer/deployer": "^7.0@RC",
         "friendsofphp/php-cs-fixer": "^3.3",
         "infection/infection": "^0.25",
         "phpstan/phpstan": "^1.1",
         "phpstan/phpstan-doctrine": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "symfony/browser-kit": "6.0.*",
-        "symfony/css-selector": "6.0.*",
-        "symfony/debug-bundle": "6.0.*",
-        "symfony/phpunit-bridge": "6.0.*",
-        "symfony/stopwatch": "6.0.*",
-        "symfony/twig-bundle": "6.0.*",
-        "symfony/var-dumper": "6.0.*",
-        "symfony/web-profiler-bundle": "6.0.*"
+        "symfony/browser-kit": "6.1.*",
+        "symfony/css-selector": "6.1.*",
+        "symfony/debug-bundle": "6.1.*",
+        "symfony/phpunit-bridge": "6.1.*",
+        "symfony/stopwatch": "6.1.*",
+        "symfony/twig-bundle": "6.1.*",
+        "symfony/var-dumper": "6.1.*",
+        "symfony/web-profiler-bundle": "6.1.*"
     },
     "config": {
         "platform": {
@@ -68,7 +69,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.0.*"
+            "require": "6.1.*"
         }
     },
     "autoload": {
