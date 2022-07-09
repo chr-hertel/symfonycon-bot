@@ -37,6 +37,7 @@
         "symfony/symfony": "*"
     },
     "require-dev": {
+        "deployer/deployer": "^7.0@RC",
         "friendsofphp/php-cs-fixer": "^3.3",
         "infection/infection": "^0.25",
         "phpstan/phpstan": "^1.1",
