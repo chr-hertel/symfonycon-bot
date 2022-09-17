@@ -6,7 +6,7 @@ Simple Telegram Chatbot for SymfonyCon 2019 in Amsterdam
 Requirements
 ------------
 
-- PHP 7.3
+- PHP 8.1
 - Doctrine compatible database engine
 - [Symfony CLI](https://symfony.com/doc/master/cloud/getting-started#installing-the-cli-tool) (or sth similar)
 - [Ngrok](https://ngrok.com/download) (or sth similar)
