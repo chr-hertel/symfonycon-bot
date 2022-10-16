@@ -18,7 +18,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ChatTestCommand extends Command
 {
     public function __construct(
-        private ReplyMachine $replyMachine,
+        private readonly ReplyMachine $replyMachine,
     ) {
         parent::__construct();
     }

@@ -15,15 +15,15 @@ class Slot
 
     public function __construct(
         #[ORM\Column]
-        private string $title,
+        private readonly string $title,
         #[ORM\Column(type: 'datetime_immutable')]
-        private \DateTimeImmutable $start,
+        private readonly \DateTimeImmutable $start,
         #[ORM\Column(type: 'datetime_immutable')]
-        private \DateTimeImmutable $end,
+        private readonly \DateTimeImmutable $end,
         #[ORM\Column(nullable: true)]
-        private string|null $speaker = null,
+        private readonly string|null $speaker = null,
         #[ORM\Column(nullable: true)]
-        private string|null $track = null,
+        private readonly string|null $track = null,
     ) {
     }
 

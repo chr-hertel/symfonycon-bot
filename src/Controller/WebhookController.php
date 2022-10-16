@@ -16,8 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 class WebhookController
 {
     public function __construct(
-        private SerializerInterface $serializer,
-        private ChatBot $chatBot,
+        private readonly SerializerInterface $serializer,
+        private readonly ChatBot $chatBot,
     ) {
     }
 
