@@ -10,10 +10,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class Client
 {
     public function __construct(
-        private HttpClientInterface $httpClient,
-        private UrlGeneratorInterface $urlGenerator,
-        private string $baseUrl,
-        private string $token,
+        private readonly HttpClientInterface $httpClient,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly string $baseUrl,
+        private readonly string $token,
     ) {
     }
 

@@ -9,8 +9,8 @@ use App\Repository\SlotRepository;
 class Schedule
 {
     public function __construct(
-        private Timer $timer,
-        private SlotRepository $slotRepository
+        private readonly Timer $timer,
+        private readonly SlotRepository $slotRepository
     ) {
     }
 

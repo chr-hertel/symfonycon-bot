@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class WebhookRegisterCommand extends Command
 {
     public function __construct(
-        private Client $telegramClient
+        private readonly Client $telegramClient
     ) {
         parent::__construct();
     }

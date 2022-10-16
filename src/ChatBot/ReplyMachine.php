@@ -13,7 +13,7 @@ class ReplyMachine
      * @param iterable<ReplierInterface> $repliers
      */
     public function __construct(
-        private iterable $repliers,
+        private readonly iterable $repliers,
     ) {
     }
 

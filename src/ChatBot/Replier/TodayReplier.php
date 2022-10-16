@@ -11,7 +11,7 @@ use App\SymfonyCon\Schedule;
 class TodayReplier implements ReplierInterface
 {
     public function __construct(
-        private Schedule $schedule,
+        private readonly Schedule $schedule,
     ) {
     }
 

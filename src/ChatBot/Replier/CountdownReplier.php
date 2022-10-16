@@ -11,7 +11,7 @@ use App\SymfonyCon\Timer;
 class CountdownReplier implements ReplierInterface
 {
     public function __construct(
-        private Timer $timer,
+        private readonly Timer $timer,
     ) {
     }
 
