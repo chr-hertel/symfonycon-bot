@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\ChatBot;
 
 use App\ChatBot\Telegram\Data\Envelope;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
 use Symfony\Component\Notifier\ChatterInterface;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
+#[AsMessageHandler(method: 'consume')]
 class ChatBot
 {
     public function __construct(
