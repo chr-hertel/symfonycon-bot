@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand('app:webhook:register', description: 'Command to register the application as webhook')]
-class WebhookRegisterCommand extends Command
+final class WebhookRegisterCommand extends Command
 {
     public function __construct(
         private readonly Client $telegramClient

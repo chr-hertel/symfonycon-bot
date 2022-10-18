@@ -10,7 +10,7 @@ use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\User;
 use PHPUnit\Framework\TestCase;
 
-class StartReplierTest extends TestCase
+final class StartReplierTest extends TestCase
 {
     private StartReplier $replier;
 

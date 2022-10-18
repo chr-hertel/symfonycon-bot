@@ -8,7 +8,7 @@ use App\Entity\Slot;
 use App\SymfonyCon\SlotCollection;
 use PHPUnit\Framework\TestCase;
 
-class SlotCollectionTest extends TestCase
+final class SlotCollectionTest extends TestCase
 {
     private SlotCollection $filledCollection;
     private SlotCollection $emptyCollection;

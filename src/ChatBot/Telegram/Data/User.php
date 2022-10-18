@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Telegram\Data;
 
-class User
+final class User
 {
     public int $id;
     public bool $isBot;

@@ -14,7 +14,7 @@ use App\ChatBot\Telegram\Data\User;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
 
-class ReplyMachineTest extends TestCase
+final class ReplyMachineTest extends TestCase
 {
     private ReplyMachine $replyMachine;
 

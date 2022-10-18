@@ -12,7 +12,7 @@ use App\SymfonyCon\Schedule;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class TodayReplierTest extends TestCase
+final class TodayReplierTest extends TestCase
 {
     /** @var MockObject&Schedule */
     private MockObject $schedule;

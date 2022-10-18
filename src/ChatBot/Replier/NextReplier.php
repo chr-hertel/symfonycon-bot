@@ -8,7 +8,7 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Schedule;
 
-class NextReplier extends CommandReplier
+final class NextReplier extends CommandReplier
 {
     public function __construct(
         private readonly Schedule $schedule,

@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Slot>
  */
-class SlotRepository extends ServiceEntityRepository
+final class SlotRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

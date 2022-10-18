@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Generator\CompiledUrlGenerator;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class ClientTest extends TestCase
+final class ClientTest extends TestCase
 {
     public function testRegisterWebhook(): void
     {

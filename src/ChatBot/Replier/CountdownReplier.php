@@ -8,7 +8,7 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Timer;
 
-class CountdownReplier extends CommandReplier
+final class CountdownReplier extends CommandReplier
 {
     public function __construct(
         private readonly Timer $timer,

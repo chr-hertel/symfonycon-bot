@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Telegram\Data;
 
-class CallbackQuery
+final class CallbackQuery
 {
     public int $id;
     public User $from;

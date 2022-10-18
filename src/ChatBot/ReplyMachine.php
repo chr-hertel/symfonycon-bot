@@ -7,7 +7,7 @@ namespace App\ChatBot;
 use App\ChatBot\Replier\ReplierInterface;
 use App\ChatBot\Telegram\Data\Envelope;
 
-class ReplyMachine
+final class ReplyMachine
 {
     /**
      * @param iterable<ReplierInterface> $repliers

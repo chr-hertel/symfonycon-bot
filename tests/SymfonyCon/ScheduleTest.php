@@ -9,7 +9,7 @@ use App\SymfonyCon\Timer;
 use App\Tests\ConferenceFixtures;
 use PHPUnit\Framework\TestCase;
 
-class ScheduleTest extends TestCase
+final class ScheduleTest extends TestCase
 {
     use ConferenceFixtures {
         setUp as fixtureSetUp;

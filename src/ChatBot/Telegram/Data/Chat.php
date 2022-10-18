@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Telegram\Data;
 
-class Chat
+final class Chat
 {
     public int $id;
     public string $firstName;

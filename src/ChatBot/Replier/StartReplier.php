@@ -7,7 +7,7 @@ namespace App\ChatBot\Replier;
 use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 
-class StartReplier extends CommandReplier
+final class StartReplier extends CommandReplier
 {
     public function getCommand(): string
     {

@@ -7,7 +7,7 @@ namespace App\Tests\SymfonyCon;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
 
-class TimerTest extends TestCase
+final class TimerTest extends TestCase
 {
     public function testStartTimeGetter(): void
     {

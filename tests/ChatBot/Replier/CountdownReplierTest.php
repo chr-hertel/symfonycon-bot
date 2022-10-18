@@ -10,7 +10,7 @@ use App\ChatBot\Telegram\Data\Message;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
 
-class CountdownReplierTest extends TestCase
+final class CountdownReplierTest extends TestCase
 {
     private CountdownReplier $replier;
 

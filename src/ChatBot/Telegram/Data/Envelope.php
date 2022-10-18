@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Telegram\Data;
 
-class Envelope
+final class Envelope
 {
     public int $updateId;
     public Message|null $message = null;

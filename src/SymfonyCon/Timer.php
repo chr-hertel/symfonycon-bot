@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\SymfonyCon;
 
-class Timer
+final class Timer
 {
     private \DateTimeImmutable $start;
     private \DateTimeImmutable $end;

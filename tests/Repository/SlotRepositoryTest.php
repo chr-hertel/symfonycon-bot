@@ -8,7 +8,7 @@ use App\Entity\Slot;
 use App\Tests\ConferenceFixtures;
 use PHPUnit\Framework\TestCase;
 
-class SlotRepositoryTest extends TestCase
+final class SlotRepositoryTest extends TestCase
 {
     use ConferenceFixtures;
 

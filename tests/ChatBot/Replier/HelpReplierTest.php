@@ -9,7 +9,7 @@ use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use PHPUnit\Framework\TestCase;
 
-class HelpReplierTest extends TestCase
+final class HelpReplierTest extends TestCase
 {
     private HelpReplier $replier;
 
