@@ -98,4 +98,24 @@ final class SlotRepositoryTest extends TestCase
             'day2_closing' => ['11/22/19 16:57', []],
         ];
     }
+
+    public function testFindFirstSlot(): void
+    {
+        $slot = $this->repository->findFirstSlot();
+
+        static::assertInstanceOf(Slot::class, $slot);
+        static::assertSame('Badge pickup and welcome light breakfast ☕🥐', $slot->getTitle());
+        static::assertEquals(new \DateTimeImmutable('11/21/19 8:00'), $slot->getStart());
+        static::assertEquals(new \DateTimeImmutable('11/21/19 9:00'), $slot->getEnd());
+    }
+
+    public function testFindLastSlot(): void
+    {
+        $slot = $this->repository->findLastSlot();
+
+        static::assertInstanceOf(Slot::class, $slot);
+        static::assertSame('Closing session', $slot->getTitle());
+        static::assertEquals(new \DateTimeImmutable('11/22/19 16:40'), $slot->getStart());
+        static::assertEquals(new \DateTimeImmutable('11/22/19 17:00'), $slot->getEnd());
+    }
 }

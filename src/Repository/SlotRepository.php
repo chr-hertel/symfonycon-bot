@@ -69,4 +69,14 @@ final class SlotRepository extends ServiceEntityRepository
             ->setParameter('time', $time)
             ->getResult();
     }
+
+    public function findFirstSlot(): Slot|null
+    {
+        return $this->findOneBy([], ['start' => 'ASC']);
+    }
+
+    public function findLastSlot(): Slot|null
+    {
+        return $this->findOneBy([], ['start' => 'DESC']);
+    }
 }

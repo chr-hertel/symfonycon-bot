@@ -60,9 +60,14 @@ final class ReplyMachineTest extends TestCase
 
     protected function setUp(): void
     {
+        $timer = new Timer(
+            new \DateTimeImmutable('11/21/19 08:00'),
+            new \DateTimeImmutable('11/22/19 17:00'),
+            new \DateTimeImmutable('11/18/19 19:15'),
+        );
         $replier = [
             new StartReplier(),
-            new CountdownReplier(new Timer('11/21/19 08:00', '11/22/19 17:00', '11/18/19 19:15')),
+            new CountdownReplier($timer),
             new HelpReplier(),
         ];
 

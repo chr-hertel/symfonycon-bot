@@ -11,91 +11,91 @@ final class TimerTest extends TestCase
 {
     public function testStartTimeGetter(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertEquals(new \DateTimeImmutable('11/21/19 08:00'), $timer->getStart());
     }
 
     public function testEndTimeGetter(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertEquals(new \DateTimeImmutable('11/22/19 17:00'), $timer->getEnd());
     }
 
     public function testNowTimeGetter(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertEquals(new \DateTimeImmutable('11/20/19 08:00'), $timer->getNow());
     }
 
     public function testHasStartedBefore(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertFalse($timer->hasStarted());
     }
 
     public function testHasStartedOnTime(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 08:00');
+        $timer = $this->getTimerWithNow('11/21/19 08:00');
 
         static::assertTrue($timer->hasStarted());
     }
 
     public function testHasStartedAfterwards(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/22/19 08:00');
+        $timer = $this->getTimerWithNow('11/22/19 08:00');
 
         static::assertTrue($timer->hasStarted());
     }
 
     public function testIsOverBefore(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertFalse($timer->isOver());
     }
 
     public function testIsOverOnTime(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/22/19 17:00');
+        $timer = $this->getTimerWithNow('11/22/19 17:00');
 
         static::assertTrue($timer->isOver());
     }
 
     public function testIsOverAfterwards(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 08:00');
+        $timer = $this->getTimerWithNow('11/23/19 08:00');
 
         static::assertTrue($timer->isOver());
     }
 
     public function testIsRunningBefore(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timer = $this->getTimerWithNow('11/20/19 08:00');
 
         static::assertFalse($timer->isRunning());
     }
 
     public function testIsRunningInBetween(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/22/19 09:00');
+        $timer = $this->getTimerWithNow('11/22/19 09:00');
 
         static::assertTrue($timer->isRunning());
     }
 
     public function testIsRunningAfterwards(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 08:00');
+        $timer = $this->getTimerWithNow('11/23/19 08:00');
 
         static::assertFalse($timer->isRunning());
     }
 
     public function testCountdownBefore(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/18/19 19:15');
+        $timer = $this->getTimerWithNow('11/18/19 19:15');
         $countdown = $timer->getCountdown();
 
         static::assertSame(2, $countdown->days);
@@ -105,7 +105,7 @@ final class TimerTest extends TestCase
 
     public function testCountdownOnTime(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 08:00');
+        $timer = $this->getTimerWithNow('11/21/19 08:00');
         $countdown = $timer->getCountdown();
 
         static::assertSame(0, $countdown->days);
@@ -115,7 +115,7 @@ final class TimerTest extends TestCase
 
     public function testCountdownWhile(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 09:00');
+        $timer = $this->getTimerWithNow('11/21/19 09:00');
         $countdown = $timer->getCountdown();
 
         static::assertSame(0, $countdown->days);
@@ -125,7 +125,7 @@ final class TimerTest extends TestCase
 
     public function testCountdownAfter(): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 18:00');
+        $timer = $this->getTimerWithNow('11/23/19 18:00');
         $countdown = $timer->getCountdown();
 
         static::assertSame(0, $countdown->days);
@@ -138,7 +138,7 @@ final class TimerTest extends TestCase
      */
     public function testStartsToday(string $now, bool $expectedBoolean): void
     {
-        $timer = new Timer('11/21/19 08:00', '11/22/19 17:00', $now);
+        $timer = $this->getTimerWithNow($now);
 
         static::assertSame($expectedBoolean, $timer->startsToday());
     }
@@ -154,5 +154,14 @@ final class TimerTest extends TestCase
             ['11/20/19 07:20', false],
             ['11/21/19 17:20', true],
         ];
+    }
+
+    private function getTimerWithNow(string $now): Timer
+    {
+        return new Timer(
+            new \DateTimeImmutable('11/21/19 08:00'),
+            new \DateTimeImmutable('11/22/19 17:00'),
+            new \DateTimeImmutable($now),
+        );
     }
 }

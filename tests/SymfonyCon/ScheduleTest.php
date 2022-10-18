@@ -124,16 +124,25 @@ final class ScheduleTest extends TestCase
     {
         $this->fixtureSetUp();
 
-        $timerBefore = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timerBefore = $this->getTimerWithNow('11/20/19 08:00');
         $this->scheduleBefore = new Schedule($timerBefore, $this->repository);
 
-        $timerStartingMorning = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 06:50');
+        $timerStartingMorning = $this->getTimerWithNow('11/21/19 06:50');
         $this->scheduleStartingMorning = new Schedule($timerStartingMorning, $this->repository);
 
-        $timerWhileRunning = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/22/19 14:55');
+        $timerWhileRunning = $this->getTimerWithNow('11/22/19 14:55');
         $this->scheduleWhileRunning = new Schedule($timerWhileRunning, $this->repository);
 
-        $timerAfter = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 14:00');
+        $timerAfter = $this->getTimerWithNow('11/23/19 14:00');
         $this->scheduleAfter = new Schedule($timerAfter, $this->repository);
+    }
+
+    private function getTimerWithNow(string $now): Timer
+    {
+        return new Timer(
+            new \DateTimeImmutable('11/21/19 08:00'),
+            new \DateTimeImmutable('11/22/19 17:00'),
+            new \DateTimeImmutable($now),
+        );
     }
 }
