@@ -16,6 +16,7 @@
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^1.19.3",
         "symfony/framework-bundle": "6.1.*",
+        "symfony/messenger": "6.1.*",
         "symfony/monolog-bundle": "^3.8",
         "symfony/property-access": "6.1.*",
         "symfony/property-info": "6.1.*",

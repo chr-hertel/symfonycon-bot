@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\ChatBot\ChatBot;
 use App\ChatBot\Telegram\Data\Envelope;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -17,7 +17,7 @@ class WebhookController
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
-        private readonly ChatBot $chatBot,
+        private readonly MessageBusInterface $messageBus,
     ) {
     }
 
@@ -29,7 +29,7 @@ class WebhookController
             'datetime_format' => 'U',
         ]);
 
-        $this->chatBot->consume($envelope);
+        $this->messageBus->dispatch($envelope);
 
         return new Response();
     }
