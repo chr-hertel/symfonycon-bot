@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[AsController]
-class WebhookController
+final class WebhookController
 {
     public function __construct(
         private readonly SerializerInterface $serializer,

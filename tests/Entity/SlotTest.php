@@ -7,7 +7,7 @@ namespace App\Tests\Entity;
 use App\Entity\Slot;
 use PHPUnit\Framework\TestCase;
 
-class SlotTest extends TestCase
+final class SlotTest extends TestCase
 {
     public function testSlotText(): void
     {

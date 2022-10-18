@@ -9,7 +9,7 @@ use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use PHPUnit\Framework\TestCase;
 
-class EnvelopeTest extends TestCase
+final class EnvelopeTest extends TestCase
 {
     public function testExceptionWithoutMessage(): void
     {

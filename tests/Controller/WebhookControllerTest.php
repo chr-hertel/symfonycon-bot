@@ -6,7 +6,7 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class WebhookControllerTest extends WebTestCase
+final class WebhookControllerTest extends WebTestCase
 {
     public function testSuccessfulStartMessage(): void
     {

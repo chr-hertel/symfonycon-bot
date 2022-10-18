@@ -10,7 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class WebhookRegisterCommandTest extends WebTestCase
+final class WebhookRegisterCommandTest extends WebTestCase
 {
     /** @var Client|MockObject */
     private MockObject $telegramClient;

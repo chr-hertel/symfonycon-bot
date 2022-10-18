@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot;
 
-class Reply
+final class Reply
 {
     private string $text;
 

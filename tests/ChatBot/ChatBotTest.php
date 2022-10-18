@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\ChatterInterface;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
-class ChatBotTest extends TestCase
+final class ChatBotTest extends TestCase
 {
     public function testChattingReplies(): void
     {

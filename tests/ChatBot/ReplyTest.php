@@ -7,7 +7,7 @@ namespace App\Tests\ChatBot;
 use App\ChatBot\Reply;
 use PHPUnit\Framework\TestCase;
 
-class ReplyTest extends TestCase
+final class ReplyTest extends TestCase
 {
     public function testReplyText(): void
     {

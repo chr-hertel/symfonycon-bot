@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand('app:command:register', description: 'Command to register the application\'s commands')]
-class CommandRegisterCommand extends Command
+final class CommandRegisterCommand extends Command
 {
     /**
      * @param iterable<CommandReplier> $commandRepliers

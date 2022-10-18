@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand('app:chat:reply', description: 'Command to test chat without hijacking Telegram bot')]
-class ChatTestCommand extends Command
+final class ChatTestCommand extends Command
 {
     public function __construct(
         private readonly ReplyMachine $replyMachine,

@@ -11,7 +11,7 @@ use Symfony\Component\Notifier\ChatterInterface;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
 #[AsMessageHandler(method: 'consume')]
-class ChatBot
+final class ChatBot
 {
     public function __construct(
         private readonly ReplyMachine $replier,
