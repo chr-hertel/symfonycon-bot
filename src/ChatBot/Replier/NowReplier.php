@@ -8,16 +8,21 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Schedule;
 
-class NowReplier implements ReplierInterface
+class NowReplier extends CommandReplier
 {
     public function __construct(
         private readonly Schedule $schedule
     ) {
     }
 
-    public function supports(Envelope $envelope): bool
+    public function getCommand(): string
     {
-        return '/now' === $envelope->getMessage()->text;
+        return 'now';
+    }
+
+    public function getDescription(): string
+    {
+        return 'Lists all talks happening right now';
     }
 
     public function reply(Envelope $envelope): Reply

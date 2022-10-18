@@ -8,16 +8,21 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Schedule;
 
-class Day2Replier implements ReplierInterface
+class Day2Replier extends CommandReplier
 {
     public function __construct(
         private readonly Schedule $schedule,
     ) {
     }
 
-    public function supports(Envelope $envelope): bool
+    public function getCommand(): string
     {
-        return '/day2' === $envelope->getMessage()->text;
+        return 'day2';
+    }
+
+    public function getDescription(): string
+    {
+        return 'Lists all talks of the second day';
     }
 
     public function reply(Envelope $envelope): Reply
