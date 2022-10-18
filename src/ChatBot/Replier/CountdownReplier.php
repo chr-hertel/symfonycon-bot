@@ -8,16 +8,21 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Timer;
 
-class CountdownReplier implements ReplierInterface
+class CountdownReplier extends CommandReplier
 {
     public function __construct(
         private readonly Timer $timer,
     ) {
     }
 
-    public function supports(Envelope $envelope): bool
+    public function getCommand(): string
     {
-        return '/countdown' === $envelope->getMessage()->text;
+        return 'countdown';
+    }
+
+    public function getDescription(): string
+    {
+        return 'Time until SymfonyCon starts';
     }
 
     public function reply(Envelope $envelope): Reply

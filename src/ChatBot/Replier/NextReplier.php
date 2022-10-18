@@ -8,16 +8,21 @@ use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Schedule;
 
-class NextReplier implements ReplierInterface
+class NextReplier extends CommandReplier
 {
     public function __construct(
         private readonly Schedule $schedule,
     ) {
     }
 
-    public function supports(Envelope $envelope): bool
+    public function getCommand(): string
     {
-        return '/next' === $envelope->getMessage()->text;
+        return 'next';
+    }
+
+    public function getDescription(): string
+    {
+        return 'Lists all talks happening next slot';
     }
 
     public function reply(Envelope $envelope): Reply

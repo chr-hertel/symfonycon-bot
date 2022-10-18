@@ -7,11 +7,21 @@ namespace App\ChatBot\Replier;
 use App\ChatBot\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 
-class HelpReplier implements ReplierInterface
+class HelpReplier extends CommandReplier
 {
-    public function supports(Envelope $envelope): bool
+    public function getCommand(): string
     {
-        return '/help' === $envelope->getMessage()->text;
+        return 'help';
+    }
+
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function registerCommand(): bool
+    {
+        return false;
     }
 
     public function reply(Envelope $envelope): Reply

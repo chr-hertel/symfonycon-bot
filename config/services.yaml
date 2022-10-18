@@ -15,6 +15,8 @@ services:
     _instanceof:
         App\ChatBot\Replier\ReplierInterface:
             tags: ['app.replier']
+        App\ChatBot\Replier\CommandReplier:
+            tags: ['app.command_replier']
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -35,6 +37,9 @@ services:
     App\ChatBot\Telegram\Client:
         $baseUrl: '%env(WEBHOOK_BASE_URL)%'
         $token: '%env(TELEGRAM_TOKEN)%'
+
+    App\Command\CommandRegisterCommand:
+        $commandRepliers: !tagged 'app.command_replier'
 
     App\SymfonyCon\Timer:
         $start: '11/21/19 08:00'
