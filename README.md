@@ -1,7 +1,9 @@
 SymfonyCon Telegram Chatbot
 ===========================
 
-Simple Telegram Chatbot for SymfonyCon 2019 in Amsterdam
+Telegram Chatbot for SymfonyCon Disneyland Paris 2022
+
+Find it on Telegram: [@SymfonyConBot](https://t.me/SymfonyConBot)
 
 Requirements
 ------------
@@ -92,11 +94,18 @@ To set up this demo we need to create a telegram bot and connect our local envir
     ```bash
     bin/console doctrine:database:create
     bin/console doctrine:schema:create
-    bin/console doctrine:fixtures:load
+    bin/console doctrine:fixtures:load # Schedule of 2019
     ```
 
-1. Set up the webhook (only necessary once)
+1. Load schedule of 2022 (optional)
+
+   ```bash
+   bin/console app:schedule:crawl
+   ```
+   
+1. Set up the webhook & menu (only necessary once)
 
     ```bash
     bin/console app:webhook:register
+    bin/console app:command:register
     ```
