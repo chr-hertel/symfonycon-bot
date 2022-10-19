@@ -8,6 +8,10 @@ require 'recipe/symfony.php';
 set('repository', 'git@github.com:chr-hertel/symfonycon-bot.git');
 set('composer_options', '--no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-scripts');
 set('console_options', '--no-interaction --env=prod');
+set('shared_files', [
+    '.env.local',
+    'data.db',
+]);
 
 // Hosts
 host('stof.fail')
@@ -21,4 +25,5 @@ task('build', function () {
 });
 
 after('deploy:cache:clear', 'build');
+after('deploy:cache:clear', 'database:migrate');
 after('deploy:failed', 'deploy:unlock');
