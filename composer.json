@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2.2",
         "doctrine/orm": "^2.13.3",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "sentry/sentry-symfony": "^4.3",
         "symfony/console": "6.1.*",
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^1.19.3",
