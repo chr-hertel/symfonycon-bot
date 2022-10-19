@@ -28,7 +28,7 @@ final class HelpReplier extends CommandReplier
     {
         $help = <<<HELP
             *SymfonyConBot Help*
-            This bot will help you to keep on track with all talks at SymfonyCon 2019 in Amsterdam.
+            This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.
             
             *Until SymfonyCon starts:*
             /countdown - time until SymfonyCon starts
@@ -41,7 +41,7 @@ final class HelpReplier extends CommandReplier
             /next - lists all talks happening next slot
             
             *About SymfonyConBot:*
-            Written with Symfony 5 and Notifier
+            Written with Symfony 6 and Notifier
             Checkout [GitHub](github.com/chr-hertel/symfonycon-bot) for more...
             HELP;
 
