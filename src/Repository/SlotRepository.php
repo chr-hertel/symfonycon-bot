@@ -29,6 +29,7 @@ final class SlotRepository extends ServiceEntityRepository
         $query = $queryBuilder
             ->where($queryBuilder->expr()->like('s.start', ':start'))
             ->setParameter('start', sprintf('%s%%', $day))
+            ->orderBy('s.start', 'ASC')
             ->getQuery()
             ->enableResultCache(3600, sprintf('schedule-%s', $day));
 
@@ -68,5 +69,15 @@ final class SlotRepository extends ServiceEntityRepository
         return $query
             ->setParameter('time', $time)
             ->getResult();
+    }
+
+    public function findFirstSlot(): Slot|null
+    {
+        return $this->findOneBy([], ['start' => 'ASC']);
+    }
+
+    public function findLastSlot(): Slot|null
+    {
+        return $this->findOneBy([], ['start' => 'DESC']);
     }
 }

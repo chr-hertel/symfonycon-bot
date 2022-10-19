@@ -6,15 +6,11 @@ namespace App\SymfonyCon;
 
 final class Timer
 {
-    private \DateTimeImmutable $start;
-    private \DateTimeImmutable $end;
-    private \DateTimeImmutable $now;
-
-    public function __construct(string $start, string $end, string $now = null)
-    {
-        $this->start = new \DateTimeImmutable($start);
-        $this->end = new \DateTimeImmutable($end);
-        $this->now = new \DateTimeImmutable($now ?? 'now');
+    public function __construct(
+        private readonly \DateTimeImmutable $start,
+        private readonly \DateTimeImmutable $end,
+        private readonly \DateTimeImmutable $now,
+    ) {
     }
 
     public function getStart(): \DateTimeImmutable

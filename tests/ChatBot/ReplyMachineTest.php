@@ -42,7 +42,7 @@ final class ReplyMachineTest extends TestCase
     {
         return [
             ['/start', 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.'],
-            ['/help', '*SymfonyConBot Help*'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon 2019 in Amsterdam.'],
+            ['/help', '*SymfonyConBot Help*'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
             ['/countdown', '2 days, 12 hours and 45 minutes'],
         ];
     }
@@ -60,9 +60,14 @@ final class ReplyMachineTest extends TestCase
 
     protected function setUp(): void
     {
+        $timer = new Timer(
+            new \DateTimeImmutable('11/21/19 08:00'),
+            new \DateTimeImmutable('11/22/19 17:00'),
+            new \DateTimeImmutable('11/18/19 19:15'),
+        );
         $replier = [
             new StartReplier(),
-            new CountdownReplier(new Timer('11/21/19 08:00', '11/22/19 17:00', '11/18/19 19:15')),
+            new CountdownReplier($timer),
             new HelpReplier(),
         ];
 

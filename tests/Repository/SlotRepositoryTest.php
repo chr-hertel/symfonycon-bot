@@ -6,11 +6,22 @@ namespace App\Tests\Repository;
 
 use App\Entity\Slot;
 use App\Tests\ConferenceFixtures;
+use App\Tests\SchemaSetup;
+use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 
 final class SlotRepositoryTest extends TestCase
 {
+    use TestDatabase;
+    use SchemaSetup;
     use ConferenceFixtures;
+
+    protected function setUp(): void
+    {
+        $this->setUpDatabase();
+        $this->setUpSchema();
+        $this->setUpFixtures();
+    }
 
     /**
      * @dataProvider provideDays
@@ -97,5 +108,25 @@ final class SlotRepositoryTest extends TestCase
             'day2_slot1' => ['11/22/19 10:08', ['Break ☕ 🥐']],
             'day2_closing' => ['11/22/19 16:57', []],
         ];
+    }
+
+    public function testFindFirstSlot(): void
+    {
+        $slot = $this->repository->findFirstSlot();
+
+        static::assertInstanceOf(Slot::class, $slot);
+        static::assertSame('Badge pickup and welcome light breakfast ☕🥐', $slot->getTitle());
+        static::assertEquals(new \DateTimeImmutable('11/21/19 8:00'), $slot->getStart());
+        static::assertEquals(new \DateTimeImmutable('11/21/19 9:00'), $slot->getEnd());
+    }
+
+    public function testFindLastSlot(): void
+    {
+        $slot = $this->repository->findLastSlot();
+
+        static::assertInstanceOf(Slot::class, $slot);
+        static::assertSame('Closing session', $slot->getTitle());
+        static::assertEquals(new \DateTimeImmutable('11/22/19 16:40'), $slot->getStart());
+        static::assertEquals(new \DateTimeImmutable('11/22/19 17:00'), $slot->getEnd());
     }
 }

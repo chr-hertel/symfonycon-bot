@@ -7,13 +7,15 @@ namespace App\Tests\SymfonyCon;
 use App\SymfonyCon\Schedule;
 use App\SymfonyCon\Timer;
 use App\Tests\ConferenceFixtures;
+use App\Tests\SchemaSetup;
+use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 
 final class ScheduleTest extends TestCase
 {
-    use ConferenceFixtures {
-        setUp as fixtureSetUp;
-    }
+    use TestDatabase;
+    use SchemaSetup;
+    use ConferenceFixtures;
 
     private Schedule $scheduleBefore;
     private Schedule $scheduleStartingMorning;
@@ -122,18 +124,29 @@ final class ScheduleTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fixtureSetUp();
+        $this->setUpDatabase();
+        $this->setUpSchema();
+        $this->setUpFixtures();
 
-        $timerBefore = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/20/19 08:00');
+        $timerBefore = $this->getTimerWithNow('11/20/19 08:00');
         $this->scheduleBefore = new Schedule($timerBefore, $this->repository);
 
-        $timerStartingMorning = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/21/19 06:50');
+        $timerStartingMorning = $this->getTimerWithNow('11/21/19 06:50');
         $this->scheduleStartingMorning = new Schedule($timerStartingMorning, $this->repository);
 
-        $timerWhileRunning = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/22/19 14:55');
+        $timerWhileRunning = $this->getTimerWithNow('11/22/19 14:55');
         $this->scheduleWhileRunning = new Schedule($timerWhileRunning, $this->repository);
 
-        $timerAfter = new Timer('11/21/19 08:00', '11/22/19 17:00', '11/23/19 14:00');
+        $timerAfter = $this->getTimerWithNow('11/23/19 14:00');
         $this->scheduleAfter = new Schedule($timerAfter, $this->repository);
+    }
+
+    private function getTimerWithNow(string $now): Timer
+    {
+        return new Timer(
+            new \DateTimeImmutable('11/21/19 08:00'),
+            new \DateTimeImmutable('11/22/19 17:00'),
+            new \DateTimeImmutable($now),
+        );
     }
 }
