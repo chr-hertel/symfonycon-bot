@@ -6,11 +6,22 @@ namespace App\Tests\Repository;
 
 use App\Entity\Slot;
 use App\Tests\ConferenceFixtures;
+use App\Tests\SchemaSetup;
+use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 
 final class SlotRepositoryTest extends TestCase
 {
+    use TestDatabase;
+    use SchemaSetup;
     use ConferenceFixtures;
+
+    protected function setUp(): void
+    {
+        $this->setUpDatabase();
+        $this->setUpSchema();
+        $this->setUpFixtures();
+    }
 
     /**
      * @dataProvider provideDays

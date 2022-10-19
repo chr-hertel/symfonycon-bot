@@ -7,6 +7,7 @@ namespace App\Tests\SymfonyCon;
 use App\SymfonyCon\Crawler;
 use App\SymfonyCon\Crawler\Client;
 use App\SymfonyCon\Crawler\Parser;
+use App\Tests\SchemaSetup;
 use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;
@@ -16,6 +17,13 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 final class CrawlerTest extends TestCase
 {
     use TestDatabase;
+    use SchemaSetup;
+
+    protected function setUp(): void
+    {
+        $this->setUpDatabase();
+        $this->setUpSchema();
+    }
 
     public function testFetchData(): void
     {

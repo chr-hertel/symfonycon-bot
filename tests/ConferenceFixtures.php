@@ -8,14 +8,8 @@ use App\DataFixtures\AppFixtures;
 
 trait ConferenceFixtures
 {
-    use TestDatabase {
-        setUp as dataBaseSetUp;
-    }
-
-    protected function setUp(): void
+    protected function setUpFixtures(): void
     {
-        $this->dataBaseSetUp();
-
         $fixtures = new AppFixtures();
         $fixtures->load($this->entityManager);
     }

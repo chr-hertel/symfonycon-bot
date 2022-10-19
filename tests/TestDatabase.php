@@ -10,7 +10,6 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
-use Doctrine\ORM\Tools\SchemaTool;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\DependencyInjection\Container;
@@ -21,7 +20,7 @@ trait TestDatabase
     private EntityManagerInterface $entityManager;
     private SlotRepository $repository;
 
-    protected function setUp(): void
+    protected function setUpDatabase(): void
     {
         $this->resultCache = new ArrayAdapter();
 
@@ -32,9 +31,6 @@ trait TestDatabase
             'memory' => true,
         ];
         $this->entityManager = EntityManager::create($params, $config);
-
-        $schemaTool = new SchemaTool($this->entityManager);
-        $schemaTool->createSchema($this->entityManager->getMetadataFactory()->getAllMetadata());
 
         $container = new Container();
         $container->set('connection', $this->entityManager->getConnection());

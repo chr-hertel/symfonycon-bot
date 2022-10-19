@@ -7,13 +7,15 @@ namespace App\Tests\SymfonyCon;
 use App\SymfonyCon\Schedule;
 use App\SymfonyCon\Timer;
 use App\Tests\ConferenceFixtures;
+use App\Tests\SchemaSetup;
+use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 
 final class ScheduleTest extends TestCase
 {
-    use ConferenceFixtures {
-        setUp as fixtureSetUp;
-    }
+    use TestDatabase;
+    use SchemaSetup;
+    use ConferenceFixtures;
 
     private Schedule $scheduleBefore;
     private Schedule $scheduleStartingMorning;
@@ -122,7 +124,9 @@ final class ScheduleTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fixtureSetUp();
+        $this->setUpDatabase();
+        $this->setUpSchema();
+        $this->setUpFixtures();
 
         $timerBefore = $this->getTimerWithNow('11/20/19 08:00');
         $this->scheduleBefore = new Schedule($timerBefore, $this->repository);

@@ -6,11 +6,22 @@ namespace App\Tests\SymfonyCon;
 
 use App\SymfonyCon\TimerFactory;
 use App\Tests\ConferenceFixtures;
+use App\Tests\SchemaSetup;
+use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
 
 final class TimerFactoryTest extends TestCase
 {
+    use TestDatabase;
+    use SchemaSetup;
     use ConferenceFixtures;
+
+    protected function setUp(): void
+    {
+        $this->setUpDatabase();
+        $this->setUpSchema();
+        $this->setUpFixtures();
+    }
 
     public function testCreateTimer(): void
     {
