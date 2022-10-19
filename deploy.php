@@ -10,7 +10,7 @@ set('composer_options', '--no-dev --verbose --prefer-dist --optimize-autoloader 
 set('console_options', '--no-interaction --env=prod');
 set('shared_files', [
     '.env.local',
-    'data.db',
+    'var/data.db',
 ]);
 
 // Hosts
