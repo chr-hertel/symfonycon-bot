@@ -29,6 +29,7 @@ final class SlotRepository extends ServiceEntityRepository
         $query = $queryBuilder
             ->where($queryBuilder->expr()->like('s.start', ':start'))
             ->setParameter('start', sprintf('%s%%', $day))
+            ->orderBy('s.start', 'ASC')
             ->getQuery()
             ->enableResultCache(3600, sprintf('schedule-%s', $day));
 
