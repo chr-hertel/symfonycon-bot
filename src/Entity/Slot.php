@@ -62,7 +62,7 @@ class Slot
 
         $time = sprintf('%s-%s', $this->start->format('H:i'), $this->end->format('H:i'));
         if (null !== $this->track) {
-            $text = sprintf('%s Track (%s)', $this->track, $time).PHP_EOL.$text;
+            $text = sprintf('%s (%s)', $this->track, $time).PHP_EOL.$text;
         } else {
             $text = $time.PHP_EOL.$text;
         }

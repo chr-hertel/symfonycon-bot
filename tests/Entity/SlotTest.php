@@ -16,7 +16,7 @@ final class SlotTest extends TestCase
         $slot = new Slot('Talk 1', $start, $end, 'Speaker Name', 'Advanced');
 
         $expectedText = <<<TEXT
-        Advanced Track (10:05-10:45)
+        Advanced (10:05-10:45)
         *Talk 1*
         _Speaker Name_
         TEXT;
