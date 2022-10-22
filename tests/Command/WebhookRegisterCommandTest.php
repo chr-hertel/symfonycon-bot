@@ -7,10 +7,13 @@ namespace App\Tests\Command;
 use App\ChatBot\Telegram\Client;
 use App\Command\WebhookRegisterCommand;
 use PHPUnit\Framework\MockObject\MockObject;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-final class WebhookRegisterCommandTest extends WebTestCase
+/**
+ * @group functional
+ */
+final class WebhookRegisterCommandTest extends KernelTestCase
 {
     /** @var Client|MockObject */
     private MockObject $telegramClient;
