@@ -1,4 +1,16 @@
 {
+    "algolia/search-bundle": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "fd172e8feabf6b1c0818e18de90c2a3f82ea0a60"
+        },
+        "files": [
+            "config/packages/algolia_search.yaml"
+        ]
+    },
     "composer/pcre": {
         "version": "1.0.0"
     },

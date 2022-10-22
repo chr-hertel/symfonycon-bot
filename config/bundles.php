@@ -10,4 +10,5 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
+    Algolia\SearchBundle\AlgoliaSearchBundle::class => ['all' => true],
 ];
