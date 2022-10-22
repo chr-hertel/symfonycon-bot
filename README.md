@@ -109,3 +109,52 @@ To set up this demo we need to create a telegram bot and connect our local envir
     bin/console app:webhook:register
     bin/console app:command:register
     ```
+
+Testing
+-------
+
+**Relevant tools**
+
+* [PHP CS Fixer](https://cs.symfony.com/)
+
+   ```
+   php vendor/bin/php-cs-fixer fix
+   ```
+
+* [PHPStan](https://phpstan.org/)
+
+   ```
+   php vendor/bin/phpstan analyse
+   ```
+
+* [PHPUnit](https://phpunit.de/)
+
+   ```
+   # without coverage
+   php bin/phpunit
+  
+   # with coverage, but without functional tests
+   XDEBUG_MODE=coverage php bin/phpunit --coverage-html=public/phpunit --exclude=functional
+   ```
+
+* [Infection](https://infection.github.io/) (not executed in pipeline)
+
+   ```
+   php vendor/bin/infection
+   ```
+
+Pipeline
+--------
+
+Pipeline is executed with GitHub Actions on Pull Requests.
+
+You can simulate locally with:
+
+```bash
+bin/check
+```
+
+Deployment
+----------
+
+Deployment is executed with GitHub Action on push on `main` branch using [Deployer](https://deployer.org/).
