@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\SlotRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SlotRepository::class)]
 class Slot
@@ -29,6 +30,7 @@ class Slot
     ) {
     }
 
+    #[Groups('searchable')]
     public function getTitle(): string
     {
         return $this->title;
@@ -44,6 +46,7 @@ class Slot
         return $this->end;
     }
 
+    #[Groups('searchable')]
     public function getDescription(): string|null
     {
         return $this->description;

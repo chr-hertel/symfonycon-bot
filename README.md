@@ -110,6 +110,24 @@ To set up this demo we need to create a telegram bot and connect our local envir
     bin/console app:command:register
     ```
 
+1. Set up search functionality 
+
+    To use the search in your local development environment, setup an
+    [Algolia Account](https://www.algolia.com/) and configure following keys
+    in your `.env.local`:
+
+    ```dotenv
+    ALGOLIA_APP_ID=
+    ALGOLIA_API_KEY=
+    ```
+
+    To set up the search index, run:
+
+    ```bash
+    bin/console search:settings:push
+    bin/console search:import
+    ```
+
 Testing
 -------
 
