@@ -10,5 +10,5 @@ final class Message
     public User $from;
     public Chat $chat;
     public \DateTimeImmutable $date;
-    public string $text;
+    public string $text = '';
 }
