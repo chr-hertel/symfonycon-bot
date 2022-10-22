@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\HelpReplier;
+use App\ChatBot\Reply\MarkdownReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use PHPUnit\Framework\TestCase;
@@ -37,12 +38,13 @@ final class HelpReplierTest extends TestCase
     {
         $reply = $this->replier->reply(new Envelope());
 
-        static::assertStringContainsString('/countdown', $reply->getText());
-        static::assertStringContainsString('/day1', $reply->getText());
-        static::assertStringContainsString('/day2', $reply->getText());
-        static::assertStringContainsString('/today', $reply->getText());
-        static::assertStringContainsString('/now', $reply->getText());
-        static::assertStringContainsString('/next', $reply->getText());
+        static::assertInstanceOf(MarkdownReply::class, $reply);
+        static::assertStringContainsString('/countdown', $reply->markdown);
+        static::assertStringContainsString('/day1', $reply->markdown);
+        static::assertStringContainsString('/day2', $reply->markdown);
+        static::assertStringContainsString('/today', $reply->markdown);
+        static::assertStringContainsString('/now', $reply->markdown);
+        static::assertStringContainsString('/next', $reply->markdown);
     }
 
     protected function setUp(): void

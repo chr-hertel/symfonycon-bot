@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\CountdownReplier;
+use App\ChatBot\Reply\MarkdownReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use App\SymfonyCon\Timer;
@@ -39,7 +40,9 @@ final class CountdownReplierTest extends TestCase
         $expectedText = 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.';
 
         $reply = $this->replier->reply(new Envelope());
-        static::assertSame($expectedText, $reply->getText());
+
+        static::assertInstanceOf(MarkdownReply::class, $reply);
+        static::assertSame($expectedText, $reply->markdown);
     }
 
     protected function setUp(): void

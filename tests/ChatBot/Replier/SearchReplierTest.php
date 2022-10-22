@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\SearchReplier;
-use App\ChatBot\Reply;
+use App\ChatBot\Reply\Reply;
+use App\ChatBot\Reply\TextReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use App\SymfonyCon\Search;
@@ -59,8 +60,8 @@ final class SearchReplierTest extends TestCase
 
         $reply = $this->replier->reply($envelope);
 
-        static::assertInstanceOf(Reply::class, $reply);
-        static::assertSame('Please add a search term, like "/search Symfony 6.2".', $reply->getText());
+        static::assertInstanceOf(TextReply::class, $reply);
+        static::assertSame('Please add a search term, like "/search Symfony 6.2".', $reply->text);
     }
 
     public function testSearchReplyWithQuery(): void

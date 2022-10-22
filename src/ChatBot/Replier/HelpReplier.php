@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
+use App\ChatBot\Reply\MarkdownReply;
 use App\ChatBot\Telegram\Data\Envelope;
 
 final class HelpReplier extends CommandReplier
@@ -24,7 +24,7 @@ final class HelpReplier extends CommandReplier
         return false;
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Envelope $envelope): MarkdownReply
     {
         $help = <<<HELP
             *SymfonyConBot Help*
@@ -45,6 +45,6 @@ final class HelpReplier extends CommandReplier
             Checkout [GitHub](github.com/chr-hertel/symfonycon-bot) for more...
             HELP;
 
-        return new Reply($help);
+        return new MarkdownReply($help);
     }
 }

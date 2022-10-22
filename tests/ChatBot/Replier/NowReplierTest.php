@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\NowReplier;
-use App\ChatBot\Reply;
+use App\ChatBot\Reply\Reply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use App\SymfonyCon\Schedule;

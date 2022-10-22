@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
+use App\ChatBot\Reply\TextReply;
 use App\ChatBot\Telegram\Data\Envelope;
 
 final class StartReplier extends CommandReplier
@@ -24,9 +24,9 @@ final class StartReplier extends CommandReplier
         return false;
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Envelope $envelope): TextReply
     {
-        return new Reply(sprintf(
+        return new TextReply(sprintf(
             "Welcome to SymfonyConBot, %s! :)\nUse /help to see all commands.",
             $envelope->getMessage()->from->firstName
         ));

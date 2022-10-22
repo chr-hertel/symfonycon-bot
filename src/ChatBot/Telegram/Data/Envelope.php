@@ -27,4 +27,9 @@ final class Envelope
 
         throw new \RuntimeException('Unable to extract message.');
     }
+
+    public function getSenderId(): string
+    {
+        return (string) $this->getMessage()->chat->id;
+    }
 }

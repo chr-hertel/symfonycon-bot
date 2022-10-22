@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot;
 
 use App\ChatBot\ChatBot;
+use App\ChatBot\Converter\MarkdownReplyConverter;
+use App\ChatBot\Converter\TextReplyConverter;
 use App\ChatBot\Replier\HelpReplier;
 use App\ChatBot\Replier\StartReplier;
 use App\ChatBot\ReplyMachine;
+use App\ChatBot\ReplySender;
 use App\ChatBot\Telegram\Data\Chat;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
@@ -26,6 +29,7 @@ final class ChatBotTest extends TestCase
         ]);
         /** @var MockObject&ChatterInterface $chatter */
         $chatter = $this->getMockBuilder(ChatterInterface::class)->getMock();
+        $replySender = new ReplySender([new MarkdownReplyConverter(), new TextReplyConverter()], $chatter);
 
         $chatter
             ->expects(static::once())
@@ -38,7 +42,7 @@ final class ChatBotTest extends TestCase
         $envelope->message->chat = new Chat();
         $envelope->message->chat->id = 1234;
 
-        $chatBot = new ChatBot($replyMachine, $chatter);
+        $chatBot = new ChatBot($replyMachine, $replySender);
         $chatBot->consume($envelope);
     }
 }

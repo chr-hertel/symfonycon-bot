@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\StartReplier;
+use App\ChatBot\Reply\TextReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\User;
@@ -46,7 +47,8 @@ final class StartReplierTest extends TestCase
         $expectedText = 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.';
         $reply = $this->replier->reply($envelope);
 
-        static::assertSame($expectedText, $reply->getText());
+        static::assertInstanceOf(TextReply::class, $reply);
+        static::assertSame($expectedText, $reply->text);
     }
 
     protected function setUp(): void

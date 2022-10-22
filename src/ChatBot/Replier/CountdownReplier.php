@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
+use App\ChatBot\Reply\MarkdownReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Timer;
 
@@ -24,10 +24,10 @@ final class CountdownReplier extends CommandReplier
         return 'Time until SymfonyCon starts';
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Envelope $envelope): MarkdownReply
     {
         $countdown = $this->timer->getCountdown();
 
-        return new Reply(sprintf('Only *%d days, %d hours and %d minutes* until SymfonyCon starts.', $countdown->d, $countdown->h, $countdown->i));
+        return new MarkdownReply(sprintf('Only *%d days, %d hours and %d minutes* until SymfonyCon starts.', $countdown->d, $countdown->h, $countdown->i));
     }
 }
