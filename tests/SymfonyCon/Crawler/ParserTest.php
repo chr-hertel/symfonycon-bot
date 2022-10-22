@@ -34,7 +34,7 @@ final class ParserTest extends TestCase
 
         $actualSlotCollection = $parser->extractSlots($snippet);
 
-        static::assertEquals($expectedSlotCollection, $actualSlotCollection);
+        static::assertSame((string) $expectedSlotCollection, (string) $actualSlotCollection);
     }
 
     /**
@@ -84,5 +84,23 @@ final class ParserTest extends TestCase
                 new Slot('Building a great product means designing for your users.', new \DateTimeImmutable('17-11-2022 14:15'), new \DateTimeImmutable('17-11-2022 14:50'), 'Natalie Harper', 'The Platform.sh room'),
             ],
         ];
+    }
+
+    public function testExtractingDescription(): void
+    {
+        $parser = new Parser();
+        $response = (string) file_get_contents(dirname(__DIR__).'/fixtures/full-schedule.html');
+
+        $expectedDescription = 'We all love Disney movies, right? They are entertaining, trigger emotional response but also contain a lot of important lessons. And these lessons can also be applied to your career as a developer. During this talk I\'ll have a look at 7 situations from some of my favorite Disney movies to analyze and see what lesson we can learn from that.';
+        $actualDescription = '';
+
+        $slotCollection = $parser->extractSlots($response);
+        foreach ($slotCollection as $slot) {
+            if ('7 Lessons You Can Learn From Disney Movies' === $slot->getTitle()) {
+                $actualDescription = $slot->getDescription();
+            }
+        }
+
+        static::assertSame($expectedDescription, $actualDescription);
     }
 }

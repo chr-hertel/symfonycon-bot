@@ -24,6 +24,8 @@ class Slot
         private readonly string|null $speaker = null,
         #[ORM\Column(nullable: true)]
         private readonly string|null $track = null,
+        #[ORM\Column(type: 'text', nullable: true)]
+        private readonly string|null $description = null,
     ) {
     }
 
@@ -40,6 +42,11 @@ class Slot
     public function getEnd(): \DateTimeImmutable
     {
         return $this->end;
+    }
+
+    public function getDescription(): string|null
+    {
+        return $this->description;
     }
 
     public function __toString(): string
