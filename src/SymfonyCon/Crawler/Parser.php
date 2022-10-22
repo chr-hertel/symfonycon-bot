@@ -51,9 +51,10 @@ final class Parser
         });
 
         // Extract talks per row
-        $crawler->filter('.schedule-row')->each(function (Crawler $row) use (&$slots) {
-            $row->filter('.schedule-talk')->each(function (Crawler $talk, int $index) use (&$slots) {
+        $crawler->filter('.schedule-row')->each(function (Crawler $row) use ($crawler, &$slots) {
+            $row->filter('.schedule-talk')->each(function (Crawler $talk, int $index) use ($crawler, &$slots) {
                 $title = $talk->filter('.schedule-talk-title')->text();
+                $id = $talk->filter('.schedule-talk-title')->attr('href');
                 $startsAt = $talk->siblings()->filter('.schedule-time')->attr('data-starts-at');
                 $endsAt = $talk->siblings()->filter('.schedule-time')->attr('data-ends-at');
 
@@ -73,6 +74,7 @@ final class Parser
                     new \DateTimeImmutable($endsAt),
                     $talk->filter('.schedule-talk-author')->text(),
                     '1' === $talk->attr('colspan') ? self::TRACKS[$index] : null,
+                    null !== $id ? $crawler->filter('.schedule-list '.$id.' .editable-content')->text() : null,
                 );
             });
         });

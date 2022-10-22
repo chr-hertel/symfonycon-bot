@@ -1,3 +1,16 @@
+        <div class="w-full">
+            <h2 class="schedule-day text-2xl mb-2 text-center text-indigo-600">November 17, 2022</h2>
+
+            <table  class="schedule-table mb-20 w-full">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="schedule-table-room-name font-semibold text-gray-800 text-lg">The Symfony room</th>
+                    <th class="schedule-table-room-name font-semibold text-gray-800 text-lg">The Framework room</th>
+                    <th class="schedule-table-room-name font-semibold text-gray-800 text-lg">The Platform.sh room</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr class="schedule-row mb-2">
 
                     <td class="schedule-time" data-starts-at="2022-11-17T10:10:00+00:00" data-ends-at="2022-11-17T10:45:00+00:00">
@@ -19,3 +32,137 @@
                     </td>
                     <td class="border rounded border-indigo-200 border-dashed">&nbsp;</td>
                 </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <hr class="border-0 my-20">
+
+        <div class="schedule-list lg:w-9/12">
+            <div id="unleashing-the-power-of-lazy-objects-in-php">
+                <div class="pt-12">
+                    <h3 class="text-xl md:text-2xl lg:text-3xl leading-tight text-indigo-800 mb-2 hover:underline">
+                        <a href="/2022-paris-con/schedule/unleashing-the-power-of-lazy-objects-in-php">Unleashing the power of lazy objects in PHP 🪄</a>
+                    </h3>
+
+                    <p class="flex items-center">
+                        <img class="bg-white inline-block mr-2 rounded h-6 w-6" src="https://connect.symfony.com/api/images/072fe4aa-78a1-45c7-b802-34eb632562ef.png?format=180x180" alt="Avatar of Nicolas Grekas">
+
+                        <a class="link lg:text-lg" href="https://connect.symfony.com/profile/nicolas-grekas">                <span class="pr-4">Nicolas Grekas</span>
+                        </a>                    </p>
+
+                    <div class="sm:flex">
+                        <div class="w-full mb-4 sm:mb-0 sm:w-2/3 lg:pr-4">
+                            <p class="mt-4 text-gray-700 editable-content">Lazy-objects are a bit magical. They are created empty and populate themselves on-demand. They are useful when an object is heavy to instantiate but is not always used, like for example Doctrine entities or Symfony lazy-services.<br />
+                                <br />
+                                But do you know how they work internally? In this talk, I&#039;ll tell you about the mechanisms provided by PHP to enable such use cases 🧙. Because doing this sort of wizardry is not common practice, I&#039;ll also introduce you to two new traits that package those lazy-loading behaviors introduced in Symfony 6.2: one for virtual inheritance proxies, and one for ghost objects 👻.<br />
+                                <br />
+                                While lazy objects used to require complex code generation, these new traits make it way easier to leverage them, opening up possible innovations; lazy arguments, lazy properties, or by-design lazy classes to name a few ones. What will you come up with? Let me know after you&#039;ve seen this talk!</p>
+                        </div>
+
+                        <div class="w-full sm:w-1/3 sm:pl-4 lg:pl-8 lg:pr-4">
+                            <div class="flex items-center mb-3">
+                                <div class="text-gray-600 mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+
+                                </div>
+                                <div class="text-gray-700">
+                                    Delivered in English
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mb-2">
+                        <span class="text-gray-600 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M19 19V4h-4V3H5v16H3v2h12V6h2v15h4v-2h-2zm-6 0H7V5h6v14zm-3-8h2v2h-2z"/></svg>
+
+                        </span>
+                                <span class="mr-2">Room:</span>
+                                <span class="font-semibold text-gray-700 mr-4">
+                             The Symfony room
+                        </span>
+                            </div>
+
+                            <div class="flex items-start mb-3">
+                                <div class="text-gray-600 mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+
+                                </div>
+                                <div class="convertible-datetime text-gray-700" data-starts-at="2022-11-17T11:10:00+01:00" data-ends-at="2022-11-17T11:45:00+01:00">
+                                    <p>
+            <span>
+                Thursday, November 17, 2022 at 11:10 AM
+                &ndash;
+                11:45 AM
+            </span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="transactional-vs-analytical-processing">
+                <div class="pt-12">
+                    <h3 class="text-xl md:text-2xl lg:text-3xl leading-tight text-indigo-800 mb-2 hover:underline">
+                        <a href="/2022-paris-con/schedule/transactional-vs-analytical-processing">Transactional vs. Analytical Processing</a>
+                    </h3>
+
+                    <p class="flex items-center">
+                        <img class="bg-white inline-block mr-2 rounded h-6 w-6" src="https://connect.symfony.com/api/images/88288e47-79ec-44d9-b696-800479a60ee8.png?format=180x180" alt="Avatar of Christopher Hertel">
+
+                        <a class="link lg:text-lg" href="https://connect.symfony.com/profile/chertel">                <span class="pr-4">Christopher Hertel</span>
+                        </a>                    </p>
+
+                    <div class="sm:flex">
+                        <div class="w-full mb-4 sm:mb-0 sm:w-2/3 lg:pr-4">
+                            <p class="mt-4 text-gray-700 editable-content">When it comes to the design of your Symfony application, data plays a central role. From an architectural point of view there are two common ways this data is processed. Transactional processing ensures that changes to your data are consistent and safe. Analytical processing aims to make even complex queries fast and efficient.<br />
+                                We should always consider the nature of processing while implementing our application’s use cases. So let&#039;s have a look at the main criterias, strategies and trade offs that will help us to navigate through all the options we have and see how we can bring your own data warehouse to life in your Symfony application leveraging tools like Doctrine, Messenger and more.</p>
+                        </div>
+
+                        <div class="w-full sm:w-1/3 sm:pl-4 lg:pl-8 lg:pr-4">
+                            <div class="flex items-center mb-3">
+                                <div class="text-gray-600 mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+
+                                </div>
+                                <div class="text-gray-700">
+                                    Delivered in English
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mb-2">
+                        <span class="text-gray-600 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M19 19V4h-4V3H5v16H3v2h12V6h2v15h4v-2h-2zm-6 0H7V5h6v14zm-3-8h2v2h-2z"/></svg>
+
+                        </span>
+                                <span class="mr-2">Room:</span>
+                                <span class="font-semibold text-gray-700 mr-4">
+                             The Framework room
+                        </span>
+                            </div>
+
+                            <div class="flex items-start mb-3">
+                                <div class="text-gray-600 mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 0 24 24" width="21px"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+
+                                </div>
+                                <div class="convertible-datetime text-gray-700" data-starts-at="2022-11-17T11:10:00+01:00" data-ends-at="2022-11-17T11:45:00+01:00">
+                                    <p>
+            <span>
+                Thursday, November 17, 2022 at 11:10 AM
+                &ndash;
+                11:45 AM
+            </span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
