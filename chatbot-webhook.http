@@ -1,0 +1,31 @@
+POST {{webhook-host}}/chatbot
+Content-Type: application/json
+
+{
+  "update_id": 123456789,
+  "message": {
+    "message_id": 555,
+    "from": {
+      "id": {{chat-id}},
+      "is_bot": false,
+      "first_name": "Foo",
+      "last_name": "Bar",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": {{chat-id}},
+      "first_name": "Foo",
+      "last_name": "Bar",
+      "type": "private"
+    },
+    "date": 1666538377,
+    "text": "\/countdown",
+    "entities": [
+      {
+        "offset": 0,
+        "length": 6,
+        "type": "bot_command"
+      }
+    ]
+  }
+}

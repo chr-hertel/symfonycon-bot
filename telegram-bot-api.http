@@ -1,0 +1,92 @@
+POST https://api.telegram.org/{{bot-token}}/setMyCommands
+Content-Type: application/json
+
+{
+  "commands": [
+    {"command": "test", "description": "Hello"}
+  ]
+}
+
+###
+
+POST https://api.telegram.org/{{bot-token}}/sendDice
+Content-Type: application/json
+
+{
+  "chat_id": "{{chat-id}}"
+}
+
+###
+
+POST https://api.telegram.org/{{bot-token}}/sendMessage
+Content-Type: application/json
+
+{
+  "chat_id": "{{chat-id}}",
+  "text": "Nov 17th - 09:10-09:45",
+  "reply_markup": {
+    "inline_keyboard": [
+      [
+        {
+          "text": "How to lazy load ABC in PHP",
+          "callback_data": "how-to-lazy-load"
+        }
+      ],[
+        {
+          "text": "Transactional vs. Analytical Processing",
+          "callback_data": "transactional-vs-analytical"
+        }
+      ]
+    ]
+  }
+}
+
+###
+
+POST https://api.telegram.org/{{bot-token}}/sendMessage
+Content-Type: application/json
+
+{
+  "chat_id": "{{chat-id}}",
+  "parse_mode": "Markdown",
+  "text": "Hello [Test](https://t.me/SymfonyConTestBot?start=Testing)"
+}
+
+###
+
+POST https://api.telegram.org/{{bot-token}}/sendMessage
+Content-Type: application/json
+
+{
+  "chat_id": "{{chat-id}}",
+  "parse_mode": "Markdown",
+  "text": "More: /slot@test"
+}
+
+###
+
+POST https://api.telegram.org/{{bot-token}}/editMessageText
+Content-Type: application/json
+
+{
+  "chat_id": "{{chat-id}}",
+  "message_id": 542,
+  "text": "Hello Whoop Whoop",
+  "reply_markup": {
+    "inline_keyboard": [
+      [
+        {
+          "text": "How to lazy load ABC in PHP",
+          "callback_data": "how-to-lazy-load"
+        }
+      ],[
+        {
+          "text": "Transactional vs. Analytical Processing",
+          "callback_data": "transactional-vs-analytical"
+        }
+      ]
+    ]
+  }
+}
+
+###
