@@ -3,6 +3,7 @@
     "type": "project",
     "description": "Simple Telegram bot for SymfonyCon",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": "^8.1",
         "ext-ctype": "*",
@@ -22,11 +23,13 @@
         "symfony/framework-bundle": "6.1.*",
         "symfony/messenger": "6.1.*",
         "symfony/monolog-bundle": "^3.8",
+        "symfony/notifier": "6.2.*@dev",
         "symfony/property-access": "6.1.*",
         "symfony/property-info": "6.1.*",
         "symfony/runtime": "6.1.*",
         "symfony/serializer": "6.1.*",
-        "symfony/telegram-notifier": "6.1.*",
+        "symfony/telegram-notifier": "6.2.*@dev",
+        "symfony/uid": "6.1.*",
         "symfony/yaml": "6.1.*"
     },
     "replace": {

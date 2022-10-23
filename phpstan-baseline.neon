@@ -1,7 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Property App\\\\Entity\\\\Slot\\:\\:\\$id is unused\\.$#"
-			count: 1
-			path: src/Entity/Slot.php
-

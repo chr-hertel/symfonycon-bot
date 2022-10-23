@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[AsController]
@@ -26,7 +27,7 @@ final class WebhookController
     {
         /** @var Envelope $envelope */
         $envelope = $this->serializer->deserialize($request->getContent(), Envelope::class, 'json', [
-            'datetime_format' => 'U',
+            DateTimeNormalizer::FORMAT_KEY => 'U',
         ]);
 
         $this->messageBus->dispatch($envelope);
