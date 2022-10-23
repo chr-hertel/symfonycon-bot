@@ -10,9 +10,8 @@ use App\SymfonyCon\Schedule;
 
 final class NowReplier extends CommandReplier
 {
-    public function __construct(
-        private readonly Schedule $schedule
-    ) {
+    public function __construct(private readonly Schedule $schedule)
+    {
     }
 
     public function getCommand(): string

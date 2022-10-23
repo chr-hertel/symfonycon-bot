@@ -43,7 +43,7 @@ final class ReplyMachineTest extends TestCase
         return [
             ['/start', 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.'],
             ['/help', '*SymfonyConBot Help*'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
-            ['/countdown', '2 days, 12 hours and 45 minutes'],
+            ['/countdown', 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.'],
         ];
     }
 

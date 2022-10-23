@@ -10,9 +10,8 @@ use App\SymfonyCon\Search;
 
 final class SearchReplier extends CommandReplier
 {
-    public function __construct(
-        private readonly Search $search,
-    ) {
+    public function __construct(private readonly Search $search)
+    {
     }
 
     public function getCommand(): string
