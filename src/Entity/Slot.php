@@ -78,10 +78,6 @@ class Slot
             $text .= PHP_EOL.sprintf('_%s_', $this->speaker);
         }
 
-        if (null !== $this->description) {
-            $text .= PHP_EOL.PHP_EOL.$this->description;
-        }
-
         return $text;
     }
 }
