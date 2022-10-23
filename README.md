@@ -176,3 +176,24 @@ Deployment
 ----------
 
 Deployment is executed with GitHub Action on push on `main` branch using [Deployer](https://deployer.org/).
+
+Development
+-----------
+
+If you're using PhpStorm and you want to play around with the WebHook controller or
+Telegram Bot API, see HTTP files:
+
+* Create `http-client-private.env.json` file with your bot token & your chat id:
+
+    ```json
+    {
+      "dev": {
+         "bot-token": "bot:TOKEN",
+         "chat-id": "123456789"
+      }
+    }
+    ```
+
+* Now you can use the example files, to interact with both applications:
+  * Telegram Bot API: `telegram-bot-api.http`
+  * ChatBot Webhook: `chatbot-webhook.http`

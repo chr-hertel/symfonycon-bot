@@ -20,3 +20,4 @@
 ###< friendsofphp/php-cs-fixer ###
 
 infection.log
+http-client.private.env.json
