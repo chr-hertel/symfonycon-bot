@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply\SlotReply;
+use App\ChatBot\Reply\SlotCollectionReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Schedule;
 
@@ -24,8 +24,8 @@ final class NowReplier extends CommandReplier
         return 'Lists all talks happening right now';
     }
 
-    public function reply(Envelope $envelope): SlotReply
+    public function reply(Envelope $envelope): SlotCollectionReply
     {
-        return new SlotReply($this->schedule->now());
+        return new SlotCollectionReply('Now', $this->schedule->now());
     }
 }

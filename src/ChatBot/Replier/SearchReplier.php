@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply\SlotReply;
+use App\ChatBot\Reply\SlotCollectionReply;
 use App\ChatBot\Reply\TextReply;
 use App\ChatBot\Telegram\Data\Envelope;
 use App\SymfonyCon\Search;
@@ -25,7 +25,7 @@ final class SearchReplier extends CommandReplier
         return 'Search for talks within the schedule';
     }
 
-    public function reply(Envelope $envelope): TextReply|SlotReply
+    public function reply(Envelope $envelope): TextReply|SlotCollectionReply
     {
         // remove "/search" from message text
         $query = trim(substr($envelope->getMessage()->text, 7));
@@ -34,6 +34,6 @@ final class SearchReplier extends CommandReplier
             return new TextReply('Please add a search term, like "/search Symfony 6.2".');
         }
 
-        return new SlotReply($this->search->search($query));
+        return new SlotCollectionReply(sprintf('Results for "%s"', $query), $this->search->search($query));
     }
 }
