@@ -34,7 +34,7 @@ final class ParserTest extends TestCase
 
         $actualSlotCollection = $parser->extractSlots($snippet);
 
-        static::assertSame((string) $expectedSlotCollection, (string) $actualSlotCollection);
+        static::assertSameCollection($expectedSlotCollection, $actualSlotCollection);
     }
 
     /**
@@ -102,5 +102,17 @@ final class ParserTest extends TestCase
         }
 
         static::assertSame($expectedDescription, $actualDescription);
+    }
+
+    private static function assertSameCollection(SlotCollection $expected, SlotCollection $actual): void
+    {
+        static::assertSameSize($expected, $actual);
+
+        /** @var Slot $slot */
+        foreach ($actual as $i => $slot) {
+            static::assertArrayHasKey($i, $expected);
+            static::assertSame($expected[$i]->getTitle(), $slot->getTitle());
+            static::assertSame($expected[$i]->getTimeSpan(), $slot->getTimeSpan());
+        }
     }
 }

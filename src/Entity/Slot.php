@@ -7,12 +7,13 @@ namespace App\Entity;
 use App\Repository\SlotRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: SlotRepository::class)]
 class Slot
 {
-    #[ORM\Column(type: 'integer'), ORM\Id, ORM\GeneratedValue(strategy: 'AUTO')]
-    private int $id;
+    #[ORM\Id, ORM\Column(type: 'uuid', unique: true)]
+    private Uuid $id;
 
     public function __construct(
         #[ORM\Column]
@@ -28,12 +29,23 @@ class Slot
         #[ORM\Column(type: 'text', nullable: true)]
         private readonly string|null $description = null,
     ) {
+        $this->id = Uuid::v4();
+    }
+
+    public function getId(): string
+    {
+        return $this->id->toRfc4122();
     }
 
     #[Groups('searchable')]
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getTimeSpan(): string
+    {
+        return sprintf('%s - %s', $this->start->format('M d: H:i'), $this->end->format('H:i'));
     }
 
     public function getStart(): \DateTimeImmutable
@@ -54,17 +66,20 @@ class Slot
 
     public function __toString(): string
     {
-        $text = sprintf('*%s*', $this->title);
+        $text = $this->getTimeSpan();
+
+        if (null !== $this->track) {
+            $text .= PHP_EOL.$this->track;
+        }
+
+        $text .= PHP_EOL.PHP_EOL.sprintf('*%s*', $this->title);
 
         if (null !== $this->speaker) {
             $text .= PHP_EOL.sprintf('_%s_', $this->speaker);
         }
 
-        $time = sprintf('%s-%s', $this->start->format('H:i'), $this->end->format('H:i'));
-        if (null !== $this->track) {
-            $text = sprintf('%s (%s)', $this->track, $time).PHP_EOL.$text;
-        } else {
-            $text = $time.PHP_EOL.$text;
+        if (null !== $this->description) {
+            $text .= PHP_EOL.PHP_EOL.$this->description;
         }
 
         return $text;

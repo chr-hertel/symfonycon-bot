@@ -27,6 +27,7 @@
         "symfony/runtime": "6.1.*",
         "symfony/serializer": "6.1.*",
         "symfony/telegram-notifier": "6.1.*",
+        "symfony/uid": "6.1.*",
         "symfony/yaml": "6.1.*"
     },
     "replace": {

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+symfony console doctrine:database:drop --force
+symfony console doctrine:migrations:migrate
+symfony console app:schedule:crawl
+symfony console search:clear
+symfony console search:import

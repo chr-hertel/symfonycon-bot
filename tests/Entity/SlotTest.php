@@ -16,7 +16,9 @@ final class SlotTest extends TestCase
         $slot = new Slot('Talk 1', $start, $end, 'Speaker Name', 'Advanced');
 
         $expectedText = <<<TEXT
-        Advanced (10:05-10:45)
+        Nov 21: 10:05 - 10:45
+        Advanced
+        
         *Talk 1*
         _Speaker Name_
         TEXT;
@@ -31,7 +33,8 @@ final class SlotTest extends TestCase
         $slot = new Slot('Keynote', $start, $end, 'Speaker Name');
 
         $expectedText = <<<TEXT
-        10:05-10:45
+        Nov 21: 10:05 - 10:45
+        
         *Keynote*
         _Speaker Name_
         TEXT;
@@ -46,7 +49,8 @@ final class SlotTest extends TestCase
         $slot = new Slot('Lunch', $start, $end);
 
         $expectedText = <<<TEXT
-        10:05-10:45
+        Nov 21: 10:05 - 10:45
+        
         *Lunch*
         TEXT;
 
