@@ -1,0 +1,11 @@
+<strong>Results for "{{ query }}"</strong>
+
+{# @var \App\Entity\Slot slot #}
+{% for slot in slots %}
+ • <strong>{{ slot.title }}</strong>
+   {{ slot.timeSpan }}
+   more: /slot@{{ slot.id|short }}
+
+{% else %}
+    Nothing found!
+{% endfor %}

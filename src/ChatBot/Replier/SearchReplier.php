@@ -7,10 +7,11 @@ namespace App\ChatBot\Replier;
 use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Search;
 use Symfony\Component\Notifier\Message\ChatMessage;
+use Twig\Environment;
 
 final class SearchReplier extends CommandReplier
 {
-    public function __construct(private readonly Search $search)
+    public function __construct(private readonly Search $search, private readonly Environment $twig)
     {
     }
 
@@ -33,6 +34,11 @@ final class SearchReplier extends CommandReplier
             return new ChatMessage('Please add a search term, like "/search Symfony 6.2".');
         }
 
-        return new ChatMessage((string) $this->search->search($query));
+        return new ChatMessage(
+            $this->twig->render('search.html.twig', [
+                'query' => $query,
+                'slots' => $this->search->search($query),
+            ])
+        );
     }
 }

@@ -8,22 +8,26 @@ use App\ChatBot\Replier\SearchReplier;
 use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Search;
+use App\Tests\Templates;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class SearchReplierTest extends TestCase
 {
+    use Templates;
+
     /** @var MockObject&Search */
     private MockObject $search;
     private SearchReplier $replier;
 
     protected function setUp(): void
     {
+        $this->setUpTwig();
         $this->search = $this->getMockBuilder(Search::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $this->replier = new SearchReplier($this->search);
+        $this->replier = new SearchReplier($this->search, $this->environment);
     }
 
     public function testSupportingTodayMessage(): void

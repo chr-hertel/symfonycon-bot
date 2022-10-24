@@ -13,6 +13,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4.2",
         "doctrine/doctrine-migrations-bundle": "^3.2.2",
         "doctrine/orm": "^2.13.3",
+        "keiko/uuid-shortener": "^0.6.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "sentry/sentry-symfony": "^4.4",
         "symfony/console": "6.2.*",
@@ -21,7 +22,6 @@
         "symfony/dotenv": "6.2.*",
         "symfony/flex": "^1.19.3",
         "symfony/framework-bundle": "6.2.*",
-        "symfony/messenger": "6.2.*",
         "symfony/monolog-bundle": "^3.8",
         "symfony/notifier": "6.2.*@dev",
         "symfony/property-access": "6.2.*",
@@ -29,8 +29,11 @@
         "symfony/runtime": "6.2.*",
         "symfony/serializer": "6.2.*",
         "symfony/telegram-notifier": "6.2.*",
+        "symfony/twig-bundle": "6.2.*",
         "symfony/uid": "6.2.*",
-        "symfony/yaml": "6.2.*"
+        "symfony/yaml": "6.2.*",
+        "twig/extra-bundle": "^3.4",
+        "twig/twig": "^3.4"
     },
     "replace": {
         "paragonie/random_compat": "2.*",
@@ -59,7 +62,6 @@
         "symfony/debug-bundle": "6.2.*",
         "symfony/phpunit-bridge": "6.2.*",
         "symfony/stopwatch": "6.2.*",
-        "symfony/twig-bundle": "6.2.*",
         "symfony/var-dumper": "6.2.*",
         "symfony/web-profiler-bundle": "6.2.*"
     },

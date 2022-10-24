@@ -7,11 +7,9 @@ namespace App\ChatBot;
 use App\ChatBot\Telegram\Data\Update;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
 use Symfony\Component\Notifier\ChatterInterface;
 
-#[AsMessageHandler(method: 'consume')]
 final class ChatBot
 {
     public function __construct(
@@ -36,7 +34,7 @@ final class ChatBot
         $options = $chatMessage->getOptions() ?? new TelegramOptions();
         $options
             ->chatId($chatId)
-            ->parseMode(TelegramOptions::PARSE_MODE_MARKDOWN);
+            ->parseMode(TelegramOptions::PARSE_MODE_HTML);
 
         $this->chatter->send(
             $chatMessage->options($options)
