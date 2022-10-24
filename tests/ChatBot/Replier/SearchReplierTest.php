@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\SearchReplier;
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Search;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class SearchReplierTest extends TestCase
 {
@@ -30,53 +30,53 @@ final class SearchReplierTest extends TestCase
     {
         $message = new Message();
         $message->text = '/search';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertTrue($this->replier->supports($envelope));
+        static::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
     {
         $message = new Message();
         $message->text = '/start';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertFalse($this->replier->supports($envelope));
+        static::assertFalse($this->replier->supports($update));
     }
 
     public function testSearchReplyWithoutQuery(): void
     {
         $message = new Message();
         $message->text = '/search ';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
         $this->search
             ->expects(static::never())
             ->method('search');
 
-        $reply = $this->replier->reply($envelope);
+        $chatMessage = $this->replier->reply($update);
 
-        static::assertInstanceOf(Reply::class, $reply);
-        static::assertSame('Please add a search term, like "/search Symfony 6.2".', $reply->getText());
+        static::assertInstanceOf(ChatMessage::class, $chatMessage);
+        static::assertSame('Please add a search term, like "/search Symfony 6.2".', $chatMessage->getSubject());
     }
 
     public function testSearchReplyWithQuery(): void
     {
         $message = new Message();
         $message->text = '/search testing';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
         $this->search
             ->expects(static::once())
             ->method('search')
             ->with('testing');
 
-        $reply = $this->replier->reply($envelope);
+        $chatMessage = $this->replier->reply($update);
 
-        static::assertInstanceOf(Reply::class, $reply);
+        static::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -25,12 +25,12 @@ final class WebhookController
     #[Route('/chatbot', name: 'webhook', methods: ['POST'])]
     public function connect(Request $request): Response
     {
-        /** @var Envelope $envelope */
-        $envelope = $this->serializer->deserialize($request->getContent(), Envelope::class, 'json', [
+        /** @var Update $update */
+        $update = $this->serializer->deserialize($request->getContent(), Update::class, 'json', [
             DateTimeNormalizer::FORMAT_KEY => 'U',
         ]);
 
-        $this->messageBus->dispatch($envelope);
+        $this->messageBus->dispatch($update);
 
         return new Response();
     }

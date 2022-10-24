@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Timer;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class CountdownReplier extends CommandReplier
 {
@@ -24,10 +24,13 @@ final class CountdownReplier extends CommandReplier
         return 'Time until SymfonyCon starts';
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
         $countdown = $this->timer->getCountdown();
+        $message = 'Only *%d days, %d hours and %d minutes* until SymfonyCon starts.';
 
-        return new Reply(sprintf('Only *%d days, %d hours and %d minutes* until SymfonyCon starts.', $countdown->d, $countdown->h, $countdown->i));
+        return new ChatMessage(
+            sprintf($message, $countdown->d, $countdown->h, $countdown->i)
+        );
     }
 }

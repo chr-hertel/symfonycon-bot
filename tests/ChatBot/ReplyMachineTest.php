@@ -8,8 +8,8 @@ use App\ChatBot\Replier\CountdownReplier;
 use App\ChatBot\Replier\HelpReplier;
 use App\ChatBot\Replier\StartReplier;
 use App\ChatBot\ReplyMachine;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\ChatBot\Telegram\Data\User;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
@@ -28,11 +28,11 @@ final class ReplyMachineTest extends TestCase
         $message = new Message();
         $message->text = $text;
         $message->from = $user;
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        $reply = $this->replyMachine->findReply($envelope);
-        static::assertStringStartsWith($expectedReply, $reply->getText());
+        $chatMessage = $this->replyMachine->findReply($update);
+        static::assertStringStartsWith($expectedReply, $chatMessage->getSubject());
     }
 
     /**
@@ -51,11 +51,11 @@ final class ReplyMachineTest extends TestCase
     {
         $message = new Message();
         $message->text = '/invalid';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        $reply = $this->replyMachine->findReply($envelope);
-        static::assertSame('Sorry, I didn\'t get that! Please try /help instead!', $reply->getText());
+        $chatMessage = $this->replyMachine->findReply($update);
+        static::assertSame('Sorry, I didn\'t get that! Please try /help instead!', $chatMessage->getSubject());
     }
 
     protected function setUp(): void

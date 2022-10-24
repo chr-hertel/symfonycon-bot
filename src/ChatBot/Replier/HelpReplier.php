@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class HelpReplier extends CommandReplier
 {
@@ -24,7 +24,7 @@ final class HelpReplier extends CommandReplier
         return false;
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
         $help = <<<HELP
             *SymfonyConBot Help*
@@ -45,6 +45,6 @@ final class HelpReplier extends CommandReplier
             Checkout [GitHub](github.com/chr-hertel/symfonycon-bot) for more...
             HELP;
 
-        return new Reply($help);
+        return new ChatMessage($help);
     }
 }

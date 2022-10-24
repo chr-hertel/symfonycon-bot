@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class Day2Replier extends CommandReplier
 {
@@ -24,8 +24,8 @@ final class Day2Replier extends CommandReplier
         return 'Lists all talks of the second day';
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
-        return new Reply((string) $this->schedule->day2());
+        return new ChatMessage((string) $this->schedule->day2());
     }
 }

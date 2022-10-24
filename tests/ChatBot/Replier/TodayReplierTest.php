@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\TodayReplier;
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class TodayReplierTest extends TestCase
 {
@@ -22,20 +22,20 @@ final class TodayReplierTest extends TestCase
     {
         $message = new Message();
         $message->text = '/today';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertTrue($this->replier->supports($envelope));
+        static::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
     {
         $message = new Message();
         $message->text = '/start';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertFalse($this->replier->supports($envelope));
+        static::assertFalse($this->replier->supports($update));
     }
 
     public function testTodayReply(): void
@@ -44,9 +44,9 @@ final class TodayReplierTest extends TestCase
             ->expects(static::once())
             ->method('today');
 
-        $reply = $this->replier->reply(new Envelope());
+        $chatMessage = $this->replier->reply(new Update());
 
-        static::assertInstanceOf(Reply::class, $reply);
+        static::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 
     protected function setUp(): void

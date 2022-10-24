@@ -9,8 +9,8 @@ use App\ChatBot\Replier\HelpReplier;
 use App\ChatBot\Replier\StartReplier;
 use App\ChatBot\ReplyMachine;
 use App\ChatBot\Telegram\Data\Chat;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\ChatterInterface;
@@ -32,13 +32,13 @@ final class ChatBotTest extends TestCase
             ->method('send')
             ->with(static::isInstanceOf(ChatMessage::class));
 
-        $envelope = new Envelope();
-        $envelope->message = new Message();
-        $envelope->message->text = '/help';
-        $envelope->message->chat = new Chat();
-        $envelope->message->chat->id = 1234;
+        $update = new Update();
+        $update->message = new Message();
+        $update->message->text = '/help';
+        $update->message->chat = new Chat();
+        $update->message->chat->id = 1234;
 
         $chatBot = new ChatBot($replyMachine, $chatter);
-        $chatBot->consume($envelope);
+        $chatBot->consume($update);
     }
 }

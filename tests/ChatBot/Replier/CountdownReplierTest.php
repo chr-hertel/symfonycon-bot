@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\CountdownReplier;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
 
@@ -18,28 +18,28 @@ final class CountdownReplierTest extends TestCase
     {
         $message = new Message();
         $message->text = '/countdown';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertTrue($this->replier->supports($envelope));
+        static::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
     {
         $message = new Message();
         $message->text = '/help';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertFalse($this->replier->supports($envelope));
+        static::assertFalse($this->replier->supports($update));
     }
 
     public function testCountdownText(): void
     {
         $expectedText = 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.';
 
-        $reply = $this->replier->reply(new Envelope());
-        static::assertSame($expectedText, $reply->getText());
+        $chatMessage = $this->replier->reply(new Update());
+        static::assertSame($expectedText, $chatMessage->getSubject());
     }
 
     protected function setUp(): void
