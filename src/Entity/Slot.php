@@ -58,6 +58,16 @@ class Slot
         return $this->end;
     }
 
+    public function getSpeaker(): ?string
+    {
+        return $this->speaker;
+    }
+
+    public function getTrack(): ?string
+    {
+        return $this->track;
+    }
+
     #[Groups('searchable')]
     public function getDescription(): string|null
     {

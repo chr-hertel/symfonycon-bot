@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\StartReplier;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\ChatBot\Telegram\Data\User;
 use PHPUnit\Framework\TestCase;
 
@@ -18,20 +18,20 @@ final class StartReplierTest extends TestCase
     {
         $message = new Message();
         $message->text = '/start';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertTrue($this->replier->supports($envelope));
+        static::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
     {
         $message = new Message();
         $message->text = '/countdown';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertFalse($this->replier->supports($envelope));
+        static::assertFalse($this->replier->supports($update));
     }
 
     public function testStartText(): void
@@ -40,13 +40,13 @@ final class StartReplierTest extends TestCase
         $user->firstName = 'Chris';
         $message = new Message();
         $message->from = $user;
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        $expectedText = 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.';
-        $reply = $this->replier->reply($envelope);
+        $expectedText = '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.';
+        $chatMessage = $this->replier->reply($update);
 
-        static::assertSame($expectedText, $reply->getText());
+        static::assertSame($expectedText, $chatMessage->getSubject());
     }
 
     protected function setUp(): void

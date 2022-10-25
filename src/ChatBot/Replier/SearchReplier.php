@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Search;
+use Symfony\Component\Notifier\Message\ChatMessage;
+use Twig\Environment;
 
 final class SearchReplier extends CommandReplier
 {
-    public function __construct(private readonly Search $search)
+    public function __construct(private readonly Search $search, private readonly Environment $twig)
     {
     }
 
@@ -24,15 +25,20 @@ final class SearchReplier extends CommandReplier
         return 'Search for talks within the schedule';
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
         // remove "/search" from message text
-        $query = trim(substr($envelope->getMessage()->text, 7));
+        $query = trim(substr($update->getMessage()->text, 7));
 
         if (empty($query)) {
-            return new Reply('Please add a search term, like "/search Symfony 6.2".');
+            return new ChatMessage('Please add a search term, like "/search Symfony 6.2".');
         }
 
-        return new Reply((string) $this->search->search($query));
+        return new ChatMessage(
+            $this->twig->render('search.html.twig', [
+                'query' => $query,
+                'slots' => $this->search->search($query),
+            ])
+        );
     }
 }

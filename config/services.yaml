@@ -46,4 +46,11 @@ services:
     App\SymfonyCon\Timer:
         factory: ['@App\SymfonyCon\TimerFactory', 'createTimer']
 
+    Keiko\Uuid\Shortener\Dictionary:
+        factory: 'Keiko\Uuid\Shortener\Dictionary::createUnmistakable'
+
+    Keiko\Uuid\Shortener\Shortener:
+        factory: 'Keiko\Uuid\Shortener\Shortener::make'
+        arguments: ['@Keiko\Uuid\Shortener\Dictionary']
+
     Symfony\Component\Dotenv\Command\DotenvDumpCommand: ~

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\ChatBot;
 
 use App\ChatBot\Replier\ReplierInterface;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class ReplyMachine
 {
@@ -17,14 +18,18 @@ final class ReplyMachine
     ) {
     }
 
-    public function findReply(Envelope $envelope): Reply
+    public function findReply(Update $update): ChatMessage
     {
         foreach ($this->repliers as $replier) {
-            if ($replier->supports($envelope)) {
-                return $replier->reply($envelope);
+            if ($replier->supports($update)) {
+                return $replier->reply($update);
             }
         }
 
-        return new Reply('Sorry, I didn\'t get that! Please try /help instead!');
+        return new ChatMessage(
+            '<b>Sorry, I didn\'t get that!</b>'
+            .PHP_EOL.PHP_EOL.
+            'Please try /help instead!'
+        );
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class StartReplier extends CommandReplier
 {
@@ -24,11 +24,12 @@ final class StartReplier extends CommandReplier
         return false;
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
-        return new Reply(sprintf(
-            "Welcome to SymfonyConBot, %s! :)\nUse /help to see all commands.",
-            $envelope->getMessage()->from->firstName
-        ));
+        return new ChatMessage(
+            sprintf('<b>Welcome to SymfonyConBot, %s! :)</b>', $update->getMessage()->from->firstName)
+            .PHP_EOL.PHP_EOL.
+            'Use /help to see all commands.'
+        );
     }
 }

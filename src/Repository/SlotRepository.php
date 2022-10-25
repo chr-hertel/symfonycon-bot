@@ -7,13 +7,14 @@ namespace App\Repository;
 use App\Entity\Slot;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Keiko\Uuid\Shortener\Shortener;
 
 /**
  * @extends ServiceEntityRepository<Slot>
  */
 final class SlotRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(private readonly Shortener $shortener, ManagerRegistry $registry)
     {
         parent::__construct($registry, Slot::class);
     }
@@ -69,6 +70,11 @@ final class SlotRepository extends ServiceEntityRepository
         return $query
             ->setParameter('time', $time)
             ->getResult();
+    }
+
+    public function findByShortId(string $shortId): Slot|null
+    {
+        return $this->find($this->shortener->expand($shortId));
     }
 
     public function findFirstSlot(): Slot|null

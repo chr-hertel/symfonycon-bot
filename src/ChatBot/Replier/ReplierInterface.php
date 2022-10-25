@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 interface ReplierInterface
 {
-    public function supports(Envelope $envelope): bool;
+    public function supports(Update $update): bool;
 
-    public function reply(Envelope $envelope): Reply;
+    public function reply(Update $update): ChatMessage;
 }

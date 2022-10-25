@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace App\ChatBot;
 
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
 use Symfony\Component\Notifier\ChatterInterface;
-use Symfony\Component\Notifier\Message\ChatMessage;
 
-#[AsMessageHandler(method: 'consume')]
 final class ChatBot
 {
     public function __construct(
@@ -22,23 +19,25 @@ final class ChatBot
     ) {
     }
 
-    public function consume(Envelope $envelope): void
+    public function consume(Update $update): void
     {
-        $reply = $this->replier->findReply($envelope);
+        $chatMessage = $this->replier->findReply($update);
         try {
-            $chatId = (string) $envelope->getMessage()->chat->id;
+            $chatId = $update->getChatId();
         } catch (\RuntimeException $exception) {
             $this->logger->error('Cannot extract message nor sender', ['exception' => $exception]);
 
             return;
         }
 
-        $options = (new TelegramOptions())
+        /** @var TelegramOptions $options */
+        $options = $chatMessage->getOptions() ?? new TelegramOptions();
+        $options
             ->chatId($chatId)
-            ->parseMode(TelegramOptions::PARSE_MODE_MARKDOWN);
+            ->parseMode(TelegramOptions::PARSE_MODE_HTML);
 
         $this->chatter->send(
-            new ChatMessage($reply->getText(), $options)
+            $chatMessage->options($options)
         );
     }
 }

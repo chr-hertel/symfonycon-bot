@@ -5,97 +5,97 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Telegram\Data;
 
 use App\ChatBot\Telegram\Data\CallbackQuery;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use PHPUnit\Framework\TestCase;
 
-final class EnvelopeTest extends TestCase
+final class UpdateTest extends TestCase
 {
     public function testExceptionWithoutMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Unable to extract message.');
 
-        $envelope->getMessage();
+        $update->getMessage();
     }
 
     public function testRetrieveCallbackMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $callbackMessage = new Message();
         $callback = new CallbackQuery();
         $callback->message = $callbackMessage;
-        $envelope->callbackQuery = $callback;
+        $update->callbackQuery = $callback;
 
-        static::assertSame($callbackMessage, $envelope->getMessage());
+        static::assertSame($callbackMessage, $update->getMessage());
     }
 
     public function testRetrieveEditedMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $editedMessage = new Message();
-        $envelope->editedMessage = $editedMessage;
+        $update->editedMessage = $editedMessage;
 
-        static::assertSame($editedMessage, $envelope->getMessage());
+        static::assertSame($editedMessage, $update->getMessage());
     }
 
     public function testRetrieveMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $message = new Message();
-        $envelope->message = $message;
+        $update->message = $message;
 
-        static::assertSame($message, $envelope->getMessage());
+        static::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveMessageBeforeEditedMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $message = new Message();
-        $envelope->message = $message;
+        $update->message = $message;
 
         $editedMessage = new Message();
-        $envelope->editedMessage = $editedMessage;
+        $update->editedMessage = $editedMessage;
 
-        static::assertSame($message, $envelope->getMessage());
+        static::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveMessageBeforeEditedMessageBeforeCallbackMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $message = new Message();
-        $envelope->message = $message;
+        $update->message = $message;
 
         $editedMessage = new Message();
-        $envelope->editedMessage = $editedMessage;
+        $update->editedMessage = $editedMessage;
 
         $callbackMessage = new Message();
         $callback = new CallbackQuery();
         $callback->message = $callbackMessage;
-        $envelope->callbackQuery = $callback;
+        $update->callbackQuery = $callback;
 
-        static::assertSame($message, $envelope->getMessage());
+        static::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveEditedMessageBeforeCallbackMessage(): void
     {
-        $envelope = new Envelope();
+        $update = new Update();
 
         $editedMessage = new Message();
-        $envelope->editedMessage = $editedMessage;
+        $update->editedMessage = $editedMessage;
 
         $callbackMessage = new Message();
         $callback = new CallbackQuery();
         $callback->message = $callbackMessage;
-        $envelope->callbackQuery = $callback;
+        $update->callbackQuery = $callback;
 
-        static::assertSame($editedMessage, $envelope->getMessage());
+        static::assertSame($editedMessage, $update->getMessage());
     }
 }

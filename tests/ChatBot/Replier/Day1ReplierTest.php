@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\ChatBot\Replier;
 
 use App\ChatBot\Replier\Day1Replier;
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Replier\Renderer\DayRenderer;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class Day1ReplierTest extends TestCase
 {
@@ -22,20 +23,20 @@ final class Day1ReplierTest extends TestCase
     {
         $message = new Message();
         $message->text = '/day1';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertTrue($this->replier->supports($envelope));
+        static::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
     {
         $message = new Message();
         $message->text = '/day2';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        static::assertFalse($this->replier->supports($envelope));
+        static::assertFalse($this->replier->supports($update));
     }
 
     public function testDay1Reply(): void
@@ -44,9 +45,9 @@ final class Day1ReplierTest extends TestCase
             ->expects(static::once())
             ->method('day1');
 
-        $reply = $this->replier->reply(new Envelope());
+        $chatMessage = $this->replier->reply(new Update());
 
-        static::assertInstanceOf(Reply::class, $reply);
+        static::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 
     protected function setUp(): void
@@ -54,6 +55,7 @@ final class Day1ReplierTest extends TestCase
         $this->schedule = $this->getMockBuilder(Schedule::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $this->replier = new Day1Replier($this->schedule);
+        $renderer = $this->createMock(DayRenderer::class);
+        $this->replier = new Day1Replier($this->schedule, $renderer);
     }
 }

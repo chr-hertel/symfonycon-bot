@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Telegram\Data\Update;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class HelpReplier extends CommandReplier
 {
@@ -24,27 +24,27 @@ final class HelpReplier extends CommandReplier
         return false;
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
         $help = <<<HELP
-            *SymfonyConBot Help*
+            <b>SymfonyConBot Help</b>
             This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.
             
-            *Until SymfonyCon starts:*
+            <b>Until SymfonyCon starts:</b>
             /countdown - time until SymfonyCon starts
             /day1 - lists all talks of the first day
             /day2 - lists all talks of the second day
             
-            *While SymfonyCon:*
+            <b>While SymfonyCon:</b>
             /today - lists all talks of today
             /now - lists all talks happening right now
             /next - lists all talks happening next slot
             
-            *About SymfonyConBot:*
+            <b>About SymfonyConBot:</b>
             Written with Symfony 6 and Notifier
-            Checkout [GitHub](github.com/chr-hertel/symfonycon-bot) for more...
+            Checkout <a href="https://github.com/chr-hertel/symfonycon-bot">GitHub</a> for more...
             HELP;
 
-        return new Reply($help);
+        return new ChatMessage($help);
     }
 }

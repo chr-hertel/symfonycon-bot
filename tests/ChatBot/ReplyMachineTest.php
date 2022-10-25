@@ -8,8 +8,8 @@ use App\ChatBot\Replier\CountdownReplier;
 use App\ChatBot\Replier\HelpReplier;
 use App\ChatBot\Replier\StartReplier;
 use App\ChatBot\ReplyMachine;
-use App\ChatBot\Telegram\Data\Envelope;
 use App\ChatBot\Telegram\Data\Message;
+use App\ChatBot\Telegram\Data\Update;
 use App\ChatBot\Telegram\Data\User;
 use App\SymfonyCon\Timer;
 use PHPUnit\Framework\TestCase;
@@ -28,11 +28,11 @@ final class ReplyMachineTest extends TestCase
         $message = new Message();
         $message->text = $text;
         $message->from = $user;
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        $reply = $this->replyMachine->findReply($envelope);
-        static::assertStringStartsWith($expectedReply, $reply->getText());
+        $chatMessage = $this->replyMachine->findReply($update);
+        static::assertStringStartsWith($expectedReply, $chatMessage->getSubject());
     }
 
     /**
@@ -41,9 +41,9 @@ final class ReplyMachineTest extends TestCase
     public function provideValidMessage(): array
     {
         return [
-            ['/start', 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.'],
-            ['/help', '*SymfonyConBot Help*'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
-            ['/countdown', 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.'],
+            ['/start', '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.'],
+            ['/help', '<b>SymfonyConBot Help</b>'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
+            ['/countdown', 'Only <b>2 days, 12 hours and 45 minutes</b> until SymfonyCon starts.'],
         ];
     }
 
@@ -51,11 +51,11 @@ final class ReplyMachineTest extends TestCase
     {
         $message = new Message();
         $message->text = '/invalid';
-        $envelope = new Envelope();
-        $envelope->message = $message;
+        $update = new Update();
+        $update->message = $message;
 
-        $reply = $this->replyMachine->findReply($envelope);
-        static::assertSame('Sorry, I didn\'t get that! Please try /help instead!', $reply->getText());
+        $chatMessage = $this->replyMachine->findReply($update);
+        static::assertSame('<b>Sorry, I didn\'t get that!</b>'.PHP_EOL.PHP_EOL.'Please try /help instead!', $chatMessage->getSubject());
     }
 
     protected function setUp(): void

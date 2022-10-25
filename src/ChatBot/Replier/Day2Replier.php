@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace App\ChatBot\Replier;
 
-use App\ChatBot\Reply;
-use App\ChatBot\Telegram\Data\Envelope;
+use App\ChatBot\Replier\Renderer\DayRenderer;
+use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
+use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\Button\InlineKeyboardButton;
+use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\InlineKeyboardMarkup;
+use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
+use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class Day2Replier extends CommandReplier
 {
-    public function __construct(private readonly Schedule $schedule)
+    public function __construct(private readonly Schedule $schedule, private readonly DayRenderer $renderer)
     {
     }
 
@@ -24,8 +28,15 @@ final class Day2Replier extends CommandReplier
         return 'Lists all talks of the second day';
     }
 
-    public function reply(Envelope $envelope): Reply
+    public function reply(Update $update): ChatMessage
     {
-        return new Reply((string) $this->schedule->day2());
+        $slots = $this->schedule->day2();
+        $message = $this->renderer->render('Schedule of Day 2', $slots);
+
+        $button = (new InlineKeyboardButton('See Day 1'))->callbackData('/day1');
+        $markup = (new InlineKeyboardMarkup())->inlineKeyboard([$button]);
+        $options = (new TelegramOptions())->replyMarkup($markup);
+
+        return new ChatMessage($message, $options);
     }
 }
