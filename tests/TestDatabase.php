@@ -10,6 +10,8 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
+use Keiko\Uuid\Shortener\Dictionary;
+use Keiko\Uuid\Shortener\Shortener;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\DependencyInjection\Container;
@@ -36,7 +38,7 @@ trait TestDatabase
         $container->set('connection', $this->entityManager->getConnection());
         $container->set('entity_manager', $this->entityManager);
         $registry = new Registry($container, ['connection'], ['entity_manager'], 'connection', 'entity_manager');
-        $this->repository = new SlotRepository($registry);
+        $this->repository = new SlotRepository(Shortener::make(Dictionary::createUnmistakable()), $registry);
     }
 
     private function createConfiguration(): Configuration

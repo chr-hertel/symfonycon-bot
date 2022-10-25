@@ -26,6 +26,10 @@ final class ReplyMachine
             }
         }
 
-        return new ChatMessage('Sorry, I didn\'t get that! Please try /help instead!');
+        return new ChatMessage(
+            '<b>Sorry, I didn\'t get that!</b>'
+            .PHP_EOL.PHP_EOL.
+            'Please try /help instead!'
+        );
     }
 }

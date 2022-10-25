@@ -6,17 +6,13 @@ namespace App\ChatBot\Replier;
 
 use App\ChatBot\Telegram\Data\Update;
 use App\Repository\SlotRepository;
-use Keiko\Uuid\Shortener\Shortener;
 use Symfony\Component\Notifier\Message\ChatMessage;
 use Twig\Environment;
 
 final class SlotReplier extends CommandReplier
 {
-    public function __construct(
-        private readonly Shortener $shortener,
-        private readonly SlotRepository $repository,
-        private readonly Environment $twig,
-    ) {
+    public function __construct(private readonly SlotRepository $repository, private readonly Environment $twig)
+    {
     }
 
     public function getCommand(): string
@@ -38,8 +34,7 @@ final class SlotReplier extends CommandReplier
     {
         // remove "/slot@" from message text
         $shortId = substr($update->getMessage()->text, 6);
-        $uuid = $this->shortener->expand($shortId);
-        $slot = $this->repository->find($uuid);
+        $slot = $this->repository->findByShortId($shortId);
 
         if (null === $slot) {
             return new ChatMessage('Missing or invalid Slot ID.');

@@ -18,7 +18,7 @@ final class Update
 
     public function isCallback(): bool
     {
-        return null !== $this->callbackQuery;
+        return $this->callbackQuery instanceof CallbackQuery;
     }
 
     public function getMessage(): Message

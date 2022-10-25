@@ -10,7 +10,9 @@ abstract class CommandReplier implements ReplierInterface
 {
     public function supports(Update $update): bool
     {
-        return str_starts_with($update->getMessage()->text, sprintf('/%s', $this->getCommand()));
+        $command = $update->callbackQuery->data ?? $update->getMessage()->text;
+
+        return str_starts_with($command, sprintf('/%s', $this->getCommand()));
     }
 
     public function registerCommand(): bool

@@ -36,7 +36,7 @@ final class CountdownReplierTest extends TestCase
 
     public function testCountdownText(): void
     {
-        $expectedText = 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.';
+        $expectedText = 'Only <b>2 days, 12 hours and 45 minutes</b> until SymfonyCon starts.';
 
         $chatMessage = $this->replier->reply(new Update());
         static::assertSame($expectedText, $chatMessage->getSubject());

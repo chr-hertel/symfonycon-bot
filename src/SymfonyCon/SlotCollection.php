@@ -29,6 +29,25 @@ class SlotCollection extends \ArrayIterator
         return new self();
     }
 
+    /**
+     * @phpstan-return array<int, list<Slot>>
+     */
+    public function inGroups(): array
+    {
+        $groups = [];
+        /** @var Slot $slot */
+        foreach ($this->getArrayCopy() as $slot) {
+            $startDate = $slot->getStart()->format('U');
+            if (!array_key_exists($startDate, $groups)) {
+                $groups[$startDate] = [];
+            }
+
+            $groups[$startDate][] = $slot;
+        }
+
+        return $groups;
+    }
+
     public function __toString(): string
     {
         if (0 === $this->count()) {

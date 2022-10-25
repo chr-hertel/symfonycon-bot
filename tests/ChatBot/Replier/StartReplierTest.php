@@ -43,7 +43,7 @@ final class StartReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        $expectedText = 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.';
+        $expectedText = '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.';
         $chatMessage = $this->replier->reply($update);
 
         static::assertSame($expectedText, $chatMessage->getSubject());

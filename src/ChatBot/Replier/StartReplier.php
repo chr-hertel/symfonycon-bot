@@ -26,9 +26,10 @@ final class StartReplier extends CommandReplier
 
     public function reply(Update $update): ChatMessage
     {
-        return new ChatMessage(sprintf(
-            "Welcome to SymfonyConBot, %s! :)\nUse /help to see all commands.",
-            $update->getMessage()->from->firstName
-        ));
+        return new ChatMessage(
+            sprintf('<b>Welcome to SymfonyConBot, %s! :)</b>', $update->getMessage()->from->firstName)
+            .PHP_EOL.PHP_EOL.
+            'Use /help to see all commands.'
+        );
     }
 }

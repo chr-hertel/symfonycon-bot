@@ -41,9 +41,9 @@ final class ReplyMachineTest extends TestCase
     public function provideValidMessage(): array
     {
         return [
-            ['/start', 'Welcome to SymfonyConBot, Chris! :)'.PHP_EOL.'Use /help to see all commands.'],
-            ['/help', '*SymfonyConBot Help*'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
-            ['/countdown', 'Only *2 days, 12 hours and 45 minutes* until SymfonyCon starts.'],
+            ['/start', '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.'],
+            ['/help', '<b>SymfonyConBot Help</b>'.PHP_EOL.'This bot will help you to keep on track with all talks at SymfonyCon Disneyland Paris 2022.'],
+            ['/countdown', 'Only <b>2 days, 12 hours and 45 minutes</b> until SymfonyCon starts.'],
         ];
     }
 
@@ -55,7 +55,7 @@ final class ReplyMachineTest extends TestCase
         $update->message = $message;
 
         $chatMessage = $this->replyMachine->findReply($update);
-        static::assertSame('Sorry, I didn\'t get that! Please try /help instead!', $chatMessage->getSubject());
+        static::assertSame('<b>Sorry, I didn\'t get that!</b>'.PHP_EOL.PHP_EOL.'Please try /help instead!', $chatMessage->getSubject());
     }
 
     protected function setUp(): void

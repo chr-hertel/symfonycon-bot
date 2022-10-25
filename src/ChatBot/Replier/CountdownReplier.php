@@ -27,7 +27,7 @@ final class CountdownReplier extends CommandReplier
     public function reply(Update $update): ChatMessage
     {
         $countdown = $this->timer->getCountdown();
-        $message = 'Only *%d days, %d hours and %d minutes* until SymfonyCon starts.';
+        $message = 'Only <b>%d days, %d hours and %d minutes</b> until SymfonyCon starts.';
 
         return new ChatMessage(
             sprintf($message, $countdown->d, $countdown->h, $countdown->i)

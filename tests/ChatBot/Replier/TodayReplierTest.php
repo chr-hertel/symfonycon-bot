@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\ChatBot\Replier;
 
+use App\ChatBot\Replier\Renderer\DayRenderer;
 use App\ChatBot\Replier\TodayReplier;
 use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\Update;
@@ -54,6 +55,7 @@ final class TodayReplierTest extends TestCase
         $this->schedule = $this->getMockBuilder(Schedule::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $this->replier = new TodayReplier($this->schedule);
+        $renderer = $this->createMock(DayRenderer::class);
+        $this->replier = new TodayReplier($this->schedule, $renderer);
     }
 }
