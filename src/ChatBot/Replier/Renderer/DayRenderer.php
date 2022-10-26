@@ -32,7 +32,7 @@ class DayRenderer
                 continue;
             }
 
-            $message .= '____'.$first->getStart()->format('H:i').'-'.$first->getEnd()->format('H:i').'____';
+            $message .= '__ '.$first->getStart()->format('H:i').' - '.$first->getEnd()->format('H:i').'_____';
             $message .= PHP_EOL.PHP_EOL;
 
             foreach ($group as $slot) {
