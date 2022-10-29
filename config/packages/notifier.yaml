@@ -10,3 +10,9 @@ framework:
             low: ['email']
         admin_recipients:
             - { email: admin@example.com }
+
+when@test:
+    framework:
+        notifier:
+            chatter_transports:
+                telegram: 'null://dev'
