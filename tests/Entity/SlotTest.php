@@ -11,8 +11,8 @@ final class SlotTest extends TestCase
 {
     public function testSlotText(): void
     {
-        $start = new \DateTimeImmutable('11/21/19 10:05');
-        $end = new \DateTimeImmutable('11/21/19 10:45');
+        $start = new \DateTimeImmutable('11/21/19 10:05', new \DateTimeZone('Europe/Paris'));
+        $end = new \DateTimeImmutable('11/21/19 10:45', new \DateTimeZone('Europe/Paris'));
         $slot = new Slot('Talk 1', $start, $end, 'Speaker Name', 'Advanced');
 
         $expectedText = <<<TEXT
@@ -28,8 +28,8 @@ final class SlotTest extends TestCase
 
     public function testSlotTextWithoutTrack(): void
     {
-        $start = new \DateTimeImmutable('11/21/19 10:05');
-        $end = new \DateTimeImmutable('11/21/19 10:45');
+        $start = new \DateTimeImmutable('11/21/19 10:05', new \DateTimeZone('Europe/Paris'));
+        $end = new \DateTimeImmutable('11/21/19 10:45', new \DateTimeZone('Europe/Paris'));
         $slot = new Slot('Keynote', $start, $end, 'Speaker Name');
 
         $expectedText = <<<TEXT
@@ -44,8 +44,8 @@ final class SlotTest extends TestCase
 
     public function testSlotTextWithoutTrackAndSpeaker(): void
     {
-        $start = new \DateTimeImmutable('11/21/19 10:05');
-        $end = new \DateTimeImmutable('11/21/19 10:45');
+        $start = new \DateTimeImmutable('11/21/19 10:05', new \DateTimeZone('Europe/Paris'));
+        $end = new \DateTimeImmutable('11/21/19 10:45', new \DateTimeZone('Europe/Paris'));
         $slot = new Slot('Lunch', $start, $end);
 
         $expectedText = <<<TEXT

@@ -19,9 +19,9 @@ class Slot
         #[ORM\Column]
         private readonly string $title,
         #[ORM\Column(type: 'datetime_immutable')]
-        private readonly \DateTimeImmutable $start,
+        private \DateTimeImmutable $start,
         #[ORM\Column(type: 'datetime_immutable')]
-        private readonly \DateTimeImmutable $end,
+        private \DateTimeImmutable $end,
         #[ORM\Column(nullable: true)]
         private readonly string|null $speaker = null,
         #[ORM\Column(nullable: true)]
@@ -30,6 +30,9 @@ class Slot
         private readonly string|null $description = null,
     ) {
         $this->id = Uuid::v4();
+
+        $this->start = $this->enforceParisTimeZone($this->start);
+        $this->end = $this->enforceParisTimeZone($this->end);
     }
 
     public function getId(): string
@@ -45,17 +48,17 @@ class Slot
 
     public function getTimeSpan(): string
     {
-        return sprintf('%s - %s', $this->start->format('M d: H:i'), $this->end->format('H:i'));
+        return sprintf('%s - %s', $this->getStart()->format('M d: H:i'), $this->getEnd()->format('H:i'));
     }
 
     public function getStart(): \DateTimeImmutable
     {
-        return $this->start;
+        return $this->enforceParisTimeZone($this->start);
     }
 
     public function getEnd(): \DateTimeImmutable
     {
-        return $this->end;
+        return $this->enforceParisTimeZone($this->end);
     }
 
     public function getSpeaker(): ?string
@@ -89,5 +92,10 @@ class Slot
         }
 
         return $text;
+    }
+
+    private function enforceParisTimeZone(\DateTimeImmutable $dateTime): \DateTimeImmutable
+    {
+        return $dateTime->setTimezone(new \DateTimeZone('Europe/Paris'));
     }
 }
