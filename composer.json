@@ -16,6 +16,7 @@
         "keiko/uuid-shortener": "^0.6.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "sentry/sentry-symfony": "^4.4",
+        "symfony/clock": "6.2.*",
         "symfony/console": "6.2.*",
         "symfony/css-selector": "6.2.*",
         "symfony/dom-crawler": "6.2.*",

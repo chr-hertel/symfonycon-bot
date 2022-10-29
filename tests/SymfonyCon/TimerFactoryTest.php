@@ -9,6 +9,7 @@ use App\Tests\ConferenceFixtures;
 use App\Tests\SchemaSetup;
 use App\Tests\TestDatabase;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Clock\MockClock;
 
 final class TimerFactoryTest extends TestCase
 {
@@ -25,7 +26,8 @@ final class TimerFactoryTest extends TestCase
 
     public function testCreateTimer(): void
     {
-        $factory = new TimerFactory($this->repository, '11/18/19 19:15');
+        $clock = new MockClock('11/18/19 19:15');
+        $factory = new TimerFactory($this->repository, $clock);
         $timer = $factory->createTimer();
         $countdown = $timer->getCountdown();
 

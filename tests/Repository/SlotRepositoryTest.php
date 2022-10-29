@@ -110,23 +110,13 @@ final class SlotRepositoryTest extends TestCase
         ];
     }
 
-    public function testFindFirstSlot(): void
+    public function testGetTimeSpan(): void
     {
-        $slot = $this->repository->findFirstSlot();
+        $result = $this->repository->getTimeSpan();
 
-        static::assertInstanceOf(Slot::class, $slot);
-        static::assertSame('Badge pickup and welcome light breakfast ☕🥐', $slot->getTitle());
-        static::assertEquals(new \DateTimeImmutable('11/21/19 8:00'), $slot->getStart());
-        static::assertEquals(new \DateTimeImmutable('11/21/19 9:00'), $slot->getEnd());
-    }
-
-    public function testFindLastSlot(): void
-    {
-        $slot = $this->repository->findLastSlot();
-
-        static::assertInstanceOf(Slot::class, $slot);
-        static::assertSame('Closing session', $slot->getTitle());
-        static::assertEquals(new \DateTimeImmutable('11/22/19 16:40'), $slot->getStart());
-        static::assertEquals(new \DateTimeImmutable('11/22/19 17:00'), $slot->getEnd());
+        static::assertArrayHasKey('start', $result);
+        static::assertArrayHasKey('end', $result);
+        static::assertEquals(new \DateTimeImmutable('11/21/19 8:00'), $result['start']);
+        static::assertEquals(new \DateTimeImmutable('11/22/19 17:00'), $result['end']);
     }
 }

@@ -77,13 +77,15 @@ final class SlotRepository extends ServiceEntityRepository
         return $this->find($this->shortener->expand($shortId));
     }
 
-    public function findFirstSlot(): Slot|null
+    /**
+     * @phpstan-return array{start: \DateTimeImmutable, end: \DateTimeImmutable}
+     */
+    public function getTimeSpan(): array
     {
-        return $this->findOneBy([], ['start' => 'ASC']);
-    }
-
-    public function findLastSlot(): Slot|null
-    {
-        return $this->findOneBy([], ['start' => 'DESC']);
+        return $this->createQueryBuilder('s')
+            ->select('new DateTimeImmutable(min(s.start)) as start')
+            ->addSelect('new DateTimeImmutable(max(s.end)) as end')
+            ->getQuery()
+            ->getSingleResult();
     }
 }
