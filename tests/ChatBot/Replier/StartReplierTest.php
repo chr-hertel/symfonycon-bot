@@ -21,7 +21,7 @@ final class StartReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -31,7 +31,7 @@ final class StartReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testStartText(): void
@@ -46,7 +46,7 @@ final class StartReplierTest extends TestCase
         $expectedText = '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.';
         $chatMessage = $this->replier->reply($update);
 
-        static::assertSame($expectedText, $chatMessage->getSubject());
+        self::assertSame($expectedText, $chatMessage->getSubject());
     }
 
     protected function setUp(): void

@@ -24,102 +24,110 @@ final class ScheduleTest extends TestCase
 
     public function testNowBefore(): void
     {
-        static::assertCount(0, $this->scheduleBefore->now());
+        self::assertNull($this->scheduleBefore->now());
     }
 
     public function testNowStartingMorning(): void
     {
-        static::assertCount(0, $this->scheduleStartingMorning->now());
+        self::assertNull($this->scheduleStartingMorning->now());
     }
 
     public function testNowWhileRunning(): void
     {
-        static::assertCount(3, $this->scheduleWhileRunning->now());
+        $slot = $this->scheduleWhileRunning->now();
+        self::assertNotNull($slot);
+        self::assertCount(3, $slot->getEvents());
     }
 
     public function testNowAfter(): void
     {
-        static::assertCount(0, $this->scheduleAfter->now());
+        self::assertNull($this->scheduleAfter->now());
     }
 
     public function testNextBefore(): void
     {
-        static::assertCount(0, $this->scheduleBefore->next());
+        $slot = $this->scheduleBefore->next();
+        self::assertNotNull($slot);
+        self::assertCount(1, $slot->getEvents());
     }
 
     public function testNextStartingMorning(): void
     {
-        static::assertCount(1, $this->scheduleStartingMorning->next());
+        $slot = $this->scheduleStartingMorning->next();
+        self::assertNotNull($slot);
+        self::assertCount(1, $slot->getEvents());
     }
 
     public function testNextWhileRunning(): void
     {
-        static::assertCount(1, $this->scheduleWhileRunning->next());
+        $slot = $this->scheduleWhileRunning->next();
+        self::assertNotNull($slot);
+        self::assertCount(1, $slot->getEvents());
     }
 
     public function testNextAfter(): void
     {
-        static::assertCount(0, $this->scheduleAfter->next());
+        self::assertNull($this->scheduleAfter->next());
     }
 
     public function testTodayBefore(): void
     {
-        static::assertCount(0, $this->scheduleBefore->today());
+        self::assertCount(0, $this->scheduleBefore->today());
     }
 
     public function testTodayStartingMorning(): void
     {
-        static::assertCount(23, $this->scheduleStartingMorning->today());
+        self::assertCount(13, $this->scheduleStartingMorning->today());
     }
 
     public function testTodayWhileRunning(): void
     {
-        static::assertCount(22, $this->scheduleWhileRunning->today());
+        self::assertCount(12, $this->scheduleWhileRunning->today());
     }
 
     public function testTodayAfter(): void
     {
-        static::assertCount(0, $this->scheduleAfter->today());
+        self::assertCount(0, $this->scheduleAfter->today());
     }
 
     public function testDay1Before(): void
     {
-        static::assertCount(23, $this->scheduleBefore->day1());
+        self::assertCount(13, $this->scheduleBefore->day1());
     }
 
     public function testDay1StartingMorning(): void
     {
-        static::assertCount(23, $this->scheduleStartingMorning->day1());
+        self::assertCount(13, $this->scheduleStartingMorning->day1());
     }
 
     public function testDay1WhileRunning(): void
     {
-        static::assertCount(23, $this->scheduleWhileRunning->day1());
+        self::assertCount(13, $this->scheduleWhileRunning->day1());
     }
 
     public function testDay1After(): void
     {
-        static::assertCount(23, $this->scheduleAfter->day1());
+        self::assertCount(13, $this->scheduleAfter->day1());
     }
 
     public function testDay2Before(): void
     {
-        static::assertCount(22, $this->scheduleBefore->day2());
+        self::assertCount(12, $this->scheduleBefore->day2());
     }
 
     public function testDay2StartingMorning(): void
     {
-        static::assertCount(22, $this->scheduleStartingMorning->day2());
+        self::assertCount(12, $this->scheduleStartingMorning->day2());
     }
 
     public function testDay2WhileRunning(): void
     {
-        static::assertCount(22, $this->scheduleWhileRunning->day2());
+        self::assertCount(12, $this->scheduleWhileRunning->day2());
     }
 
     public function testDay2After(): void
     {
-        static::assertCount(22, $this->scheduleAfter->day2());
+        self::assertCount(12, $this->scheduleAfter->day2());
     }
 
     protected function setUp(): void

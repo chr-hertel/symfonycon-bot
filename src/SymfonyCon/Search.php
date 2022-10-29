@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\SymfonyCon;
 
 use Algolia\SearchBundle\SearchService;
-use App\Entity\Slot;
+use App\Entity\Talk;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Search
@@ -16,11 +16,14 @@ class Search
     ) {
     }
 
-    public function search(string $query): SlotCollection
+    /**
+     * @return list<Talk>
+     */
+    public function search(string $query): array
     {
-        /** @var Slot[] $slots */
-        $slots = $this->searchService->search($this->entityManager, Slot::class, $query);
+        /** @var list<Talk> $talks */
+        $talks = $this->searchService->search($this->entityManager, Talk::class, $query);
 
-        return SlotCollection::array($slots);
+        return $talks;
     }
 }

@@ -21,7 +21,7 @@ final class CountdownReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -31,7 +31,7 @@ final class CountdownReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testCountdownText(): void
@@ -39,7 +39,7 @@ final class CountdownReplierTest extends TestCase
         $expectedText = 'Only <b>2 days, 12 hours and 45 minutes</b> until SymfonyCon starts.';
 
         $chatMessage = $this->replier->reply(new Update());
-        static::assertSame($expectedText, $chatMessage->getSubject());
+        self::assertSame($expectedText, $chatMessage->getSubject());
     }
 
     protected function setUp(): void

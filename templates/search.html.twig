@@ -1,10 +1,10 @@
 <strong>Results for "{{ query }}"</strong>
 
-{# @var \App\Entity\Slot slot #}
-{% for slot in slots %}
- • <strong>{{ slot.title }}</strong>
-   {{ slot.timeSpan }}
-   » /slot@{{ slot.id|short }}
+{# @var \App\Entity\Talk talk #}
+{% for talk in talks %}
+ • <strong>{{ talk.title }}</strong>
+   {{ talk.timeSpan.toString }}
+   » /talk@{{ talk.id|short }}
 
 {% else %}
     Nothing found!

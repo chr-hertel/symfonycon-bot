@@ -5,6 +5,6 @@ algolia_search:
     prefix: '%env(APP_ENV)%_'
     doctrineSubscribedEvents: []
     indices:
-        - name: slots
-          class: App\Entity\Slot
+        - name: talks
+          class: App\Entity\Talk
           enable_serializer_groups: true

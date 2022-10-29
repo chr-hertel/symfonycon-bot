@@ -29,11 +29,11 @@ final class WebhookRegisterCommandTest extends KernelTestCase
         $this->commandTester->execute([]);
 
         $output = $this->commandTester->getDisplay();
-        static::assertStringContainsString('Registering Telegram Webhook', $output);
-        static::assertStringContainsString('Really want to replace the webhook?', $output);
-        static::assertStringNotContainsString('Done', $output);
+        self::assertStringContainsString('Registering Telegram Webhook', $output);
+        self::assertStringContainsString('Really want to replace the webhook?', $output);
+        self::assertStringNotContainsString('Done', $output);
 
-        static::assertSame(0, $this->commandTester->getStatusCode());
+        self::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     public function testWebhookNotRegisteredOnNoInteraction(): void
@@ -45,11 +45,11 @@ final class WebhookRegisterCommandTest extends KernelTestCase
         $this->commandTester->execute([], ['interactive' => false]);
 
         $output = $this->commandTester->getDisplay();
-        static::assertStringContainsString('Registering Telegram Webhook', $output);
-        static::assertStringNotContainsString('Really want to replace the webhook?', $output);
-        static::assertStringNotContainsString('Done', $output);
+        self::assertStringContainsString('Registering Telegram Webhook', $output);
+        self::assertStringNotContainsString('Really want to replace the webhook?', $output);
+        self::assertStringNotContainsString('Done', $output);
 
-        static::assertSame(0, $this->commandTester->getStatusCode());
+        self::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     public function testWebhookRegisteredOnConfirmation(): void
@@ -62,11 +62,11 @@ final class WebhookRegisterCommandTest extends KernelTestCase
         $this->commandTester->execute([]);
 
         $output = $this->commandTester->getDisplay();
-        static::assertStringContainsString('Registering Telegram Webhook', $output);
-        static::assertStringContainsString('Really want to replace the webhook?', $output);
-        static::assertStringContainsString('Done', $output);
+        self::assertStringContainsString('Registering Telegram Webhook', $output);
+        self::assertStringContainsString('Really want to replace the webhook?', $output);
+        self::assertStringContainsString('Done', $output);
 
-        static::assertSame(0, $this->commandTester->getStatusCode());
+        self::assertSame(0, $this->commandTester->getStatusCode());
     }
 
     protected function setUp(): void

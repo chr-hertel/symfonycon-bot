@@ -37,7 +37,7 @@ final class SearchReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -47,7 +47,7 @@ final class SearchReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testSearchReplyWithoutQuery(): void
@@ -58,13 +58,13 @@ final class SearchReplierTest extends TestCase
         $update->message = $message;
 
         $this->search
-            ->expects(static::never())
+            ->expects(self::never())
             ->method('search');
 
         $chatMessage = $this->replier->reply($update);
 
-        static::assertInstanceOf(ChatMessage::class, $chatMessage);
-        static::assertSame('Please add a search term, like "/search Symfony 6.2".', $chatMessage->getSubject());
+        self::assertInstanceOf(ChatMessage::class, $chatMessage);
+        self::assertSame('Please add a search term, like "/search Symfony 6.2".', $chatMessage->getSubject());
     }
 
     public function testSearchReplyWithQuery(): void
@@ -75,12 +75,12 @@ final class SearchReplierTest extends TestCase
         $update->message = $message;
 
         $this->search
-            ->expects(static::once())
+            ->expects(self::once())
             ->method('search')
             ->with('testing');
 
         $chatMessage = $this->replier->reply($update);
 
-        static::assertInstanceOf(ChatMessage::class, $chatMessage);
+        self::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 }

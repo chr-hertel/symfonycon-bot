@@ -20,7 +20,7 @@ final class HelpReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -30,19 +30,19 @@ final class HelpReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testHelpText(): void
     {
         $chatMessage = $this->replier->reply(new Update());
 
-        static::assertStringContainsString('/countdown', $chatMessage->getSubject());
-        static::assertStringContainsString('/day1', $chatMessage->getSubject());
-        static::assertStringContainsString('/day2', $chatMessage->getSubject());
-        static::assertStringContainsString('/today', $chatMessage->getSubject());
-        static::assertStringContainsString('/now', $chatMessage->getSubject());
-        static::assertStringContainsString('/next', $chatMessage->getSubject());
+        self::assertStringContainsString('/countdown', $chatMessage->getSubject());
+        self::assertStringContainsString('/day1', $chatMessage->getSubject());
+        self::assertStringContainsString('/day2', $chatMessage->getSubject());
+        self::assertStringContainsString('/today', $chatMessage->getSubject());
+        self::assertStringContainsString('/now', $chatMessage->getSubject());
+        self::assertStringContainsString('/next', $chatMessage->getSubject());
     }
 
     protected function setUp(): void

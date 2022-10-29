@@ -24,7 +24,7 @@ final class WebhookControllerTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client = static::createClient();
+        $this->client = self::createClient();
         /** @var Registry $registry */
         $registry = $this->client->getContainer()->get('doctrine');
         /** @var EntityManagerInterface $manager */

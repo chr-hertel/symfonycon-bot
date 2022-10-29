@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\ChatBot\Replier;
 
 use App\ChatBot\Telegram\Data\Update;
-use App\Repository\SlotRepository;
+use App\Repository\TalkRepository;
 use Symfony\Component\Notifier\Message\ChatMessage;
 use Twig\Environment;
 
-final class SlotReplier extends CommandReplier
+final class TalkReplier extends CommandReplier
 {
-    public function __construct(private readonly SlotRepository $repository, private readonly Environment $twig)
+    public function __construct(private readonly TalkRepository $repository, private readonly Environment $twig)
     {
     }
 
     public function getCommand(): string
     {
-        return 'slot';
+        return 'talk';
     }
 
     public function getDescription(): string
@@ -32,16 +32,16 @@ final class SlotReplier extends CommandReplier
 
     public function reply(Update $update): ChatMessage
     {
-        // remove "/slot@" from message text
+        // remove "/talk@" from message text
         $shortId = substr($update->getMessage()->text, 6);
-        $slot = $this->repository->findByShortId($shortId);
+        $talk = $this->repository->findByShortId($shortId);
 
-        if (null === $slot) {
+        if (null === $talk) {
             return new ChatMessage('Missing or invalid Slot ID.');
         }
 
         return new ChatMessage(
-            $this->twig->render('slot.html.twig', ['slot' => $slot])
+            $this->twig->render('talk.html.twig', ['talk' => $talk])
         );
     }
 }

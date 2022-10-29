@@ -31,8 +31,8 @@ final class TimerFactoryTest extends TestCase
         $timer = $factory->createTimer();
         $countdown = $timer->getCountdown();
 
-        static::assertSame(2, $countdown->days);
-        static::assertSame(12, $countdown->h);
-        static::assertSame(45, $countdown->i);
+        self::assertSame(2, $countdown->days);
+        self::assertSame(12, $countdown->h);
+        self::assertSame(45, $countdown->i);
     }
 }
