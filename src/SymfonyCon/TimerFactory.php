@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace App\SymfonyCon;
 
 use App\Repository\SlotRepository;
+use Symfony\Component\Clock\ClockInterface;
 
 final class TimerFactory
 {
-    private \DateTimeImmutable $now;
-
-    public function __construct(private readonly SlotRepository $repository, string $now = null)
-    {
-        $this->now = new \DateTimeImmutable($now ?? 'now');
+    public function __construct(
+        private readonly SlotRepository $repository,
+        private readonly ClockInterface $clock,
+    ) {
     }
 
     public function createTimer(): Timer
     {
-        $start = $this->repository->findFirstSlot()?->getStart() ?? new \DateTimeImmutable();
-        $end = $this->repository->findLastSlot()?->getEnd() ?? new \DateTimeImmutable();
+        ['start' => $start, 'end' => $end] = $this->repository->getTimeSpan();
 
-        return new Timer($start, $end, $this->now);
+        return new Timer($start, $end, $this->clock->now());
     }
 }
