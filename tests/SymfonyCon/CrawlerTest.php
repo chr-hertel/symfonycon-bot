@@ -33,13 +33,13 @@ final class CrawlerTest extends TestCase
 
         $crawler->loadSchedule();
 
-        static::assertSame(45, $this->repository->count([]));
+        self::assertSame(27, $this->repository->count([]));
     }
 
     private function responseFactory(string $method, string $url): ResponseInterface
     {
-        static::assertSame('GET', $method);
-        static::assertSame('https://live.symfony.com/2022-paris-con/schedule', $url);
+        self::assertSame('GET', $method);
+        self::assertSame('https://live.symfony.com/2022-paris-con/schedule', $url);
 
         return new MockResponse((string) file_get_contents(__DIR__.'/fixtures/full-schedule.html'));
     }

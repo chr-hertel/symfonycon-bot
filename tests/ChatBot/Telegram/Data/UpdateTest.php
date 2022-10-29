@@ -30,7 +30,7 @@ final class UpdateTest extends TestCase
         $callback->message = $callbackMessage;
         $update->callbackQuery = $callback;
 
-        static::assertSame($callbackMessage, $update->getMessage());
+        self::assertSame($callbackMessage, $update->getMessage());
     }
 
     public function testRetrieveEditedMessage(): void
@@ -40,7 +40,7 @@ final class UpdateTest extends TestCase
         $editedMessage = new Message();
         $update->editedMessage = $editedMessage;
 
-        static::assertSame($editedMessage, $update->getMessage());
+        self::assertSame($editedMessage, $update->getMessage());
     }
 
     public function testRetrieveMessage(): void
@@ -50,7 +50,7 @@ final class UpdateTest extends TestCase
         $message = new Message();
         $update->message = $message;
 
-        static::assertSame($message, $update->getMessage());
+        self::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveMessageBeforeEditedMessage(): void
@@ -63,7 +63,7 @@ final class UpdateTest extends TestCase
         $editedMessage = new Message();
         $update->editedMessage = $editedMessage;
 
-        static::assertSame($message, $update->getMessage());
+        self::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveMessageBeforeEditedMessageBeforeCallbackMessage(): void
@@ -81,7 +81,7 @@ final class UpdateTest extends TestCase
         $callback->message = $callbackMessage;
         $update->callbackQuery = $callback;
 
-        static::assertSame($message, $update->getMessage());
+        self::assertSame($message, $update->getMessage());
     }
 
     public function testRetrieveEditedMessageBeforeCallbackMessage(): void
@@ -96,6 +96,6 @@ final class UpdateTest extends TestCase
         $callback->message = $callbackMessage;
         $update->callbackQuery = $callback;
 
-        static::assertSame($editedMessage, $update->getMessage());
+        self::assertSame($editedMessage, $update->getMessage());
     }
 }

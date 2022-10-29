@@ -28,9 +28,9 @@ final class ChatBotTest extends TestCase
         $chatter = $this->getMockBuilder(ChatterInterface::class)->getMock();
 
         $chatter
-            ->expects(static::once())
+            ->expects(self::once())
             ->method('send')
-            ->with(static::isInstanceOf(ChatMessage::class));
+            ->with(self::isInstanceOf(ChatMessage::class));
 
         $update = new Update();
         $update->message = new Message();

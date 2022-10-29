@@ -8,12 +8,15 @@ use App\ChatBot\Replier\NextReplier;
 use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
+use App\Tests\Renderer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class NextReplierTest extends TestCase
 {
+    use Renderer;
+
     /** @var MockObject&Schedule */
     private MockObject $schedule;
     private NextReplier $replier;
@@ -25,7 +28,7 @@ final class NextReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -35,25 +38,26 @@ final class NextReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testNextReply(): void
     {
         $this->schedule
-            ->expects(static::once())
+            ->expects(self::once())
             ->method('next');
 
         $chatMessage = $this->replier->reply(new Update());
 
-        static::assertInstanceOf(ChatMessage::class, $chatMessage);
+        self::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 
     protected function setUp(): void
     {
+        $this->setUpSlotRenderer();
         $this->schedule = $this->getMockBuilder(Schedule::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $this->replier = new NextReplier($this->schedule);
+        $this->replier = new NextReplier($this->schedule, $this->slotRenderer);
     }
 }

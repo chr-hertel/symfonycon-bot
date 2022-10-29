@@ -37,7 +37,7 @@ final class SearchReplier extends CommandReplier
         return new ChatMessage(
             $this->twig->render('search.html.twig', [
                 'query' => $query,
-                'slots' => $this->search->search($query),
+                'talks' => $this->search->search($query),
             ])
         );
     }

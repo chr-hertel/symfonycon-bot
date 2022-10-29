@@ -32,7 +32,7 @@ final class ReplyMachineTest extends TestCase
         $update->message = $message;
 
         $chatMessage = $this->replyMachine->findReply($update);
-        static::assertStringStartsWith($expectedReply, $chatMessage->getSubject());
+        self::assertStringStartsWith($expectedReply, $chatMessage->getSubject());
     }
 
     /**
@@ -55,7 +55,7 @@ final class ReplyMachineTest extends TestCase
         $update->message = $message;
 
         $chatMessage = $this->replyMachine->findReply($update);
-        static::assertSame('<b>Sorry, I didn\'t get that!</b>'.PHP_EOL.PHP_EOL.'Please try /help instead!', $chatMessage->getSubject());
+        self::assertSame('<b>Sorry, I didn\'t get that!</b>'.PHP_EOL.PHP_EOL.'Please try /help instead!', $chatMessage->getSubject());
     }
 
     protected function setUp(): void

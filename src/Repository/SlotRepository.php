@@ -6,15 +6,15 @@ namespace App\Repository;
 
 use App\Entity\Slot;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
-use Keiko\Uuid\Shortener\Shortener;
 
 /**
  * @extends ServiceEntityRepository<Slot>
  */
 final class SlotRepository extends ServiceEntityRepository
 {
-    public function __construct(private readonly Shortener $shortener, ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Slot::class);
     }
@@ -28,53 +28,33 @@ final class SlotRepository extends ServiceEntityRepository
 
         $queryBuilder = $this->createQueryBuilder('s');
         $query = $queryBuilder
-            ->where($queryBuilder->expr()->like('s.start', ':start'))
+            ->where($queryBuilder->expr()->like('s.timeSpan.start', ':start'))
             ->setParameter('start', sprintf('%s%%', $day))
-            ->orderBy('s.start', 'ASC')
+            ->orderBy('s.timeSpan.start', 'ASC')
             ->getQuery()
             ->enableResultCache(3600, sprintf('schedule-%s', $day));
 
         return $query->getResult();
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function findByTime(\DateTimeImmutable $time): array
+    public function findByTime(\DateTimeImmutable $time): ?Slot
     {
         $queryBuilder = $this->createQueryBuilder('s');
         $query = $queryBuilder
-            ->where($queryBuilder->expr()->between(':time', 's.start', 's.end'))
+            ->where($queryBuilder->expr()->between(':time', 's.timeSpan.start', 's.timeSpan.end'))
             ->setParameter('time', $time)
             ->getQuery();
 
-        return $query->getResult();
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException) {
+            return null;
+        }
     }
 
-    /**
-     * @return Slot[]
-     */
-    public function findNext(\DateTimeImmutable $time): array
+    public function findFirst(): ?Slot
     {
-        $subQueryBuilder = $this->createQueryBuilder('s');
-        $subQuery = $subQueryBuilder
-            ->select('min(s.start)')
-            ->where($subQueryBuilder->expr()->gte('s.start', ':time'))
-            ->getQuery();
-
-        $queryBuilder = $this->createQueryBuilder('slot');
-        $query = $queryBuilder
-            ->where($queryBuilder->expr()->eq('slot.start', sprintf('(%s)', $subQuery->getDQL())))
-            ->getQuery();
-
-        return $query
-            ->setParameter('time', $time)
-            ->getResult();
-    }
-
-    public function findByShortId(string $shortId): Slot|null
-    {
-        return $this->find($this->shortener->expand($shortId));
+        return $this->findOneBy([], ['timeSpan.start' => 'ASC']);
     }
 
     /**
@@ -83,8 +63,8 @@ final class SlotRepository extends ServiceEntityRepository
     public function getTimeSpan(): array
     {
         return $this->createQueryBuilder('s')
-            ->select('new DateTimeImmutable(min(s.start)) as start')
-            ->addSelect('new DateTimeImmutable(max(s.end)) as end')
+            ->select('new DateTimeImmutable(min(s.timeSpan.start)) as start')
+            ->addSelect('new DateTimeImmutable(max(s.timeSpan.end)) as end')
             ->getQuery()
             ->getSingleResult();
     }

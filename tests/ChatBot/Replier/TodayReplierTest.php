@@ -26,7 +26,7 @@ final class TodayReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertTrue($this->replier->supports($update));
+        self::assertTrue($this->replier->supports($update));
     }
 
     public function testNotSupportingRandomMessage(): void
@@ -36,18 +36,18 @@ final class TodayReplierTest extends TestCase
         $update = new Update();
         $update->message = $message;
 
-        static::assertFalse($this->replier->supports($update));
+        self::assertFalse($this->replier->supports($update));
     }
 
     public function testTodayReply(): void
     {
         $this->schedule
-            ->expects(static::once())
+            ->expects(self::once())
             ->method('today');
 
         $chatMessage = $this->replier->reply(new Update());
 
-        static::assertInstanceOf(ChatMessage::class, $chatMessage);
+        self::assertInstanceOf(ChatMessage::class, $chatMessage);
     }
 
     protected function setUp(): void
