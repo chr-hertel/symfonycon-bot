@@ -313,22 +313,22 @@
         ]
     },
     "symfony/framework-bundle": {
-        "version": "5.4",
+        "version": "6.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.4",
-            "ref": "d4131812e20853626928e73d3effef44014944c0"
+            "branch": "main",
+            "version": "6.2",
+            "ref": "92528828e988b3b55af6eac7fe05f0e7e130a89d"
         },
         "files": [
-            "config/packages/framework.yaml",
             "config/packages/cache.yaml",
-            "config/services.yaml",
+            "config/packages/framework.yaml",
             "config/preload.php",
             "config/routes/framework.yaml",
+            "config/services.yaml",
             "public/index.php",
-            "src/Kernel.php",
-            "src/Controller/.gitignore"
+            "src/Controller/.gitignore",
+            "src/Kernel.php"
         ]
     },
     "symfony/http-client": {
