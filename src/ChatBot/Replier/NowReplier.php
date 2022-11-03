@@ -7,6 +7,7 @@ namespace App\ChatBot\Replier;
 use App\ChatBot\Replier\Renderer\SlotRenderer;
 use App\ChatBot\Telegram\Data\Update;
 use App\SymfonyCon\Schedule;
+use Symfony\Component\Notifier\Bridge\Telegram\TelegramOptions;
 use Symfony\Component\Notifier\Message\ChatMessage;
 
 final class NowReplier extends CommandReplier
@@ -33,6 +34,9 @@ final class NowReplier extends CommandReplier
             return new ChatMessage('<b>Current Slot</b>'.PHP_EOL.PHP_EOL.'<i>Nothing found.</i>');
         }
 
-        return new ChatMessage($this->renderer->render('Current Slot', $slot));
+        return new ChatMessage(
+            $this->renderer->render('Current Slot', $slot),
+            (new TelegramOptions())->replyMarkup($this->renderer->buttons($slot)),
+        );
     }
 }

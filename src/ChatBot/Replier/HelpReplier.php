@@ -14,11 +14,6 @@ final class HelpReplier extends CommandReplier
         return 'help';
     }
 
-    public function getDescription(): string
-    {
-        return '';
-    }
-
     public function registerCommand(): bool
     {
         return false;

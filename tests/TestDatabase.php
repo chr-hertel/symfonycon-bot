@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\Container;
 
 trait TestDatabase
 {
+    use UuidShortener;
+
     private CacheItemPoolInterface $resultCache;
     private EntityManagerInterface $entityManager;
     private SlotRepository $repository;
@@ -36,7 +38,7 @@ trait TestDatabase
         $container->set('connection', $this->entityManager->getConnection());
         $container->set('entity_manager', $this->entityManager);
         $registry = new Registry($container, ['connection'], ['entity_manager'], 'connection', 'entity_manager');
-        $this->repository = new SlotRepository($registry);
+        $this->repository = new SlotRepository($this->createShortener(), $registry);
     }
 
     private function createConfiguration(): Configuration

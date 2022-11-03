@@ -7,9 +7,9 @@ namespace App\ChatBot\Telegram\Data;
 final class Update
 {
     public int $updateId;
-    public Message|null $message = null;
-    public Message|null $editedMessage = null;
-    public CallbackQuery|null $callbackQuery = null;
+    public ?Message $message = null;
+    public ?Message $editedMessage = null;
+    public ?CallbackQuery $callbackQuery = null;
 
     public function isMessage(): bool
     {
@@ -19,6 +19,15 @@ final class Update
     public function isCallback(): bool
     {
         return $this->callbackQuery instanceof CallbackQuery;
+    }
+
+    public function getText(): string
+    {
+        if ($this->isCallback()) {
+            return $this->callbackQuery->data ?? '';
+        }
+
+        return $this->getMessage()->text;
     }
 
     public function getMessage(): Message

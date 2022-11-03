@@ -6,11 +6,11 @@ namespace App\Tests;
 
 use App\ChatBot\Replier\Renderer\DayRenderer;
 use App\ChatBot\Replier\Renderer\SlotRenderer;
-use Keiko\Uuid\Shortener\Dictionary;
-use Keiko\Uuid\Shortener\Shortener;
 
 trait Renderer
 {
+    use UuidShortener;
+
     private DayRenderer $dayRenderer;
     private SlotRenderer $slotRenderer;
 
@@ -22,10 +22,5 @@ trait Renderer
     protected function setUpSlotRenderer(): void
     {
         $this->slotRenderer = new SlotRenderer($this->createShortener());
-    }
-
-    private function createShortener(): Shortener
-    {
-        return Shortener::make(Dictionary::createUnmistakable());
     }
 }

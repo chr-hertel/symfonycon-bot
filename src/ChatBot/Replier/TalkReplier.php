@@ -20,11 +20,6 @@ final class TalkReplier extends CommandReplier
         return 'talk';
     }
 
-    public function getDescription(): string
-    {
-        return '';
-    }
-
     public function registerCommand(): bool
     {
         return false;
@@ -33,11 +28,11 @@ final class TalkReplier extends CommandReplier
     public function reply(Update $update): ChatMessage
     {
         // remove "/talk@" from message text
-        $shortId = substr($update->getMessage()->text, 6);
+        $shortId = substr($update->getText(), 6);
         $talk = $this->repository->findByShortId($shortId);
 
         if (null === $talk) {
-            return new ChatMessage('Missing or invalid Slot ID.');
+            return new ChatMessage('Missing or invalid talk ID.');
         }
 
         return new ChatMessage(

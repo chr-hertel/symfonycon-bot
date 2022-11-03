@@ -7,11 +7,28 @@ namespace App\ChatBot\Replier\Renderer;
 use App\Entity\Slot;
 use App\Entity\Talk;
 use Keiko\Uuid\Shortener\Shortener;
+use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\Button\InlineKeyboardButton;
+use Symfony\Component\Notifier\Bridge\Telegram\Reply\Markup\InlineKeyboardMarkup;
 
 class SlotRenderer
 {
     public function __construct(private readonly Shortener $shortener)
     {
+    }
+
+    public function buttons(Slot $slot): InlineKeyboardMarkup
+    {
+        $buttons = [];
+        if (!$slot->isFirst()) {
+            $buttons[] = (new InlineKeyboardButton('Previous Slot'))
+                ->callbackData('/slot@'.$this->shortener->reduce($slot->getPrevious()->getId()));
+        }
+        if (!$slot->isLast()) {
+            $buttons[] = (new InlineKeyboardButton('Next Slot'))
+                ->callbackData('/slot@'.$this->shortener->reduce($slot->getNext()->getId()));
+        }
+
+        return (new InlineKeyboardMarkup())->inlineKeyboard($buttons);
     }
 
     public function render(string $headline, Slot $slot): string

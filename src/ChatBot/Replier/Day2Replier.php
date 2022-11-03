@@ -37,6 +37,10 @@ final class Day2Replier extends CommandReplier
         $markup = (new InlineKeyboardMarkup())->inlineKeyboard([$button]);
         $options = (new TelegramOptions())->replyMarkup($markup);
 
+        if ($update->isCallback()) {
+            $options->edit($update->getMessage()->messageId);
+        }
+
         return new ChatMessage($message, $options);
     }
 }

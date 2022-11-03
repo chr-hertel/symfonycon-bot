@@ -14,11 +14,6 @@ final class StartReplier extends CommandReplier
         return 'start';
     }
 
-    public function getDescription(): string
-    {
-        return '';
-    }
-
     public function registerCommand(): bool
     {
         return false;

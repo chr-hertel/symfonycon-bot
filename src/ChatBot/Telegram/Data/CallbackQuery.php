@@ -8,8 +8,8 @@ final class CallbackQuery
 {
     public string $id;
     public User $from;
-    public Message|null $message = null;
-    public string|null $inlineMessageId = null;
+    public ?Message $message = null;
+    public ?string $inlineMessageId = null;
     public string $chatInstance;
-    public string|null $data = null;
+    public ?string $data = null;
 }
