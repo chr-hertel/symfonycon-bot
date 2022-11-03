@@ -47,8 +47,8 @@ final class Update
         throw new \RuntimeException('Unable to extract message.');
     }
 
-    public function getChatId(): string
+    public function getChatId(): int
     {
-        return (string) $this->getMessage()->chat->id;
+        return $this->getMessage()->chat->id;
     }
 }
