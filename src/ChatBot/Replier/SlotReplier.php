@@ -37,7 +37,7 @@ final class SlotReplier extends CommandReplier
         }
 
         return new ChatMessage(
-            $this->renderer->render('Next Slot', $slot),
+            $this->renderer->render('Slot Details', $slot),
             (new TelegramOptions())
                 ->replyMarkup($this->renderer->buttons($slot))
                 // update previously send message instead of new one

@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Talk;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Keiko\Uuid\Shortener\Exception\DictionaryException;
 use Keiko\Uuid\Shortener\Shortener;
 
 /**
@@ -19,8 +20,12 @@ final class TalkRepository extends ServiceEntityRepository
         parent::__construct($registry, Talk::class);
     }
 
-    public function findByShortId(string $shortId): Talk|null
+    public function findByShortId(string $shortId): ?Talk
     {
-        return $this->find($this->shortener->expand($shortId));
+        try {
+            return $this->find($this->shortener->expand($shortId));
+        } catch (DictionaryException) {
+            return null;
+        }
     }
 }

@@ -33,7 +33,7 @@ final class ChatBot
         /** @var TelegramOptions $options */
         $options = $chatMessage->getOptions() ?? new TelegramOptions();
         $options
-            ->chatId($chatId)
+            ->chatId((string) $chatId)
             ->parseMode(TelegramOptions::PARSE_MODE_HTML);
 
         $this->chatter->send(

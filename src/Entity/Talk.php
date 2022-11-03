@@ -47,4 +47,9 @@ class Talk extends Event
     {
         return $this->track->value;
     }
+
+    public function isOver(\DateTimeImmutable $now): bool
+    {
+        return $now > $this->getTimeSpan()->getEnd();
+    }
 }
