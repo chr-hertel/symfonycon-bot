@@ -28,7 +28,7 @@ final class SearchReplier extends CommandReplier
     public function reply(Update $update): ChatMessage
     {
         // remove "/search" from message text
-        $query = trim(substr($update->getMessage()->text, 7));
+        $query = trim(substr($update->getText(), 7));
 
         if (empty($query)) {
             return new ChatMessage('Please add a search term, like "/search Symfony 6.2".');

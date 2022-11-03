@@ -57,28 +57,36 @@ class Slot
         $this->events->add($event);
     }
 
-    public function getPrevious(): ?Slot
-    {
-        return $this->previous;
-    }
-
     public function isFirst(): bool
     {
         return null === $this->previous;
     }
 
-    public function getNext(): ?Slot
+    public function getPrevious(): Slot
     {
+        if (null === $this->previous) {
+            throw new \DomainException('Cannot fetch previous slot of first slot.');
+        }
+
+        return $this->previous;
+    }
+
+    public function isLast(): bool
+    {
+        return null === $this->next;
+    }
+
+    public function getNext(): Slot
+    {
+        if (null === $this->next) {
+            throw new \DomainException('Cannot fetch next slot of last slot.');
+        }
+
         return $this->next;
     }
 
     public function setNext(Slot $next): void
     {
         $this->next = $next;
-    }
-
-    public function isLast(): bool
-    {
-        return null === $this->next;
     }
 }
