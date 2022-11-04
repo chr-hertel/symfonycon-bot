@@ -6,11 +6,13 @@ namespace App\Tests;
 
 use App\Repository\SlotRepository;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -39,6 +41,10 @@ trait TestDatabase
         $container->set('entity_manager', $this->entityManager);
         $registry = new Registry($container, ['connection'], ['entity_manager'], 'connection', 'entity_manager');
         $this->repository = new SlotRepository($this->createShortener(), $registry);
+
+        if (!Type::hasType('uuid')) {
+            Type::addType('uuid', UuidType::class);
+        }
     }
 
     private function createConfiguration(): Configuration
