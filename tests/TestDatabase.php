@@ -7,7 +7,6 @@ namespace App\Tests;
 use App\Repository\SlotRepository;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\DBAL\Types\Type;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
