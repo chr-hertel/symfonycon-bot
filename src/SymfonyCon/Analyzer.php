@@ -26,6 +26,6 @@ final class Analyzer
                 ORDER BY average DESC, ratings DESC;
         SQL;
 
-        return dump($this->connection->executeQuery($query)->fetchAllAssociative());
+        return $this->connection->executeQuery($query)->fetchAllAssociative();
     }
 }
