@@ -13,7 +13,7 @@ final class Analyzer
     }
 
     /**
-     * @return list<array{title: string, speaker: string, attendees: int, ratings: int, average: float}>
+     * @return list<array<string, mixed>>
      */
     public function createAnalysis(): array
     {
@@ -26,6 +26,6 @@ final class Analyzer
                 ORDER BY average DESC, ratings DESC;
         SQL;
 
-        return dump($this->connection->executeQuery($query)->fetchAllAssociative());
+        return $this->connection->executeQuery($query)->fetchAllAssociative();
     }
 }
