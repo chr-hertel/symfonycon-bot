@@ -13,7 +13,7 @@ final class Analyzer
     }
 
     /**
-     * @return list<array{title: string, speaker: string, attendees: int, ratings: int, average: float}>
+     * @return list<array<string, mixed>>
      */
     public function createAnalysis(): array
     {
