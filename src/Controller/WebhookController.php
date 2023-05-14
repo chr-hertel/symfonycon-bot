@@ -22,7 +22,7 @@ final class WebhookController
     ) {
     }
 
-    #[Route('/chatbot', name: 'webhook', methods: ['POST'])]
+    #[Route('/chatbot', name: 'webhook', methods: ['POST'], defaults: ['_format' => 'json'])]
     public function connect(Request $request): Response
     {
         /** @var Update $update */

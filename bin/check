@@ -10,6 +10,6 @@ symfony php vendor/bin/php-cs-fixer fix --dry-run
 
 symfony php vendor/bin/phpstan analyse
 
-symfony php bin/phpunit
+symfony php vendor/bin/phpunit
 
 symfony php vendor/bin/infection

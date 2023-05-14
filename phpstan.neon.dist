@@ -7,8 +7,6 @@ parameters:
     paths:
         - src/
         - tests/
-    bootstrapFiles:
-        - '%currentWorkingDirectory%/vendor/bin/.phpunit/phpunit-9.5.10-0/vendor/autoload.php'
     ignoreErrors:
         -
             message: '#Property App\\Entity\\[a-zA-Z]+::\$id is unused.#'

@@ -12,6 +12,7 @@ use App\ChatBot\Telegram\Data\Message;
 use App\ChatBot\Telegram\Data\Update;
 use App\ChatBot\Telegram\Data\User;
 use App\SymfonyCon\Timer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ReplyMachineTest extends TestCase
@@ -19,8 +20,10 @@ final class ReplyMachineTest extends TestCase
     private ReplyMachine $replyMachine;
 
     /**
-     * @dataProvider provideValidMessage
+     * @param non-empty-string $text
+     * @param non-empty-string $expectedReply
      */
+    #[DataProvider('provideValidMessage')]
     public function testValidMessageGetsReply(string $text, string $expectedReply): void
     {
         $user = new User();
@@ -36,9 +39,9 @@ final class ReplyMachineTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string}>
+     * @return array<array{0: non-empty-string, 1: non-empty-string}>
      */
-    public function provideValidMessage(): array
+    public static function provideValidMessage(): array
     {
         return [
             ['/start', '<b>Welcome to SymfonyConBot, Chris! :)</b>'.PHP_EOL.PHP_EOL.'Use /help to see all commands.'],

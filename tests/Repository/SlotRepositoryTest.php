@@ -8,6 +8,7 @@ use App\Entity\Slot;
 use App\Tests\ConferenceFixtures;
 use App\Tests\SchemaSetup;
 use App\Tests\TestDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class SlotRepositoryTest extends TestCase
@@ -23,9 +24,7 @@ final class SlotRepositoryTest extends TestCase
         $this->setUpFixtures();
     }
 
-    /**
-     * @dataProvider provideDays
-     */
+    #[DataProvider('provideDays')]
     public function testFindByDay(string $date, int $expectedCount, string $cacheKey): void
     {
         $dateTime = new \DateTimeImmutable($date);
@@ -44,7 +43,7 @@ final class SlotRepositoryTest extends TestCase
     /**
      * @return array<string, array{0: string, 1: int, 2: string}>
      */
-    public function provideDays(): array
+    public static function provideDays(): array
     {
         return [
             'day1' => ['11/21/19 08:00', 13, 'schedule-2019-11-21'],
@@ -53,10 +52,9 @@ final class SlotRepositoryTest extends TestCase
     }
 
     /**
-     * @dataProvider provideTimes
-     *
      * @param array<string> $titles
      */
+    #[DataProvider('provideTimes')]
     public function testFindByTime(string $time, array $titles): void
     {
         $slot = $this->repository->findByTime(new \DateTimeImmutable($time));
@@ -72,7 +70,7 @@ final class SlotRepositoryTest extends TestCase
     /**
      * @return array<string, array{0: string, 1: array<string>}>
      */
-    public function provideTimes(): array
+    public static function provideTimes(): array
     {
         return [
             'day1_keynote' => ['11/21/19 09:36', ['Keynote']],

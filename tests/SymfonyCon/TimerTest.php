@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\SymfonyCon;
 
 use App\SymfonyCon\Timer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class TimerTest extends TestCase
@@ -133,9 +134,7 @@ final class TimerTest extends TestCase
         self::assertSame(0, $countdown->i);
     }
 
-    /**
-     * @dataProvider provideStartsTodayData
-     */
+    #[DataProvider('provideStartsTodayData')]
     public function testStartsToday(string $now, bool $expectedBoolean): void
     {
         $timer = $this->getTimerWithNow($now);
@@ -146,7 +145,7 @@ final class TimerTest extends TestCase
     /**
      * @return array<array{0: string, 1: boolean}>
      */
-    public function provideStartsTodayData(): array
+    public static function provideStartsTodayData(): array
     {
         return [
             ['11/21/19 07:20', true],

@@ -30,7 +30,7 @@ final class TimeSpanTest extends TestCase
     public function testEndBeforeEndInvalid(): void
     {
         self::expectException(\InvalidArgumentException::class);
-        self::expectDeprecationMessage('The time span needs to start before it ends.');
+        self::expectExceptionMessage('The time span needs to start before it ends.');
 
         $start = new \DateTimeImmutable('2020-11-21 07:10');
         $end = new \DateTimeImmutable('2020-11-21 06:55');
