@@ -10,6 +10,7 @@ use App\Entity\Talk;
 use App\Entity\TimeSpan;
 use App\Entity\Track;
 use App\SymfonyCon\Crawler\Parser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ParserTest extends TestCase
@@ -25,10 +26,9 @@ final class ParserTest extends TestCase
     }
 
     /**
-     * @dataProvider provideSnippetsAndSlots
-     *
-     * @phpstan-param list<Slot> $expectedSlot
+     * @param list<Slot> $expectedSlot
      */
+    #[DataProvider('provideSnippetsAndSlots')]
     public function testSlotExtractionWithData(string $fileName, array $expectedSlot): void
     {
         $parser = new Parser();
@@ -40,9 +40,9 @@ final class ParserTest extends TestCase
     }
 
     /**
-     * @phpstan-return iterable<string, array{string, list<Slot>}>
+     * @return iterable<string, array{string, list<Slot>}>
      */
-    public function provideSnippetsAndSlots(): iterable
+    public static function provideSnippetsAndSlots(): iterable
     {
         $timeSpan = new TimeSpan(new \DateTimeImmutable('17-11-2022 08:15'), new \DateTimeImmutable('17-11-2022 08:55'));
         $slot = new Slot($timeSpan);

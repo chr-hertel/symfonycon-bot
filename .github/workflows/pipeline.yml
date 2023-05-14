@@ -11,6 +11,10 @@ jobs:
               uses: actions/checkout@v1
               with:
                   fetch-depth: 1
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: '8.2'
             - name: Cache Vendors
               uses: actions/cache@v1
               id: cache-vendors
@@ -25,13 +29,7 @@ jobs:
               run: bin/console lint:yaml config --parse-tags
             - name: Code Style PHP
               run: vendor/bin/php-cs-fixer fix --dry-run
-            - name: Cache PHPUnit
-              uses: actions/cache@v1
-              id: cache-phpunit
-              with:
-                path: bin/.phpunit
-                key: ${{ runner.os }}-phpunit-${{ hashFiles('**/phpunit.xml.dist')}}
             - name: Tests
-              run: bin/phpunit
+              run: vendor/bin/phpunit
             - name: Static Code Analysis
               run: vendor/bin/phpstan analyse
